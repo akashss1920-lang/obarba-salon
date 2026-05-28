@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>O’BARBA Family Salon — Luxury Meets Affordability</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: { gold: '#D4AF37', ink: '#0a0a0b', charcoal: '#111113', 'charcoal-2': '#1a1a1e' },
+                    fontFamily: { display: ['Montserrat', 'sans-serif'] }
+                }
+            }
+        }
+    </script>
+    <!-- Netlify Identity Widget for Admin Login Authentication -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+</head>
+<body class="bg-ink text-zinc-200 font-sans antialiased">
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center text-center px-4">
+        <div>
+            <h1 id="dyn-title" class="font-display font-extrabold text-5xl md:text-7xl text-zinc-50 tracking-tight">O’BARBA</h1>
+            <p id="dyn-tagline" class="mt-4 text-gold text-xl md:text-2xl font-medium">Luxury Meets Affordability</p>
+            <p id="dyn-desc" class="mt-4 max-w-xl mx-auto text-zinc-400 text-sm md:text-base">Loading salon experience...</p>
+            <div class="mt-8">
+                <a href="#booking" class="inline-flex items-center justify-center h-12 px-6 rounded-xl bg-gold text-ink font-semibold text-sm shadow-lg hover:scale-105 transition-all">Book Appointment</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dynamic JavaScript Engine to load data.json -->
+    <script>
+        fetch('./data.json')
+            .then(response => response.json())
+            .then(data => {
+                if(data.title) document.getElementById('dyn-title').innerText = data.title;
+                if(data.tagline) document.getElementById('dyn-tagline').innerText = data.tagline;
+                if(data.description) document.getElementById('dyn-desc').innerText = data.description;
+            })
+            .catch(err => console.error("Error loading content:", err));
+    </script>
+</body>
+</html>
