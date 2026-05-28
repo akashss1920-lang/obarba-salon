@@ -1,0 +1,19 @@
+backend:
+  name: github
+  repo: akashss1920-lang/obarba-salon
+  branch: main
+
+media_folder: "images"
+public_folder: "/images"
+
+collections:
+  - name: "pages"
+    label: "Pages"
+    files:
+      - file: "data.json"
+        label: "Home Page Content"
+        name: "home"
+        fields:
+          - { label: "Main Salon Title", name: "title", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Description Text", name: "description", widget: "text" }
