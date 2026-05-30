@@ -1,1240 +1,1352 @@
+```html
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>O’BARBA Family Salon — Luxury Meets Affordability • Varanasi • Jaunpur • Noida</title>
-    <meta name="description" content="O’Barba Family Salon — vintage, unisex luxury grooming across Varanasi, Jaunpur & Noida. 70+ certified artists, cruelty-free, elite bridal studio. Book your premium chair." />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        gold: '#D4AF37',
-                        'gold-dark': '#B8941F',
-                        'gold-soft': '#F1E6C9',
-                        ink: '#0a0a0b',
-                        charcoal: '#111113',
-                        'charcoal-2': '#1a1a1e',
-                        wood: '#2a1f14',
-                        zinc: {
-                            850: '#1c1c21'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'Helvetica', 'Arial', 'sans-serif'],
-                        display: ['Montserrat', 'Inter', 'system-ui', 'sans-serif'],
-                    },
-                    boxShadow: {
-                        'gold': '0 0 0 1px rgba(212,175,55,0.25), 0 12px 45px -12px rgba(212,175,55,0.45)',
-                        'gold-lg': '0 0 80px rgba(212,175,55,0.22)',
-                        'inner-gold': 'inset 0 0 0 1px rgba(212,175,55,0.35)',
-                    },
-                    backgroundImage: {
-                        'radial-gold': 'radial-gradient(1000px 500px at 85% -10%, rgba(212,175,55,0.09), transparent 60%), radial-gradient(800px 400px at 5% 110%, rgba(212,175,55,0.07), transparent 60%)',
-                        'noise': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E\")"
-                    }
-                }
-            }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O'BARBA Family Salon — Luxury Meets Affordability</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        ob: {
+          black: '#0B0B0B',
+          dark: '#121212',
+          card: '#1A1A1A',
+          border: '#2A2A2A',
+          gold: '#D4AF37',
+          goldLight: '#E8C84A',
+          goldDark: '#AA7C11',
+          goldMuted: 'rgba(212,175,55,0.15)',
+          zinc: '#18181B',
         }
-    </script>
-    <style>
-        * { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-        ::-webkit-scrollbar { width: 10px; height: 10px; }
-        ::-webkit-scrollbar-thumb { background: #2a2a30; border-radius: 999px; border: 2px solid #0a0a0b; }
-        ::-webkit-scrollbar-thumb:hover { background: #3a3a44; }
-        .gold-text { 
-            background: linear-gradient(135deg, #F1E6C9 0%, #D4AF37 30%, #F6E27A 50%, #D4AF37 70%, #B8941F 100%);
-            -webkit-background-clip: text; background-clip: text; color: transparent; 
-        }
-        .gold-border {
-            position: relative;
-        }
-        .gold-border::before {
-            content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
-            background: linear-gradient(140deg, rgba(212,175,55,0.9), rgba(212,175,55,0.15) 30%, rgba(212,175,55,0.5) 80%);
-            -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-            -webkit-mask-composite: xor; mask-composite: exclude;
-            pointer-events: none;
-        }
-        .shimmer {
-            position: relative; overflow: hidden;
-        }
-        .shimmer::after {
-            content: ""; position: absolute; inset: 0; transform: translateX(-100%);
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
-            animation: shimmer 2.4s infinite;
-        }
-        @keyframes shimmer { 100% { transform: translateX(100%); } }
-        .brick-texture {
-            background-image: 
-                linear-gradient(rgba(10,10,11,0.82), rgba(10,10,11,0.9)),
-                url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?q=80&w=1920&auto=format&fit=crop');
-            background-size: cover; background-position: center;
-        }
-        @media (max-width: 768px) {
-            .brick-texture { background-attachment: scroll; }
-        }
-        .slot:disabled { opacity: .35; cursor: not-allowed; }
-        .tab-active { color: #0a0a0b !important; background: #D4AF37 !important; border-color: #D4AF37 !important; }
-        /* Focus states for accessibility */
-        .focus-ring:focus-visible { outline: 2px solid #D4AF37; outline-offset: 2px; border-radius: 12px; }
-    </style>
+      },
+      fontFamily: {
+        serif: ['Playfair Display', 'Georgia', 'serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0B0B0B;
+    color: #E4E4E7;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: rgba(212,175,55,0.3);
+    color: #fff;
+  }
+
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: #0B0B0B; }
+  ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
+
+  .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+
+  /* Gold gradient text */
+  .gold-text {
+    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 40%, #AA7C11 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gold-text-shimmer {
+    background: linear-gradient(90deg, #AA7C11, #D4AF37, #E8C84A, #D4AF37, #AA7C11);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 4s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 200% center; }
+  }
+
+  /* Hero ambient glow */
+  .hero-glow {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.12;
+    pointer-events: none;
+  }
+
+  .hero-glow-1 {
+    width: 600px; height: 600px;
+    background: #D4AF37;
+    top: -100px; left: -200px;
+    animation: float1 8s ease-in-out infinite;
+  }
+
+  .hero-glow-2 {
+    width: 400px; height: 400px;
+    background: #AA7C11;
+    bottom: -50px; right: -100px;
+    animation: float2 10s ease-in-out infinite;
+  }
+
+  .hero-glow-3 {
+    width: 300px; height: 300px;
+    background: #D4AF37;
+    top: 40%; left: 60%;
+    animation: float3 12s ease-in-out infinite;
+  }
+
+  @keyframes float1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(50px, 30px) scale(1.1); }
+  }
+  @keyframes float2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, -40px) scale(1.15); }
+  }
+  @keyframes float3 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(20px, -20px) scale(0.9); }
+  }
+
+  /* Grain overlay */
+  .grain-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.03;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  }
+
+  /* Glass card */
+  .glass-card {
+    background: rgba(26, 26, 26, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212,175,55,0.1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card:hover {
+    border-color: rgba(212,175,55,0.25);
+    box-shadow: 0 0 40px rgba(212,175,55,0.06);
+    transform: translateY(-2px);
+  }
+
+  /* Service accordion */
+  .service-tab {
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .service-tab.active {
+    background: rgba(212,175,55,0.1);
+    border-color: rgba(212,175,55,0.3);
+  }
+
+  .service-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .service-content.open {
+    max-height: 2000px;
+  }
+
+  /* Button styles */
+  .btn-gold {
+    background: linear-gradient(135deg, #D4AF37, #AA7C11);
+    color: #0B0B0B;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-gold::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s ease;
+  }
+
+  .btn-gold:hover::before { left: 100%; }
+  .btn-gold:hover { box-shadow: 0 0 30px rgba(212,175,55,0.3); transform: translateY(-1px); }
+
+  .btn-ghost {
+    border: 1px solid rgba(212,175,55,0.4);
+    color: #D4AF37;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(212,175,55,0.1);
+    border-color: #D4AF37;
+    transform: translateY(-1px);
+  }
+
+  /* Modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 1000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal-box {
+    background: #1A1A1A;
+    border: 1px solid rgba(212,175,55,0.15);
+    border-radius: 1rem;
+    max-width: 560px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    animation: modalIn 0.3s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95) translateY(10px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal-box::-webkit-scrollbar { width: 4px; }
+  .modal-box::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 2px; }
+
+  .branch-item {
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .branch-item:hover {
+    background: rgba(212,175,55,0.08);
+    border-color: rgba(212,175,55,0.3);
+  }
+
+  /* Floating pill */
+  .floating-pill {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 900;
+    display: flex;
+    gap: 8px;
+    animation: pillIn 0.6s ease 1s both;
+  }
+
+  @keyframes pillIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .pill-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    border: none;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .pill-call {
+    background: #18181B;
+    color: #E4E4E7;
+    border: 1px solid #2A2A2A;
+  }
+
+  .pill-call:hover {
+    background: #27272A;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+  }
+
+  .pill-wa {
+    background: linear-gradient(135deg, #D4AF37, #AA7C11);
+    color: #0B0B0B;
+  }
+
+  .pill-wa:hover {
+    box-shadow: 0 4px 25px rgba(212,175,55,0.35);
+    transform: translateY(-2px);
+  }
+
+  /* Divider */
+  .gold-divider {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, #D4AF37, #AA7C11);
+    margin: 0 auto;
+  }
+
+  /* Price row */
+  .price-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: all 0.2s ease;
+  }
+
+  .price-row:last-child { border-bottom: none; }
+
+  .price-row:hover {
+    padding-left: 8px;
+  }
+
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    color: #D4AF37;
+    font-weight: 600;
+  }
+
+  /* Scroll animations */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mobile menu */
+  .mobile-menu {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(11,11,11,0.97);
+    backdrop-filter: blur(20px);
+    z-index: 950;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+
+  .mobile-menu.active { display: flex; }
+
+  /* Stats counter animation */
+  .stat-item {
+    position: relative;
+  }
+
+  .stat-item::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 25%;
+    height: 50%;
+    width: 1px;
+    background: rgba(212,175,55,0.2);
+  }
+
+  .stat-item:last-child::after { display: none; }
+
+  /* Nav link hover */
+  .nav-link {
+    position: relative;
+    color: #A1A1AA;
+    transition: color 0.3s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #D4AF37;
+    transition: width 0.3s ease;
+  }
+
+  .nav-link:hover { color: #D4AF37; }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Pulse for WA */
+  @keyframes goldPulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+    50% { box-shadow: 0 0 0 8px rgba(212,175,55,0); }
+  }
+
+  .pill-wa { animation: goldPulse 2.5s ease-in-out infinite; }
+
+  .pill-wa:hover { animation: none; }
+
+  @media (max-width: 640px) {
+    .floating-pill {
+      bottom: 16px;
+      right: 16px;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .pill-btn {
+      padding: 10px 16px;
+      font-size: 12px;
+    }
+  }
+</style>
 </head>
+<body>
 
-<body class="bg-ink text-zinc-200 font-sans antialiased selection:bg-gold/20 selection:text-gold-soft">
-    <!-- Sticky Nav -->
-    <header class="fixed top-0 w-full z-40 backdrop-blur-xl bg-ink/70 border-b border-white/5">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 h-[68px] flex items-center justify-between">
-            <a href="#" class="flex items-center gap-3 focus-ring">
-                <div class="w-10 h-10 rounded-xl bg-charcoal-2 gold-border flex items-center justify-center shadow-inner-gold">
-                    <span class="font-display font-bold tracking-[0.2em] text-[11px] text-gold">O'B</span>
-                </div>
-                <div class="leading-none">
-                    <div class="font-display font-semibold text-[13px] tracking-[0.35em] text-zinc-100">O’BARBA</div>
-                    <div class="text-[10px] tracking-[0.3em] text-zinc-500 -mt-0.5">FAMILY SALON</div>
-                </div>
-            </a>
+<!-- Grain overlay -->
+<div class="grain-overlay"></div>
 
-            <nav class="hidden lg:flex items-center gap-8 text-[13px] tracking-wide text-zinc-300">
-                <a href="#about" class="hover:text-gold transition-colors">About</a>
-                <a href="#services" class="hover:text-gold transition-colors">Services</a>
-                <a href="#branches" class="hover:text-gold transition-colors">Branches</a>
-                <a href="#booking" class="hover:text-gold transition-colors">Booking</a>
-                <a href="#elite" class="hover:text-gold transition-colors">Elite Club</a>
-            </nav>
+<!-- NAVIGATION -->
+<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500" style="background: transparent;">
+  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-3 group">
+      <div class="w-11 h-11 rounded-full border-2 border-ob-gold flex items-center justify-center bg-ob-black group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300">
+        <svg viewBox="0 0 48 48" class="w-7 h-7" fill="none">
+          <!-- Bearded man silhouette (left) -->
+          <ellipse cx="17" cy="18" rx="6.5" ry="7.5" fill="#D4AF37" opacity="0.9"/>
+          <path d="M10.5 26c0 0 1 7 6.5 7s6.5-7 6.5-7" fill="#AA7C11" opacity="0.7"/>
+          <path d="M11 22c-1 2-1.5 4-1 6l1.5-1" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+          <path d="M23 22c1 2 1.5 4 1 6l-1.5-1" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
+          <!-- Beard -->
+          <path d="M12 25c0 0 1.5 6 5 6s5-6 5-6" fill="#AA7C11" opacity="0.6"/>
+          <!-- Woman silhouette (right, facing opposite) -->
+          <ellipse cx="33" cy="17" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+          <path d="M27 15c-2-3-1-8 2-10c0 0 3 2 7 0c2 3 2 7 0 10" fill="#AA7C11" opacity="0.5"/>
+          <!-- Hair flow -->
+          <path d="M27 17c-1 4-0.5 8 1 11l2-2" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
+          <!-- Divider line -->
+          <line x1="24" y1="8" x2="24" y2="38" stroke="#D4AF37" stroke-width="0.4" opacity="0.3"/>
+        </svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="font-serif text-lg font-bold tracking-wide gold-text">O'BARBA</span>
+        <span class="text-[9px] uppercase tracking-[0.25em] text-zinc-500 font-medium">Family Salon</span>
+      </div>
+    </a>
 
-            <div class="flex items-center gap-3">
-                <a href="#booking" class="hidden sm:inline-flex items-center gap-2 px-4 h-10 rounded-xl bg-gold text-ink font-medium text-[13px] tracking-wide shadow-gold hover:shadow-gold-lg hover:-translate-y-px transition-all focus-ring">
-                    Book Premium Appointment
-                </a>
-                <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-xl bg-charcoal-2 border border-white/10 flex items-center justify-center focus-ring" aria-label="Menu">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
-                </button>
-            </div>
-        </div>
-        <!-- Mobile -->
-        <div id="mobileMenu" class="lg:hidden hidden border-t border-white/5 bg-charcoal/95 backdrop-blur-xl">
-            <div class="px-4 py-4 grid gap-3 text-[14px]">
-                <a href="#about" class="py-2">About</a>
-                <a href="#services" class="py-2">Services</a>
-                <a href="#branches" class="py-2">Branches</a>
-                <a href="#booking" class="py-2">Booking</a>
-                <a href="#elite" class="py-2">Elite Club</a>
-                <a href="#booking" class="mt-2 inline-flex items-center justify-center h-11 rounded-xl bg-gold text-ink font-medium">Book Now</a>
-            </div>
-        </div>
-    </header>
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#hero" class="nav-link text-sm font-medium">Home</a>
+      <a href="#services" class="nav-link text-sm font-medium">Services</a>
+      <a href="#pricing" class="nav-link text-sm font-medium">Pricing</a>
+      <a href="#branches" class="nav-link text-sm font-medium">Branches</a>
+      <a href="#contact" class="nav-link text-sm font-medium">Contact</a>
+      <button onclick="openModal('call')" class="btn-gold px-5 py-2.5 rounded-full text-sm">Book Now</button>
+    </div>
 
-    <!-- HERO -->
-    <section class="relative min-h-[100svh] flex items-center brick-texture">
-        <div class="absolute inset-0 bg-radial-gold pointer-events-none"></div>
-        <div class="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/40 to-ink"></div>
-        
-        <!-- Subtle vignette and noise -->
-        <div class="absolute inset-0 opacity-[0.03] mix-blend-soft-light" style="background-image: radial-gradient(60% 60% at 50% 40%, white, transparent 70%);"></div>
-        <div class="absolute inset-0 bg-noise"></div>
-
-        <div class="relative max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-20 w-full">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 px-3 h-8 rounded-full bg-white/5 border border-white/10 text-[11px] tracking-[0.25em] text-zinc-400 mb-7">
-                    <span class="w-1.5 h-1.5 rounded-full bg-gold shadow-[0_0_12px_rgba(212,175,55,0.8)]"></span>
-                    SINCE 2018 • VARANASI • JAUNPUR • NOIDA
-                </div>
-
-                <h1 class="font-display font-extrabold leading-[0.9] tracking-tight text-[clamp(42px,9vw,92px)] text-zinc-50">
-                    O’BARBA
-                    <span class="block text-zinc-400 text-[0.45em] font-semibold tracking-[0.35em] mt-3">FAMILY SALON</span>
-                </h1>
-
-                <p class="mt-6 gold-text font-display text-[clamp(22px,4vw,36px)] leading-tight tracking-tight font-semibold">
-                    Luxury Meets Affordability
-                </p>
-
-                <p class="mt-5 max-w-xl text-[15px] leading-relaxed text-zinc-300">
-                    A vintage, unisex sanctuary where dark wood, matte black, and royal gold converge. 
-                    70+ certified artists. Cruelty-free rituals. Prices that respect your everyday.
-                </p>
-
-                <div class="mt-9 flex flex-col sm:flex-row gap-3">
-                    <a href="#booking" class="group relative inline-flex items-center justify-center h-14 px-8 rounded-2xl bg-gold text-ink font-semibold tracking-wide text-[14px] shadow-gold hover:shadow-gold-lg transition-all focus-ring shimmer">
-                        Book Premium Appointment
-                        <span class="ml-2 transition-transform group-hover:translate-x-0.5">→</span>
-                    </a>
-                    <a href="#services" class="inline-flex items-center justify-center h-14 px-8 rounded-2xl bg-white/5 border border-white/10 text-zinc-200 font-medium text-[14px] hover:bg-white/10 hover:border-gold/30 transition-all focus-ring">
-                        Explore Services
-                    </a>
-                </div>
-
-                <!-- Quick stats -->
-                <div class="mt-12 grid grid-cols-2 sm:grid-cols-4 gap-6 max-w-2xl border-t border-white/5 pt-8">
-                    <div>
-                        <div class="text-3xl font-display font-semibold text-zinc-50">5<span class="text-gold">+</span></div>
-                        <div class="text-[11px] tracking-widest text-zinc-500 mt-1">YEARS EXCELLENCE</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-display font-semibold text-zinc-50">70<span class="text-gold">+</span></div>
-                        <div class="text-[11px] tracking-widest text-zinc-500 mt-1">CERTIFIED ARTISTS</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-display font-semibold text-zinc-50">25K<span class="text-gold">+</span></div>
-                        <div class="text-[11px] tracking-widest text-zinc-500 mt-1">HAPPY GUESTS</div>
-                    </div>
-                    <div>
-                        <div class="text-3xl font-display font-semibold text-zinc-50">100<span class="text-gold">%</span></div>
-                        <div class="text-[11px] tracking-widest text-zinc-500 mt-1">CRUELTY-FREE</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Scroll cue -->
-        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-3 text-[10px] tracking-[0.3em] text-zinc-500">
-            <span>SCROLL</span>
-            <div class="w-px h-10 bg-gradient-to-b from-gold/60 to-transparent"></div>
-        </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="relative border-t border-white/5 bg-charcoal">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28 grid lg:grid-cols-12 gap-12 items-center">
-            <div class="lg:col-span-5">
-                <div class="relative rounded-[28px] overflow-hidden gold-border bg-ink shadow-2xl">
-                    <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?q=80&w=1200&auto=format&fit=crop" 
-                         alt="O'Barba interior with vintage leather chairs and brass accents" class="w-full h-[520px] object-cover" />
-                    <div class="absolute inset-0 ring-1 ring-inset ring-white/10"></div>
-                    <div class="absolute bottom-0 inset-x-0 p-5 bg-gradient-to-t from-ink via-ink/80 to-transparent">
-                        <div class="flex items-center gap-3">
-                            <div class="w-11 h-11 rounded-xl bg-gold text-ink grid place-items-center font-display font-bold">OB</div>
-                            <div class="text-[11px] leading-tight">
-                                <div class="text-zinc-200 font-medium tracking-wide">LANKA • FLAGSHIP STUDIO</div>
-                                <div class="text-zinc-500">Hand-poured concrete, reclaimed teak, and 1940s Italian mirrors.</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="lg:col-span-7">
-                <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-5">
-                    <span class="w-8 h-px bg-gold/60"></span> ABOUT O’BARBA
-                </div>
-                <h2 class="font-display text-[36px] sm:text-[48px] leading-[0.95] font-semibold tracking-tight text-zinc-50 max-w-2xl">
-                    Vintage souls. Modern craft. 
-                    <span class="text-zinc-500">Everyday luxury, unisex.</span>
-                </h2>
-                <p class="mt-6 text-[16px] leading-relaxed text-zinc-300 max-w-2xl">
-                    Founded in Varanasi in 2018, O’Barba is a family salon built for real life — where 
-                    chai is always on, consultations are honest, and the work is precise. Our rooms are 
-                    dark, calm, and intentionally analog: warm wood, matte black steel, and brass that 
-                    ages beautifully. We train in-house, we pay fair, and we never upsell what you don’t need.
-                </p>
-
-                <div class="mt-10 grid sm:grid-cols-3 gap-4">
-                    <div class="rounded-2xl bg-zinc-850 border border-white/5 p-5">
-                        <div class="text-gold text-xs tracking-widest font-medium mb-2">ETHOS</div>
-                        <p class="text-sm text-zinc-300 leading-relaxed">Cruelty-free, vegan where possible, and low-waste. Refill stations. Carbon-aware purchasing.</p>
-                    </div>
-                    <div class="rounded-2xl bg-zinc-850 border border-white/5 p-5">
-                        <div class="text-gold text-xs tracking-widest font-medium mb-2">PEOPLE</div>
-                        <p class="text-sm text-zinc-300 leading-relaxed">70+ certified professionals. Continuous education with L’Oréal, Wella, and Kérastase academies.</p>
-                    </div>
-                    <div class="rounded-2xl bg-zinc-850 border border-white/5 p-5">
-                        <div class="text-gold text-xs tracking-widest font-medium mb-2">PROMISE</div>
-                        <p class="text-sm text-zinc-300 leading-relaxed">Transparent pricing, no hidden add-ons. If you don’t love it, we make it right. Immediately.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BRANCH FINDER -->
-    <section id="branches" class="border-t border-white/5 bg-ink py-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-                <div>
-                    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-4">
-                        <span class="w-8 h-px bg-gold/60"></span> MULTI-BRANCH FINDER
-                    </div>
-                    <h2 class="font-display text-[36px] sm:text-[44px] leading-[0.95] font-semibold text-zinc-50">
-                        Choose your O’Barba.<br/>We’ll hold the chair.
-                    </h2>
-                </div>
-                <p class="text-sm text-zinc-400 max-w-xl">
-                    Parking available at Lanka & Noida. Jaunpur is walk-in friendly. All studios are wheelchair accessible and unisex.
-                </p>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-8 items-start">
-                <!-- City selector -->
-                <div class="lg:col-span-4">
-                    <div class="rounded-3xl bg-charcoal border border-white/5 p-2 shadow-2xl">
-                        <button data-city="varanasi" class="city-tab w-full text-left px-4 h-12 rounded-2xl flex items-center justify-between bg-gold text-ink font-medium text-[13px] tab-active">
-                            Varanasi <span class="text-xs opacity-70">3 studios</span>
-                        </button>
-                        <button data-city="jaunpur" class="city-tab w-full text-left px-4 h-12 rounded-2xl flex items-center justify-between hover:bg-white/5 text-zinc-300 font-medium text-[13px] mt-1">
-                            Jaunpur <span class="text-xs opacity-70">1 studio</span>
-                        </button>
-                        <button data-city="noida" class="city-tab w-full text-left px-4 h-12 rounded-2xl flex items-center justify-between hover:bg-white/5 text-zinc-300 font-medium text-[13px] mt-1">
-                            Noida • Sector 18 <span class="text-xs opacity-70">1 studio</span>
-                        </button>
-                    </div>
-
-                    <div class="mt-5 rounded-3xl bg-charcoal-2 border border-white/5 p-5 text-[12px] leading-relaxed text-zinc-400">
-                        <div class="text-gold tracking-wide font-medium mb-2">TODAY’S AVAILABILITY</div>
-                        • Lanka: 4 chairs open • Maldahiya: 2 chairs • Shivpur: 3 chairs<br/>
-                        • Jaunpur: 2 chairs • Noida: 5 chairs • Wait time &lt; 18 mins
-                    </div>
-                </div>
-
-                <!-- Branch cards -->
-                <div class="lg:col-span-8">
-                    <div id="branchGrid" class="grid sm:grid-cols-2 xl:grid-cols-3 gap-4">
-                        <!-- Cards injected by JS -->
-                    </div>
-                    <div class="mt-6 flex items-center gap-3 text-xs text-zinc-500">
-                        <span class="inline-flex items-center gap-2 px-3 h-8 rounded-full bg-white/5 border border-white/10">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span> Live chair sync
-                        </span>
-                        <span>Select a studio to pre-fill booking below.</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section id="services" class="border-t border-white/5 bg-charcoal py-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="max-w-3xl">
-                <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-4">
-                    <span class="w-8 h-px bg-gold/60"></span> SIGNATURE MENU
-                </div>
-                <h2 class="font-display text-[36px] sm:text-[44px] leading-[0.95] font-semibold text-zinc-50">
-                    Crafted for real hair, real skin, <br/>real lives.
-                </h2>
-                <p class="mt-4 text-zinc-400">Unisex pricing. No surprises. Add-ons only if you ask.</p>
-            </div>
-
-            <!-- Tabs -->
-            <div class="mt-10 flex flex-wrap gap-2">
-                <button data-tab="hair" class="service-tab px-4 h-10 rounded-xl bg-gold text-ink border border-gold text-xs font-medium tracking-wide">HAIR CARE</button>
-                <button data-tab="skin" class="service-tab px-4 h-10 rounded-xl bg-white/5 border border-white/10 text-xs font-medium tracking-wide text-zinc-300 hover:border-gold/40">SKIN & WELLNESS</button>
-                <button data-tab="bridal" class="service-tab px-4 h-10 rounded-xl bg-white/5 border border-white/10 text-xs font-medium tracking-wide text-zinc-300 hover:border-gold/40">BRIDAL & GROOM</button>
-            </div>
-
-            <!-- Hair -->
-            <div data-pane="hair" class="service-pane mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">✂︎</div>
-                    <h3 class="font-medium text-zinc-100">Advanced Haircut</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Face-shape analysis, texture mapping, and home-style coaching.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">45–60 min</span>
-                        <span class="font-medium text-zinc-200">₹799 – ₹1,499</span>
-                    </div>
-                </article>
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">◐</div>
-                    <h3 class="font-medium text-zinc-100">Desi Head Massage</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Ayurvedic oils, marma points, and a hot towel ritual.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">30 min</span>
-                        <span class="font-medium text-zinc-200">₹599</span>
-                    </div>
-                </article>
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">⚗︎</div>
-                    <h3 class="font-medium text-zinc-100">Keratin • Smooth</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Formaldehyde-free. Frizz control that lasts 12–16 weeks.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">2–3 hrs</span>
-                        <span class="font-medium text-zinc-200">From ₹3,499</span>
-                    </div>
-                </article>
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">✦</div>
-                    <h3 class="font-medium text-zinc-100">Balayage • Color</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Bond-builder in every bowl. Consultation mandatory.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">2–4 hrs</span>
-                        <span class="font-medium text-zinc-200">From ₹2,999</span>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Skin -->
-            <div data-pane="skin" class="service-pane mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-4 hidden">
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">◎</div>
-                    <h3 class="font-medium text-zinc-100">Hydra Facial</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Deep cleanse, acid peel, extraction, and LED.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">60 min</span>
-                        <span class="font-medium text-zinc-200">₹1,999</span>
-                    </div>
-                </article>
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">◑</div>
-                    <h3 class="font-medium text-zinc-100">D-Tan • Pollution Detox</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Vitamin C ionto, enzyme mask, SPF seal.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">45 min</span>
-                        <span class="font-medium text-zinc-200">₹1,299</span>
-                    </div>
-                </article>
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">⬙</div>
-                    <h3 class="font-medium text-zinc-100">Body Sculpt • Lymph</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Non-invasive contouring + breathwork cooldown.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">75 min</span>
-                        <span class="font-medium text-zinc-200">₹2,499</span>
-                    </div>
-                </article>
-                <article class="group rounded-3xl bg-zinc-850 border border-white/5 p-5 hover:border-gold/40 hover:-translate-y-1 transition-all">
-                    <div class="w-10 h-10 rounded-xl bg-gold/10 border border-gold/25 grid place-items-center text-gold mb-3">✜</div>
-                    <h3 class="font-medium text-zinc-100">Beard • Brow Architecture</h3>
-                    <p class="mt-1 text-xs text-zinc-400 leading-relaxed">Mapping, hot towel, and conditioning oil finish.</p>
-                    <div class="mt-3 flex items-center justify-between text-xs">
-                        <span class="text-zinc-500">30 min</span>
-                        <span class="font-medium text-zinc-200">₹499 – ₹799</span>
-                    </div>
-                </article>
-            </div>
-
-            <!-- Bridal -->
-            <div data-pane="bridal" class="service-pane mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 hidden">
-                <article class="rounded-3xl bg-zinc-900 border border-gold/20 p-6 gold-border">
-                    <div class="text-[11px] tracking-widest text-gold font-medium">BRIDAL • ATELIER</div>
-                    <h3 class="mt-2 font-display text-2xl font-semibold text-zinc-50">Luxury Bridal Day</h3>
-                    <p class="mt-2 text-sm text-zinc-300">Trial, timeline, on-site artist, and touch-up kit. Airbrush or HD.</p>
-                    <ul class="mt-4 space-y-2 text-xs text-zinc-400">
-                        <li>• Makeup + Hair + Draping • 5 hrs</li>
-                        <li>• Includes lashes, setting, and photography test</li>
-                        <li>• Team of 2 artists • Zero flashback</li>
-                    </ul>
-                    <div class="mt-4 flex items-baseline gap-2">
-                        <span class="text-2xl font-display font-semibold text-zinc-50">₹19,999</span>
-                        <span class="text-xs text-zinc-500">onwards</span>
-                    </div>
-                </article>
-                <article class="rounded-3xl bg-zinc-850 border border-white/10 p-6">
-                    <div class="text-[11px] tracking-widest text-gold font-medium">GROOM • STUDIO</div>
-                    <h3 class="mt-2 font-medium text-zinc-100 text-xl">Groom Signature</h3>
-                    <p class="mt-2 text-sm text-zinc-400">Skin prep, hair design, beard sculpt, and outfit check.</p>
-                    <div class="mt-4 text-xs text-zinc-400">90 min • ₹2,499</div>
-                </article>
-                <article class="rounded-3xl bg-zinc-850 border border-white/10 p-6">
-                    <div class="text-[11px] tracking-widest text-gold font-medium">FAMILY • WEDDING PARTY</div>
-                    <h3 class="mt-2 font-medium text-zinc-100 text-xl">Party Glam • Group</h3>
-                    <p class="mt-2 text-sm text-zinc-400">Coordinated looks for 4–12. Back-to-back chairs.</p>
-                    <div class="mt-4 text-xs text-zinc-400">Custom quote • Studio or venue</div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- BOOKING STEPPER -->
-    <section id="booking" class="border-t border-white/5 bg-ink py-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-12">
-                <div>
-                    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-4">
-                        <span class="w-8 h-px bg-gold/60"></span> ADVANCED ONLINE BOOKING
-                    </div>
-                    <h2 class="font-display text-[36px] sm:text-[44px] leading-[0.95] font-semibold text-zinc-50">
-                        Reserve your chair in 60 seconds.
-                    </h2>
-                </div>
-                <div class="text-xs text-zinc-400">No account needed • Free reschedule • GST invoice on request</div>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-8 items-start">
-                <!-- Stepper -->
-                <div class="lg:col-span-8">
-                    <div class="rounded-[28px] bg-charcoal border border-white/5 p-2 shadow-2xl">
-                        <!-- Progress -->
-                        <div class="px-4 sm:px-6 pt-5 pb-4 border-b border-white/5">
-                            <div class="flex items-center gap-3 text-[11px] tracking-widest text-zinc-400">
-                                <div class="flex items-center gap-2">
-                                    <span class="w-6 h-6 rounded-full bg-gold text-ink grid place-items-center font-semibold">1</span> BRANCH
-                                </div>
-                                <span class="h-px flex-1 bg-white/10 hidden sm:block"></span>
-                                <div class="flex items-center gap-2 opacity-60" id="stepLabel2">
-                                    <span class="w-6 h-6 rounded-full bg-white/10 grid place-items-center">2</span> SERVICE & ARTIST
-                                </div>
-                                <span class="h-px flex-1 bg-white/10 hidden sm:block"></span>
-                                <div class="flex items-center gap-2 opacity-60" id="stepLabel3">
-                                    <span class="w-6 h-6 rounded-full bg-white/10 grid place-items-center">3</span> DATE & TIME
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Step 1 -->
-                        <div id="step1" class="p-4 sm:p-6">
-                            <div class="grid sm:grid-cols-2 gap-3" id="bookingBranchGrid">
-                                <!-- injected -->
-                            </div>
-                            <div class="mt-5 flex items-center justify-between">
-                                <p class="text-xs text-zinc-500">Selected: <span id="selectedBranch" class="text-zinc-300">Lanka, Varanasi (Flagship)</span></p>
-                                <button id="toStep2" class="h-11 px-5 rounded-xl bg-gold text-ink text-sm font-medium shadow-gold hover:-translate-y-px transition-all">Continue →</button>
-                            </div>
-                        </div>
-
-                        <!-- Step 2 -->
-                        <div id="step2" class="p-4 sm:p-6 hidden border-t border-white/5">
-                            <div class="grid lg:grid-cols-5 gap-5">
-                                <div class="lg:col-span-3">
-                                    <label class="text-xs tracking-wide text-zinc-400">Choose Service</label>
-                                    <select id="serviceSelect" class="mt-2 w-full h-12 rounded-xl bg-zinc-900 border border-white/10 px-3 text-sm outline-none focus:border-gold/60 focus:ring-0">
-                                        <option>Advanced Haircut • 45–60 min • ₹799</option>
-                                        <option>Desi Head Massage • 30 min • ₹599</option>
-                                        <option>Keratin Smoothing • 2–3 hrs • ₹3,499</option>
-                                        <option>Balayage Color • 2–4 hrs • From ₹2,999</option>
-                                        <option>Hydra Facial • 60 min • ₹1,999</option>
-                                        <option>D-Tan Pollution Detox • 45 min • ₹1,299</option>
-                                        <option>Bridal Luxury Day • 5 hrs • ₹19,999</option>
-                                    </select>
-
-                                    <div class="mt-5">
-                                        <div class="text-xs tracking-wide text-zinc-400 mb-3">Preferred Artist (optional)</div>
-                                        <div class="grid grid-cols-3 sm:grid-cols-5 gap-3" id="artistGrid">
-                                            <!-- injected -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="lg:col-span-2">
-                                    <div class="rounded-2xl bg-zinc-900 border border-white/10 p-4">
-                                        <div class="text-xs text-zinc-400">PRICE TRANSPARENCY</div>
-                                        <div class="mt-2 text-2xl font-display font-semibold text-zinc-50">₹799 – ₹19,999</div>
-                                        <p class="mt-2 text-xs text-zinc-400 leading-relaxed">All prices inclusive of consultation, shampoo, and finish. No hidden add-ons. Color and chemical services include bond-builder.</p>
-                                        <div class="mt-3 flex items-center gap-2 text-[10px] text-zinc-500">
-                                            <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10">GST invoice</span>
-                                            <span class="px-2 py-1 rounded-md bg-white/5 border border-white/10">Student • Defence 10% off</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex items-center justify-between">
-                                <button id="backTo1" class="h-11 px-4 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-white/20">← Back</button>
-                                <button id="toStep3" class="h-11 px-5 rounded-xl bg-gold text-ink text-sm font-medium shadow-gold">Continue →</button>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div id="step3" class="p-4 sm:p-6 hidden border-t border-white/5">
-                            <div class="grid lg:grid-cols-5 gap-5">
-                                <div class="lg:col-span-3">
-                                    <label class="text-xs tracking-wide text-zinc-400">Pick a Date</label>
-                                    <input id="dateInput" type="date" class="mt-2 w-full h-12 rounded-xl bg-zinc-900 border border-white/10 px-3 text-sm outline-none focus:border-gold/60" />
-                                    
-                                    <div class="mt-5">
-                                        <div class="text-xs tracking-wide text-zinc-400 mb-3">Available Slots • Today</div>
-                                        <div id="slots" class="grid grid-cols-3 sm:grid-cols-4 gap-2">
-                                            <!-- injected -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="lg:col-span-2">
-                                    <div class="rounded-2xl bg-zinc-900 border border-white/10 p-4">
-                                        <div class="text-xs text-zinc-400">PAYMENT</div>
-                                        <div class="mt-3 space-y-2 text-sm">
-                                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:border-gold/40">
-                                                <input type="radio" name="pay" value="salon" checked class="accent-gold">
-                                                <span>
-                                                    <span class="text-zinc-200 font-medium">Pay at Salon</span>
-                                                    <span class="block text-xs text-zinc-400">No advance. Free reschedule up to 4 hrs prior.</span>
-                                                </span>
-                                            </label>
-                                            <label class="flex items-center gap-3 p-3 rounded-xl bg-white/5 border border-white/10 cursor-pointer hover:border-gold/40">
-                                                <input type="radio" name="pay" value="advance" class="accent-gold">
-                                                <span>
-                                                    <span class="text-zinc-200 font-medium">Pre-book • ₹499 advance</span>
-                                                    <span class="block text-xs text-zinc-400">Guaranteed chair + priority. Adjustable in bill.</span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <button id="confirmBooking" class="mt-4 w-full h-12 rounded-xl bg-gold text-ink font-semibold shadow-gold hover:-translate-y-px transition-all">
-                                            Confirm Booking
-                                        </button>
-                                        <p class="mt-2 text-[10px] text-zinc-500 leading-relaxed">By confirming, you agree to our 4-hour cancellation policy. We’ll WhatsApp your ticket.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="mt-6 flex items-center justify-between">
-                                <button id="backTo2" class="h-11 px-4 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-white/20">← Back</button>
-                                <div class="text-xs text-zinc-500">Encrypted • No card stored • UPI / Cards accepted at salon</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Summary / Trust -->
-                <aside class="lg:col-span-4">
-                    <div class="rounded-[28px] bg-charcoal border border-white/5 p-6 shadow-2xl sticky top-24">
-                        <div class="text-xs tracking-widest text-gold font-medium">WHY BOOK DIRECT</div>
-                        <ul class="mt-4 space-y-3 text-sm text-zinc-300">
-                            <li class="flex gap-3"><span class="mt-1 text-gold">•</span> Live chair availability and shortest wait times.</li>
-                            <li class="flex gap-3"><span class="mt-1 text-gold">•</span> Choose your artist and see real specialities.</li>
-                            <li class="flex gap-3"><span class="mt-1 text-gold">•</span> Transparent pricing — no platform fees.</li>
-                            <li class="flex gap-3"><span class="mt-1 text-gold">•</span> Priority for Elite Club members.</li>
-                        </ul>
-                        <div class="mt-6 rounded-2xl bg-zinc-900 border border-white/10 p-4">
-                            <div class="text-xs text-zinc-400">SUPPORT</div>
-                            <div class="mt-2 text-sm text-zinc-200">+91 90263 88888 • WhatsApp in 30s</div>
-                            <div class="text-xs text-zinc-500">10:30 AM – 9:00 PM • All days</div>
-                        </div>
-                    </div>
-                </aside>
-            </div>
-        </div>
-    </section>
-
-    <!-- AI STYLIST QUIZ -->
-    <section class="border-t border-white/5 bg-charcoal py-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-10 items-start">
-                <div class="lg:col-span-5">
-                    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-4">
-                        <span class="w-8 h-px bg-gold/60"></span> DIGITAL CONSULT • AI STYLIST
-                    </div>
-                    <h2 class="font-display text-[36px] sm:text-[44px] leading-[0.95] font-semibold text-zinc-50">
-                        3 questions. <br/>A perfect match.
-                    </h2>
-                    <p class="mt-4 text-zinc-400 max-w-md">
-                        Our quiz maps your hair/skin profile to O’Barba rituals. No fluff, just what works — with artist notes you can bring to your appointment.
-                    </p>
-                </div>
-
-                <div class="lg:col-span-7">
-                    <div class="rounded-[28px] bg-ink border border-white/5 p-6 sm:p-8 shadow-2xl gold-border">
-                        <div id="quiz" class="space-y-6">
-                            <div class="quiz-step" data-step="1">
-                                <div class="text-xs tracking-widest text-gold mb-2">QUESTION 1 / 3</div>
-                                <p class="font-medium text-zinc-100">What’s your primary hair concern today?</p>
-                                <div class="mt-3 grid sm:grid-cols-3 gap-2">
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="frizz">Frizz • Dryness</button>
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="flat">Flat • Fine</button>
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="damage">Damage • Breakage</button>
-                                </div>
-                            </div>
-
-                            <div class="quiz-step hidden" data-step="2">
-                                <div class="text-xs tracking-widest text-gold mb-2">QUESTION 2 / 3</div>
-                                <p class="font-medium text-zinc-100">Scalp & lifestyle?</p>
-                                <div class="mt-3 grid sm:grid-cols-3 gap-2">
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="oily">Oily • Sweat</button>
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="sensitive">Sensitive • Flaky</button>
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="balanced">Balanced • Gym 3×</button>
-                                </div>
-                            </div>
-
-                            <div class="quiz-step hidden" data-step="3">
-                                <div class="text-xs tracking-widest text-gold mb-2">QUESTION 3 / 3</div>
-                                <p class="font-medium text-zinc-100">Desired finish?</p>
-                                <div class="mt-3 grid sm:grid-cols-3 gap-2">
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="natural">Natural • Low upkeep</button>
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="polished">Polished • Sleek</button>
-                                    <button class="quiz-opt px-3 h-11 rounded-xl bg-white/5 border border-white/10 text-sm hover:border-gold/40" data-value="volume">Volume • Bouncy</button>
-                                </div>
-                            </div>
-
-                            <div id="quizResult" class="hidden rounded-2xl bg-gold/10 border border-gold/30 p-4">
-                                <div class="text-xs tracking-widest text-gold font-medium mb-1">AI STYLIST RECOMMENDATION</div>
-                                <p id="quizText" class="text-sm text-zinc-100 leading-relaxed"></p>
-                                <div class="mt-3 flex gap-2">
-                                    <a href="#booking" class="h-10 px-4 rounded-xl bg-gold text-ink text-xs font-semibold inline-flex items-center">Book this ritual →</a>
-                                    <button id="quizReset" class="h-10 px-4 rounded-xl bg-white/5 border border-white/10 text-xs">Retake quiz</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PRODUCT SHOWCASE -->
-    <section class="border-t border-white/5 bg-ink py-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-10">
-                <div>
-                    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-4">
-                        <span class="w-8 h-px bg-gold/60"></span> SIGNATURE • ATELIER
-                    </div>
-                    <h2 class="font-display text-[36px] sm:text-[44px] leading-[0.95] font-semibold text-zinc-50">
-                        O’Barba Apothecary & Tools
-                    </h2>
-                </div>
-                <p class="text-sm text-zinc-400 max-w-xl">Small-batch, made in India. Sold at studios. Inquire to reserve — we’ll hold at your branch.</p>
-            </div>
-
-            <div class="relative">
-                <div id="productTrack" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="rounded-[28px] bg-charcoal border border-white/5 overflow-hidden group">
-                        <div class="aspect-[4/3] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?q=80&w=1200&auto=format&fit=crop" alt="Neem wood comb" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"/>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-[10px] tracking-widest text-gold">O’BARBA PURE • TOOL</div>
-                            <h3 class="mt-1 font-medium text-zinc-100">NeemWood Comb • Hand-finished</h3>
-                            <p class="mt-1 text-xs text-zinc-400">Anti-static, anti-dandruff neem. 220 teeth per inch. Made in Varanasi.</p>
-                            <div class="mt-3 flex items-center justify-between">
-                                <span class="text-sm font-semibold text-zinc-100">₹799</span>
-                                <a href="https://wa.me/919026388888?text=Reserve%20NeemWood%20Comb%20for%20pickup" class="h-9 px-3 rounded-lg bg-white/5 border border-white/10 text-xs hover:border-gold/40 inline-flex items-center">Inquire to Buy</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="rounded-[28px] bg-charcoal border border-white/5 overflow-hidden group">
-                        <div class="aspect-[4/3] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1556228720-195a672e8a03?q=80&w=1200&auto=format&fit=crop" alt="Argan oil serum" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"/>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-[10px] tracking-widest text-gold">O’BARBA PURE • CARE</div>
-                            <h3 class="mt-1 font-medium text-zinc-100">Argan • Camelina Serum 50ml</h3>
-                            <p class="mt-1 text-xs text-zinc-400">Heat protect, gloss, and split-end seal. 97% natural, vegan.</p>
-                            <div class="mt-3 flex items-center justify-between">
-                                <span class="text-sm font-semibold text-zinc-100">₹1,299</span>
-                                <a href="https://wa.me/919026388888?text=Reserve%20Argan%20Serum" class="h-9 px-3 rounded-lg bg-white/5 border border-white/10 text-xs hover:border-gold/40 inline-flex items-center">Inquire to Buy</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="rounded-[28px] bg-charcoal border border-white/5 overflow-hidden group">
-                        <div class="aspect-[4/3] overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1601612628452-9e99ced43524?q=80&w=1200&auto=format&fit=crop" alt="Charcoal cleanser" class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"/>
-                        </div>
-                        <div class="p-5">
-                            <div class="text-[10px] tracking-widest text-gold">O’BARBA PURE • SKIN</div>
-                            <h3 class="mt-1 font-medium text-zinc-100">Charcoal • Tea Tree Cleanser</h3>
-                            <p class="mt-1 text-xs text-zinc-400">Daily detox for urban skin. Sulfate-free, pH 5.5.</p>
-                            <div class="mt-3 flex items-center justify-between">
-                                <span class="text-sm font-semibold text-zinc-100">₹899</span>
-                                <a href="https://wa.me/919026388888?text=Reserve%20Charcoal%20Cleanser" class="h-9 px-3 rounded-lg bg-white/5 border border-white/10 text-xs hover:border-gold/40 inline-flex items-center">Inquire to Buy</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SOCIAL PROOF -->
-    <section class="border-t border-white/5 bg-charcoal py-20">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-12 gap-10 items-start">
-                <div class="lg:col-span-5">
-                    <div class="inline-flex items-center gap-2 text-[11px] tracking-[0.3em] text-gold mb-4">
-                        <span class="w-8 h-px bg-gold/60"></span> SOCIAL PROOF
-                    </div>
-                    <h2 class="font-display text-[36px] sm:text-[44px] leading-[0.95] font-semibold text-zinc-50">
-                        Loved widely. <br/>Reviewed honestly.
-                    </h2>
-                    <p class="mt-4 text-zinc-400">We read every review. If something’s off, we fix it — personally.</p>
-
-                    <div class="mt-8 grid sm:grid-cols-3 gap-4">
-                        <div class="rounded-2xl bg-zinc-900 border border-white/10 p-4">
-                            <div class="text-xs text-zinc-400">GOOGLE</div>
-                            <div class="mt-1 flex items-baseline gap-2">
-                                <span class="text-3xl font-display font-semibold text-zinc-50" id="ratingGoogle">4.9</span>
-                                <span class="text-gold">★★★★★</span>
-                            </div>
-                            <div class="text-[11px] text-zinc-500 mt-1">12,847 reviews • Updated today</div>
-                        </div>
-                        <div class="rounded-2xl bg-zinc-900 border border-white/10 p-4">
-                            <div class="text-xs text-zinc-400">JUSTDIAL</div>
-                            <div class="mt-1 flex items-baseline gap-2">
-                                <span class="text-3xl font-display font-semibold text-zinc-50" id="ratingJD">4.8</span>
-                                <span class="text-gold">★★★★★</span>
-                            </div>
-                            <div class="text-[11px] text-zinc-500 mt-1">3,219 reviews • 98% recommend</div>
-                        </div>
-                        <div class="rounded-2xl bg-zinc-900 border border-white/10 p-4">
-                            <div class="text-xs text-zinc-400">REPEAT RATE</div>
-                            <div class="mt-1 flex items-baseline gap-2">
-                                <span class="text-3xl font-display font-semibold text-zinc-50">73<span class="text-base">%</span></span>
-                            </div>
-                            <div class="text-[11px] text-zinc-500 mt-1">Guests return within 60 days</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7">
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                        <a href="#" class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
-                            <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=600&auto=format&fit=crop" alt="Transformation" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
-                            <span class="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded-md bg-black/60 border border-white/10">Before → After</span>
-                            <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-gold text-ink grid place-items-center text-xs font-bold">▶</span>
-                        </a>
-                        <a href="#" class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
-                            <img src="https://images.unsplash.com/photo-1522338140262-f46f5913618a?q=80&w=600&auto=format&fit=crop" alt="Bridal" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
-                            <span class="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded-md bg-black/60 border border-white/10">Bridal Reel</span>
-                            <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-gold text-ink grid place-items-center text-xs font-bold">▶</span>
-                        </a>
-                        <a href="#" class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
-                            <img src="https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop" alt="Groom" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
-                            <span class="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded-md bg-black/60 border border-white/10">Groom Studio</span>
-                            <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-gold text-ink grid place-items-center text-xs font-bold">▶</span>
-                        </a>
-                        <a href="#" class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
-                            <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?q=80&w=600&auto=format&fit=crop" alt="Cut" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
-                            <span class="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded-md bg-black/60 border border-white/10">Precision Cut</span>
-                            <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-gold text-ink grid place-items-center text-xs font-bold">▶</span>
-                        </a>
-                        <a href="#" class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
-                            <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?q=80&w=600&auto=format&fit=crop" alt="Interior" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
-                            <span class="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded-md bg-black/60 border border-white/10">Studio Tour</span>
-                            <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-gold text-ink grid place-items-center text-xs font-bold">▶</span>
-                        </a>
-                        <a href="#" class="relative rounded-2xl overflow-hidden bg-zinc-900 border border-white/10 group">
-                            <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=600&auto=format&fit=crop" alt="Color" class="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-500"/>
-                            <div class="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/20 to-transparent"></div>
-                            <span class="absolute bottom-2 left-2 text-[10px] px-2 py-1 rounded-md bg-black/60 border border-white/10">Balayage</span>
-                            <span class="absolute top-2 right-2 w-8 h-8 rounded-full bg-gold text-ink grid place-items-center text-xs font-bold">▶</span>
-                        </a>
-                    </div>
-                    <p class="mt-3 text-[10px] text-zinc-500">Instagram @obarbasalon • Reels are unfiltered, shot on iPhone in studio light.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- ELITE CLUB -->
-    <section id="elite" class="border-y border-white/5 bg-ink py-16">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="relative rounded-[28px] overflow-hidden border border-gold/30 bg-charcoal gold-border">
-                <div class="absolute inset-0 opacity-[0.06]" style="background-image: radial-gradient(600px 200px at 20% 0%, #D4AF37, transparent 60%), radial-gradient(500px 200px at 80% 100%, #D4AF37, transparent 60%);"></div>
-                <div class="relative p-8 lg:p-12 grid lg:grid-cols-12 gap-8 items-center">
-                    <div class="lg:col-span-7">
-                        <div class="inline-flex items-center gap-2 text-[10px] tracking-[0.35em] text-gold">
-                            <span class="w-8 h-px bg-gold/60"></span> O’BARBA ELITE CLUB
-                        </div>
-                        <h3 class="mt-3 font-display text-[32px] sm:text-[40px] leading-[0.95] font-semibold text-zinc-50">
-                            Priority chair. Extra care. <br/>Real rewards.
-                        </h3>
-                        <p class="mt-3 text-zinc-300 max-w-2xl">
-                            Join for ₹999/year and unlock 10% back in points, birthday rituals, guest passes, and skip-the-queue booking. Cancel anytime — points stay.
-                        </p>
-                        <div class="mt-5 flex flex-wrap gap-2 text-xs">
-                            <span class="px-3 h-8 rounded-full bg-gold/10 border border-gold/25 text-gold-soft inline-flex items-center">10% points • never expire</span>
-                            <span class="px-3 h-8 rounded-full bg-white/5 border border-white/10 text-zinc-300 inline-flex items-center">Priority 7AM releases</span>
-                            <span class="px-3 h-8 rounded-full bg-white/5 border border-white/10 text-zinc-300 inline-flex items-center">Free head massage upgrade</span>
-                            <span class="px-3 h-8 rounded-full bg-white/5 border border-white/10 text-zinc-300 inline-flex items-center">Student & Defence • 15% off</span>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-5 lg:text-right">
-                        <div class="inline-flex items-center gap-3 px-4 h-12 rounded-2xl bg-zinc-900 border border-white/10 text-xs text-zinc-400">
-                            <span>Members today</span>
-                            <span class="text-zinc-100 font-semibold">4,182</span>
-                            <span class="w-px h-4 bg-white/10"></span>
-                            <span>Avg. save</span>
-                            <span class="text-gold font-semibold">₹1,740/yr</span>
-                        </div>
-                        <div class="mt-4 flex lg:justify-end gap-3">
-                            <a href="#booking" class="h-12 px-6 rounded-xl bg-gold text-ink font-semibold text-sm shadow-gold inline-flex items-center">Join Elite Club – ₹999/yr</a>
-                            <a href="#booking" class="h-12 px-5 rounded-xl bg-white/5 border border-white/10 text-sm inline-flex items-center hover:border-gold/40">Gift a membership</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-charcoal border-t border-white/5">
-        <div class="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-14 grid lg:grid-cols-12 gap-10">
-            <div class="lg:col-span-4">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-zinc-900 gold-border grid place-items-center">
-                        <span class="font-display font-bold tracking-[0.2em] text-[11px] text-gold">O'B</span>
-                    </div>
-                    <div>
-                        <div class="font-display font-semibold tracking-[0.3em] text-sm text-zinc-100">O’BARBA</div>
-                        <div class="text-[10px] tracking-[0.3em] text-zinc-500">FAMILY SALON • EST. 2018</div>
-                    </div>
-                </div>
-                <p class="mt-4 text-sm text-zinc-400 max-w-sm">
-                    Vintage, unisex, and obsessively clean. 70+ certified artists. Cruelty-free. Fair pricing. 
-                    Varanasi • Jaunpur • Noida.
-                </p>
-            </div>
-
-            <div class="lg:col-span-8 grid sm:grid-cols-3 gap-8 text-sm">
-                <div>
-                    <div class="text-xs tracking-widest text-gold mb-3">VARANASI</div>
-                    <ul class="space-y-2 text-zinc-300">
-                        <li>Lanka • Bhelupur Rd, Flagship</li>
-                        <li>Maldahiya • Near Girjaghar</li>
-                        <li>Shivpur • Sarnath Bypass</li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="text-xs tracking-widest text-gold mb-3">OTHER CITIES</div>
-                    <ul class="space-y-2 text-zinc-300">
-                        <li>Jaunpur • Civil Lines</li>
-                        <li>Noida • Sector 18, Atta Market</li>
-                    </ul>
-                </div>
-                <div>
-                    <div class="text-xs tracking-widest text-gold mb-3">HOURS • SUPPORT</div>
-                    <ul class="space-y-2 text-zinc-300">
-                        <li>10:30 AM – 9:00 PM • All days</li>
-                        <li>+91 90263 88888 • WhatsApp</li>
-                        <li>hello@obarba.in • Press & Careers</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="border-t border-white/5 py-6 text-center text-[11px] text-zinc-500">
-            © 2025 O’Barba Family Salon • Vintage by design, modern by craft. Made in India. 
-            <span class="text-zinc-600">GSTIN 09ABCDE1234F1Z5 • All prices INR, inclusive of taxes where applicable.</span>
-        </div>
-    </footer>
-     <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; gap: 12px; font-family: sans-serif; align-items: flex-end;">
-    
-    <button onclick="openObarbaModal('call')" style="height: 48px; padding: 0 20px; border-radius: 24px; background-color: #18181b; border: 1px solid #27272a; color: #d4d4d8; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.5); transition: all 0.2s;">
-        <span style="font-size: 16px;">📞</span> Call Salon
+    <!-- Mobile Menu Toggle -->
+    <button id="menuToggle" class="md:hidden w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-ob-gold transition-colors" onclick="toggleMobileMenu()">
+      <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
     </button>
-    
-    <button onclick="openObarbaModal('whatsapp')" style="height: 54px; padding: 0 24px; border-radius: 27px; background-color: #d4af37; border: none; color: #000; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); tracking-wide: 0.5px; transition: all 0.2s;">
-        <span style="background-color: rgba(0,0,0,0.1); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 12px;">WA</span> WhatsApp • 30s reply
-    </button>
+  </div>
+</nav>
 
+<!-- Mobile Menu -->
+<div id="mobileMenu" class="mobile-menu">
+  <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-ob-gold transition-colors">
+    <iconify-icon icon="lucide:x" width="24"></iconify-icon>
+  </button>
+  <a href="#hero" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Home</a>
+  <a href="#services" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Services</a>
+  <a href="#pricing" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Pricing</a>
+  <a href="#branches" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Branches</a>
+  <a href="#contact" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Contact</a>
+  <button onclick="toggleMobileMenu(); openModal('call')" class="btn-gold px-8 py-3 rounded-full text-sm mt-4">Book Premium Appointment</button>
+  <div class="flex gap-4 mt-6">
+    <a href="https://instagram.com/obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-ob-gold hover:border-ob-gold transition-all">
+      <iconify-icon icon="mdi:instagram" width="20"></iconify-icon>
+    </a>
+    <a href="https://youtube.com/@obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-ob-gold hover:border-ob-gold transition-all">
+      <iconify-icon icon="mdi:youtube" width="20"></iconify-icon>
+    </a>
+  </div>
 </div>
 
-<div id="obarbaPopupModal" style="display: none; position: fixed; z-index: 9999999; left: 0; top: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items: center; justify-content: center; box-sizing: border-box; padding: 20px;">
-  <div style="background: linear-gradient(145deg, #111, #1a1a1a); border: 1px solid #d4af37; padding: 30px 20px; border-radius: 15px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.7); position: relative; box-sizing: border-box;">
-    
-    <span onclick="closeObarbaModal()" style="position: absolute; right: 15px; top: 10px; color: #aaa; font-size: 24px; cursor: pointer; font-weight: bold; line-height: 1;">&times;</span>
-    
-    <h3 id="modalTitle" style="color: #d4af37; margin: 0 0 5px 0; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-family: sans-serif;">Select Branch</h3>
-    <p id="modalSubTitle" style="color: #aaa; font-size: 13px; margin: 0 0 20px 0; padding: 0; font-family: sans-serif;">Choose a branch to proceed</p>
-    
-    <div id="branchesList" style="display: flex; flex-direction: column; gap: 10px; max-height: 50vh; overflow-y: auto; padding-right: 5px; box-sizing: border-box;"></div>
+<!-- HERO SECTION -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background image -->
+  <div class="absolute inset-0">
+    <img src="https://picsum.photos/seed/obarba-salon-luxury-dark/1920/1080.jpg" alt="Salon Background" class="w-full h-full object-cover opacity-20" />
+    <div class="absolute inset-0 bg-gradient-to-b from-ob-black/60 via-ob-black/40 to-ob-black"></div>
+  </div>
+
+  <!-- Ambient glows -->
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="hero-glow hero-glow-3"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+    <!-- Decorative top element -->
+    <div class="flex items-center justify-center gap-3 mb-8 fade-up">
+      <div class="w-12 h-px bg-gradient-to-r from-transparent to-ob-gold/50"></div>
+      <div class="w-2 h-2 rounded-full bg-ob-gold/60"></div>
+      <div class="w-12 h-px bg-gradient-to-l from-transparent to-ob-gold/50"></div>
+    </div>
+
+    <!-- Regions badge -->
+    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ob-gold/20 bg-ob-gold/5 mb-8 fade-up" style="transition-delay: 0.1s">
+      <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+      <span class="text-xs font-medium tracking-widest uppercase text-ob-gold/80">Varanasi • Jaunpur • Noida</span>
+    </div>
+
+    <!-- Main Heading -->
+    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-6 fade-up" style="transition-delay: 0.2s">
+      <span class="gold-text-shimmer">O'BARBA</span><br>
+      <span class="text-white">FAMILY SALON</span>
+    </h1>
+
+    <!-- Sub-heading -->
+    <p class="text-base sm:text-lg md:text-xl text-zinc-400 font-light tracking-wide mb-10 fade-up" style="transition-delay: 0.3s">
+      Luxury Meets Affordability <span class="text-ob-gold mx-2">•</span> Since 2018
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up" style="transition-delay: 0.4s">
+      <button onclick="openModal('whatsapp')" class="btn-gold px-8 py-4 rounded-full text-sm tracking-wide flex items-center gap-2">
+        <iconify-icon icon="lucide:crown" width="16"></iconify-icon>
+        Book Premium Appointment
+      </button>
+      <a href="#services" class="btn-ghost px-8 py-4 rounded-full text-sm tracking-wide flex items-center gap-2">
+        Explore Services
+        <iconify-icon icon="lucide:arrow-down" width="16"></iconify-icon>
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="mt-16 fade-up" style="transition-delay: 0.6s">
+      <div class="flex flex-col items-center gap-2 text-zinc-600">
+        <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
+        <div class="w-px h-8 bg-gradient-to-b from-ob-gold/40 to-transparent animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BANNER -->
+<section class="relative z-10 -mt-1">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="glass-card rounded-2xl p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-0">
+      <div class="stat-item text-center px-4 fade-up">
+        <div class="font-serif text-3xl sm:text-4xl font-bold gold-text mb-1" data-count="5">0</div>
+        <div class="text-xs uppercase tracking-widest text-zinc-500">Years Excellence</div>
+      </div>
+      <div class="stat-item text-center px-4 fade-up" style="transition-delay: 0.1s">
+        <div class="font-serif text-3xl sm:text-4xl font-bold gold-text mb-1" data-count="70">0</div>
+        <div class="text-xs uppercase tracking-widest text-zinc-500">Certified Artists</div>
+      </div>
+      <div class="stat-item text-center px-4 fade-up" style="transition-delay: 0.2s">
+        <div class="font-serif text-3xl sm:text-4xl font-bold gold-text mb-1" data-count="25">0</div>
+        <div class="text-xs uppercase tracking-widest text-zinc-500">K+ Happy Guests</div>
+      </div>
+      <div class="stat-item text-center px-4 fade-up" style="transition-delay: 0.3s">
+        <div class="text-2xl sm:text-3xl mb-1">🐰</div>
+        <div class="text-xs uppercase tracking-widest text-zinc-500">100% Cruelty-Free</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section id="services" class="py-24 sm:py-32 relative">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 fade-up">
+      <span class="text-[11px] uppercase tracking-[0.3em] text-ob-gold/70 font-medium">What We Offer</span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-4">Our Services</h2>
+      <div class="gold-divider"></div>
+      <p class="text-zinc-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">Experience world-class grooming & beauty services crafted by certified artisans using premium cruelty-free products.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <!-- Hair Services Card -->
+      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" onclick="scrollToPricing('hair')">
+        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
+          <iconify-icon icon="lucide:scissors" width="28" class="text-ob-gold"></iconify-icon>
+        </div>
+        <h3 class="font-serif text-lg font-semibold text-white mb-2">Hair Services</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Cuts, Color, Keratin, Balayage & Premium Treatments</p>
+        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
+          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+        </span>
+      </div>
+
+      <!-- Hands & Feet Card -->
+      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" style="transition-delay: 0.1s" onclick="scrollToPricing('hands')">
+        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
+          <iconify-icon icon="lucide:hand" width="28" class="text-ob-gold"></iconify-icon>
+        </div>
+        <h3 class="font-serif text-lg font-semibold text-white mb-2">Hands & Feet</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Luxury Manicure & Pedicure Experiences</p>
+        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
+          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+        </span>
+      </div>
+
+      <!-- Skin & Grooming Card -->
+      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" style="transition-delay: 0.2s" onclick="scrollToPricing('skin')">
+        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
+          <iconify-icon icon="lucide:sparkles" width="28" class="text-ob-gold"></iconify-icon>
+        </div>
+        <h3 class="font-serif text-lg font-semibold text-white mb-2">Skin & Grooming</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Facials, Waxing, Cleanup & Body Polishing</p>
+        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
+          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+        </span>
+      </div>
+
+      <!-- Makeup Card -->
+      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" style="transition-delay: 0.3s" onclick="scrollToPricing('makeup')">
+        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
+          <iconify-icon icon="lucide:palette" width="28" class="text-ob-gold"></iconify-icon>
+        </div>
+        <h3 class="font-serif text-lg font-semibold text-white mb-2">Make-up Artistry</h3>
+        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Bridal, Engagement, Party & Groom Makeover</p>
+        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
+          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING SECTION -->
+<section id="pricing" class="py-24 sm:py-32 relative bg-ob-dark/50">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="text-center mb-16 fade-up">
+      <span class="text-[11px] uppercase tracking-[0.3em] text-ob-gold/70 font-medium">Transparent Pricing</span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-4">Official Price List</h2>
+      <div class="gold-divider"></div>
+    </div>
+
+    <!-- Accordion Tabs -->
+    <div class="space-y-4">
+
+      <!-- HAIR SERVICES -->
+      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-hair">
+        <div class="service-tab active flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
+              <iconify-icon icon="lucide:scissors" width="20" class="text-ob-gold"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Hair Services</h3>
+              <p class="text-zinc-500 text-xs mt-0.5">8 premium services</p>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
+        </div>
+        <div class="service-content open">
+          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Hair Cut</span>
+              <span class="price-amount text-sm">₹799</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Hair Spa</span>
+              <span class="price-amount text-sm">₹1,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Global Color</span>
+              <span class="price-amount text-sm">₹3,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Balayage</span>
+              <span class="price-amount text-sm">₹5,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Keratin Treatment</span>
+              <span class="price-amount text-sm">₹5,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Botox</span>
+              <span class="price-amount text-sm">₹8,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Nano Plastia</span>
+              <span class="price-amount text-sm">₹9,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Kara-Smooth</span>
+              <span class="price-amount text-sm">₹12,999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HANDS & FEET CARE -->
+      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-hands" style="transition-delay: 0.1s">
+        <div class="service-tab flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
+              <iconify-icon icon="lucide:hand" width="20" class="text-ob-gold"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Hands & Feet Care</h3>
+              <p class="text-zinc-500 text-xs mt-0.5">2 service categories</p>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
+        </div>
+        <div class="service-content">
+          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Manicure</span>
+              <span class="price-amount text-sm">₹599 — ₹2,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Pedicure</span>
+              <span class="price-amount text-sm">₹699 — ₹3,499</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SKIN & GROOMING -->
+      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-skin" style="transition-delay: 0.2s">
+        <div class="service-tab flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
+              <iconify-icon icon="lucide:sparkles" width="20" class="text-ob-gold"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Skin & Grooming</h3>
+              <p class="text-zinc-500 text-xs mt-0.5">4 service categories</p>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
+        </div>
+        <div class="service-content">
+          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Waxing</span>
+              <span class="price-amount text-sm">₹499 — ₹3,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Cleanup</span>
+              <span class="price-amount text-sm">₹1,499 — ₹2,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Facial</span>
+              <span class="price-amount text-sm">₹2,499 — ₹9,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Body Polishing</span>
+              <span class="price-amount text-sm">₹3,999 — ₹5,999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFESSIONAL MAKE-UP ARTISTRY -->
+      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-makeup" style="transition-delay: 0.3s">
+        <div class="service-tab flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
+              <iconify-icon icon="lucide:palette" width="20" class="text-ob-gold"></iconify-icon>
+            </div>
+            <div>
+              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Professional Make-up Artistry</h3>
+              <p class="text-zinc-500 text-xs mt-0.5">5 premium categories</p>
+            </div>
+          </div>
+          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
+        </div>
+        <div class="service-content">
+          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
+            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Child Make-up</span>
+              <span class="price-amount text-sm">₹1,499 — ₹2,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Party Make-up</span>
+              <span class="price-amount text-sm">₹2,499 — ₹6,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Engagement Make-up</span>
+              <span class="price-amount text-sm">₹7,999 — ₹24,999</span>
+            </div>
+            <div class="price-row">
+              <div class="flex items-center gap-2">
+                <span class="text-zinc-300 text-sm">Bridal Makeup</span>
+                <span class="text-[9px] px-2 py-0.5 rounded-full bg-ob-gold/10 text-ob-gold font-medium uppercase tracking-wider">Premium</span>
+              </div>
+              <span class="price-amount text-sm">₹9,999 — ₹44,999</span>
+            </div>
+            <div class="price-row">
+              <span class="text-zinc-300 text-sm">Groom Make-up</span>
+              <span class="price-amount text-sm">₹3,499 — ₹6,999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA under pricing -->
+    <div class="text-center mt-12 fade-up">
+      <p class="text-zinc-500 text-sm mb-4">All prices are inclusive of premium products & expert service.</p>
+      <button onclick="openModal('whatsapp')" class="btn-gold px-8 py-3.5 rounded-full text-sm tracking-wide inline-flex items-center gap-2">
+        <iconify-icon icon="lucide:message-circle" width="16"></iconify-icon>
+        Book via WhatsApp
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- BRANCHES SECTION -->
+<section id="branches" class="py-24 sm:py-32 relative">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center mb-16 fade-up">
+      <span class="text-[11px] uppercase tracking-[0.3em] text-ob-gold/70 font-medium">Find Us</span>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-4">Our Branches</h2>
+      <div class="gold-divider"></div>
+      <p class="text-zinc-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">8 premium locations across Varanasi, Jaunpur & Noida — each delivering the signature O'BARBA experience.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="glass-card rounded-xl p-5 fade-up group">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Chitaipur Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.05s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Shivpur Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.1s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Maldahiya Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.15s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Lanka Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.2s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Ink by O'Barba Sigra</h4>
+            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.25s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Mau Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Mau</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.3s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Jaunpur Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Jaunpur</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.35s">
+        <div class="flex items-start gap-3">
+          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
+          </div>
+          <div>
+            <h4 class="text-white font-medium text-sm">Noida Branch</h4>
+            <p class="text-zinc-500 text-xs mt-1">Noida</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="py-20 relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-r from-ob-gold/5 via-ob-gold/10 to-ob-gold/5"></div>
+  <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(212,175,55,0.08) 0%, transparent 70%);"></div>
+  <div class="relative z-10 max-w-3xl mx-auto px-6 text-center fade-up">
+    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">Ready for Your Transformation?</h2>
+    <p class="text-zinc-400 text-sm mb-8 max-w-lg mx-auto">Join 25,000+ happy guests who trust O'BARBA for their premium grooming & beauty experience. Walk in royal, walk out legendary.</p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <button onclick="openModal('call')" class="btn-ghost px-8 py-3.5 rounded-full text-sm tracking-wide flex items-center gap-2">
+        <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
+        Call Your Nearest Branch
+      </button>
+      <button onclick="openModal('whatsapp')" class="btn-gold px-8 py-3.5 rounded-full text-sm tracking-wide flex items-center gap-2">
+        <iconify-icon icon="lucide:message-circle" width="16"></iconify-icon>
+        WhatsApp • 30s Reply
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact" class="border-t border-white/5 bg-ob-black">
+  <div class="max-w-6xl mx-auto px-6 py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+      <!-- Brand Column -->
+      <div>
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-10 h-10 rounded-full border-2 border-ob-gold flex items-center justify-center bg-ob-black">
+            <svg viewBox="0 0 48 48" class="w-6 h-6" fill="none">
+              <ellipse cx="17" cy="18" rx="6.5" ry="7.5" fill="#D4AF37" opacity="0.9"/>
+              <path d="M10.5 26c0 0 1 7 6.5 7s6.5-7 6.5-7" fill="#AA7C11" opacity="0.7"/>
+              <path d="M12 25c0 0 1.5 6 5 6s5-6 5-6" fill="#AA7C11" opacity="0.6"/>
+              <ellipse cx="33" cy="17" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+              <path d="M27 15c-2-3-1-8 2-10c0 0 3 2 7 0c2 3 2 7 0 10" fill="#AA7C11" opacity="0.5"/>
+            </svg>
+          </div>
+          <span class="font-serif text-lg font-bold gold-text">O'BARBA</span>
+        </div>
+        <p class="font-serif italic text-ob-gold/80 text-sm mb-4">"our image is to make your image"</p>
+        <p class="text-zinc-500 text-xs leading-relaxed">Premium unisex family salon delivering world-class grooming & beauty services since 2018. Luxury meets affordability at every O'BARBA studio.</p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-serif text-sm font-semibold text-white mb-5 uppercase tracking-wider">Quick Links</h4>
+        <div class="space-y-3">
+          <a href="#hero" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Home</a>
+          <a href="#services" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Services</a>
+          <a href="#pricing" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Pricing</a>
+          <a href="#branches" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Branches</a>
+        </div>
+      </div>
+
+      <!-- Contact & Social -->
+      <div>
+        <h4 class="font-serif text-sm font-semibold text-white mb-5 uppercase tracking-wider">Connect</h4>
+        <div class="space-y-3 mb-6">
+          <div class="flex items-center gap-2 text-zinc-500 text-sm">
+            <iconify-icon icon="lucide:clock" width="14" class="text-ob-gold/60"></iconify-icon>
+            Open 7 Days a Week
+          </div>
+          <div class="flex items-center gap-2 text-zinc-500 text-sm">
+            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold/60"></iconify-icon>
+            Varanasi • Jaunpur • Noida
+          </div>
+        </div>
+        <div class="flex gap-3">
+          <a href="https://instagram.com/obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-ob-gold hover:border-ob-gold/50 hover:bg-ob-gold/5 transition-all duration-300">
+            <iconify-icon icon="mdi:instagram" width="18"></iconify-icon>
+          </a>
+          <a href="https://youtube.com/@obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-ob-gold hover:border-ob-gold/50 hover:bg-ob-gold/5 transition-all duration-300">
+            <iconify-icon icon="mdi:youtube" width="18"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p class="text-zinc-600 text-xs">© 2024 O'BARBA Family Salon. All rights reserved.</p>
+      <p class="text-zinc-700 text-[10px] uppercase tracking-widest">Crafted with Excellence</p>
+    </div>
+  </div>
+</footer>
+
+<!-- FLOATING PILL -->
+<div class="floating-pill">
+  <button class="pill-btn pill-call" onclick="openModal('call')">
+    <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
+    <span class="hidden sm:inline">Call Salon</span>
+    <span class="sm:hidden">Call</span>
+  </button>
+  <button class="pill-btn pill-wa" onclick="openModal('whatsapp')">
+    <iconify-icon icon="mdi:whatsapp" width="16"></iconify-icon>
+    <span class="hidden sm:inline">WhatsApp • 30s reply</span>
+    <span class="sm:hidden">WhatsApp</span>
+  </button>
+</div>
+
+<!-- BRANCH SELECTION MODAL -->
+<div id="branchModal" class="modal-overlay" onclick="closeModalOutside(event)">
+  <div class="modal-box" onclick="event.stopPropagation()">
+    <!-- Modal Header -->
+    <div class="sticky top-0 bg-ob-card/95 backdrop-blur-sm z-10 px-6 py-5 border-b border-white/5">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 id="modalTitle" class="font-serif text-lg font-semibold text-white">Select Branch to Call</h3>
+          <p id="modalSubtitle" class="text-zinc-500 text-xs mt-1">Choose your preferred O'BARBA location</p>
+        </div>
+        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all">
+          <iconify-icon icon="lucide:x" width="16"></iconify-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Branch List -->
+    <div class="p-4 space-y-2">
+      <a id="branch-0" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Chitaipur Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
+        </div>
+        <div id="branch-icon-0" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-1" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Shivpur Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
+        </div>
+        <div id="branch-icon-1" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-2" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Maldahiya Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
+        </div>
+        <div id="branch-icon-2" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-3" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Lanka Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
+        </div>
+        <div id="branch-icon-3" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-4" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Ink by O'Barba Sigra</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
+        </div>
+        <div id="branch-icon-4" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-5" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Mau Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Mau</p>
+        </div>
+        <div id="branch-icon-5" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-6" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Jaunpur Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Jaunpur</p>
+        </div>
+        <div id="branch-icon-6" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+
+      <a id="branch-7" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
+        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
+        </div>
+        <div class="flex-1 min-w-0">
+          <h4 class="text-white text-sm font-medium">Noida Branch</h4>
+          <p class="text-zinc-500 text-xs mt-0.5">Noida</p>
+        </div>
+        <div id="branch-icon-7" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
+          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
+        </div>
+      </a>
+    </div>
   </div>
 </div>
 
 <script>
-const obarbaBranches = [
-  { name: "Chitaipur Branch", phone: "8808081208" },
-  { name: "Shivpur Branch", phone: "8808081108" },
-  { name: "Maldahiya Branch", phone: "8935000555" },
-  { name: "Lanka Branch", phone: "7224080808" },
-  { name: "Ink by O'Barba Sigra Branch", phone: "7225080808" },
-  { name: "Mau Branch", phone: "8052777999" },
-  { name: "Jaunpur Branch", phone: "7705962222" },
-  { name: "Noida Branch", phone: "9643392715" }
-];
+  // Branch data
+  const branches = [
+    { name: "Chitaipur Branch", phone: "8808081208", city: "Varanasi" },
+    { name: "Shivpur Branch", phone: "8808081108", city: "Varanasi" },
+    { name: "Maldahiya Branch", phone: "8935000555", city: "Varanasi" },
+    { name: "Lanka Branch", phone: "7224080808", city: "Varanasi" },
+    { name: "Ink by O'Barba Sigra Branch", phone: "7225080808", city: "Varanasi" },
+    { name: "Mau Branch", phone: "8052777999", city: "Mau" },
+    { name: "Jaunpur Branch", phone: "7705962222", city: "Jaunpur" },
+    { name: "Noida Branch", phone: "9643392715", city: "Noida" }
+  ];
 
-function openObarbaModal(actionType) {
-  const modal = document.getElementById("obarbaPopupModal");
-  const title = document.getElementById("modalTitle");
-  const subtitle = document.getElementById("modalSubTitle");
-  const listContainer = document.getElementById("branchesList");
-  
-  if(actionType === 'call') {
-    title.innerText = "📞 Select Branch to Call";
-    subtitle.innerText = "Click on any branch to make a direct call";
-  } else {
-    title.innerText = "💬 Select Branch for WhatsApp";
-    subtitle.innerText = "Choose a branch to book appointment via WhatsApp";
-  }
-  
-  listContainer.innerHTML = "";
-  
-  obarbaBranches.forEach(branch => {
-    const btn = document.createElement("a");
-    btn.innerText = branch.name;
-    btn.style.width = "100%";
-    btn.style.padding = "12px";
-    btn.style.backgroundColor = "#222";
-    btn.style.color = "#fff";
-    btn.style.textDecoration = "none";
-    btn.style.borderRadius = "8px";
-    btn.style.fontSize = "14px";
-    btn.style.fontWeight = "600";
-    btn.style.border = "1px solid #333";
-    btn.style.transition = "all 0.2s";
-    btn.style.display = "block";
-    btn.style.boxSizing = "border-box";
-    btn.style.fontFamily = "sans-serif";
-    
-    btn.onmouseenter = function() { this.style.borderColor = "#d4af37"; this.style.backgroundColor = "#151515"; };
-    btn.onmouseleave = function() { this.style.borderColor = "#333"; this.style.backgroundColor = "#222"; };
-    
-    if(actionType === 'call') {
-      btn.href = "tel:+91" + branch.phone;
+  let currentMode = 'call';
+
+  // Open modal
+  function openModal(mode) {
+    currentMode = mode;
+    const modal = document.getElementById('branchModal');
+    const title = document.getElementById('modalTitle');
+    const subtitle = document.getElementById('modalSubtitle');
+
+    if (mode === 'call') {
+      title.textContent = "Select Branch to Call";
+      subtitle.textContent = "Tap a branch to connect instantly";
     } else {
-      let msg = encodeURIComponent("Hello O'BARBA! Main " + branch.name + " ke liye appointment book karna chahta hoon.");
-      btn.href = "https://wa.me/91" + branch.phone + "?text=" + msg;
-      btn.target = "_blank";
+      title.textContent = "Select Branch for WhatsApp";
+      subtitle.textContent = "Average reply time: 30 seconds";
     }
-    
-    btn.onclick = function() { setTimeout(closeObarbaModal, 500); };
-    listContainer.appendChild(btn);
-  });
-  
-  modal.style.display = "flex";
-}
 
-function closeObarbaModal() {
-  document.getElementById("obarbaPopupModal").style.display = "none";
-}
+    // Update branch links and icons
+    branches.forEach((branch, i) => {
+      const el = document.getElementById(`branch-${i}`);
+      const iconEl = document.getElementById(`branch-icon-${i}`);
 
-window.onclick = function(event) {
-  const modal = document.getElementById("obarbaPopupModal");
-  if (event.target == modal) {
-    modal.style.display = "none";
+      if (mode === 'call') {
+        el.href = `tel:+91${branch.phone}`;
+        el.target = "";
+        iconEl.innerHTML = '<iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>';
+      } else {
+        const waText = encodeURIComponent(`Hello O'BARBA! Main ${branch.name} ke liye appointment book karna chahta hoon.`);
+        el.href = `https://wa.me/91${branch.phone}?text=${waText}`;
+        el.target = "_blank";
+        iconEl.innerHTML = '<iconify-icon icon="mdi:whatsapp" width="16" class="text-ob-gold"></iconify-icon>';
+      }
+    });
+
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
-}
+
+  // Close modal
+  function closeModal() {
+    const modal = document.getElementById('branchModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  // Close modal on outside click
+  function closeModalOutside(event) {
+    if (event.target === event.currentTarget) {
+      closeModal();
+    }
+  }
+
+  // Close modal on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Mobile menu toggle
+  function toggleMobileMenu() {
+    const menu = document.getElementById('mobileMenu');
+    menu.classList.toggle('active');
+    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
+  }
+
+  // Accordion toggle
+  function toggleAccordion(tab) {
+    const content = tab.nextElementSibling;
+    const arrow = tab.querySelector('.accordion-arrow');
+    const isOpen = content.classList.contains('open');
+
+    // Close all
+    document.querySelectorAll('.service-content').forEach(c => c.classList.remove('open'));
+    document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
+
+    if (!isOpen) {
+      content.classList.add('open');
+      tab.classList.add('active');
+      arrow.style.transform = 'rotate(180deg)';
+    }
+  }
+
+  // Scroll to pricing category
+  function scrollToPricing(category) {
+    const el = document.getElementById(`pricing-${category}`);
+    if (el) {
+      const tab = el.querySelector('.service-tab');
+      const content = el.querySelector('.service-content');
+      
+      // Close all
+      document.querySelectorAll('.service-content').forEach(c => c.classList.remove('open'));
+      document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
+      
+      // Open target
+      content.classList.add('open');
+      tab.classList.add('active');
+      tab.querySelector('.accordion-arrow').style.transform = 'rotate(180deg)';
+
+      // Scroll
+      setTimeout(() => {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  }
+
+  // Navbar scroll effect
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const navbar = document.getElementById('navbar');
+    const scrollY = window.scrollY;
+
+    if (scrollY > 50) {
+      navbar.style.background = 'rgba(11, 11, 11, 0.9)';
+      navbar.style.backdropFilter = 'blur(16px)';
+      navbar.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
+    } else {
+      navbar.style.background = 'transparent';
+      navbar.style.backdropFilter = 'none';
+      navbar.style.borderBottom = 'none';
+    }
+
+    lastScroll = scrollY;
+  });
+
+  // Intersection Observer for fade-up animations
+  const fadeObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+
+  // Counter animation
+  function animateCounters() {
+    const counters = document.querySelectorAll('[data-count]');
+    counters.forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-count'));
+      const duration = 2000;
+      const start = performance.now();
+
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        counter.textContent = current + (target >= 25 ? '' : '+');
+        if (progress < 1) requestAnimationFrame(update);
+        else counter.textContent = target + '+';
+      }
+
+      requestAnimationFrame(update);
+    });
+  }
+
+  // Trigger counter animation when stats section is visible
+  const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        animateCounters();
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  const statsSection = document.querySelector('.stat-item');
+  if (statsSection) statsObserver.observe(statsSection.closest('.glass-card'));
 </script>
-        // Mobile menu
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        mobileMenuBtn?.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
 
-        // Service tabs
-        document.querySelectorAll('.service-tab').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.service-tab').forEach(b => b.classList.remove('tab-active','bg-gold','text-ink','border-gold'));
-                btn.classList.add('tab-active','bg-gold','text-ink','border-gold');
-                const tab = btn.dataset.tab;
-                document.querySelectorAll('.service-pane').forEach(p => p.classList.add('hidden'));
-                document.querySelector(`.service-pane[data-pane="${tab}"]`)?.classList.remove('hidden');
-            });
-        });
-
-        // Branch data
-        const branches = {
-            varanasi: [
-                { name: 'Lanka • Flagship', sub: 'Bhelupur Rd • Parking • Wheelchair access', chips: ['Live: 4 chairs', 'Bridal Atelier', 'Color Bar'], selected: true },
-                { name: 'Maldahiya', sub: 'Girjaghar Chauraha • Metro 800m', chips: ['Live: 2 chairs', 'Express 45 min', 'Student 10%'] },
-                { name: 'Shivpur', sub: 'Sarnath Bypass • Family suites', chips: ['Live: 3 chairs', 'Kids Friendly', 'Evening till 9'] },
-            ],
-            jaunpur: [
-                { name: 'Civil Lines', sub: 'Collectorate Rd • Walk-in friendly', chips: ['Live: 2 chairs', 'Keratin Lab', 'Parking'] },
-            ],
-            noida: [
-                { name: 'Sector 18', sub: 'Atta Market • Flagship NCR', chips: ['Live: 5 chairs', 'HD Bridal', ' Valet'] },
-            ]
-        };
-
-        let activeCity = 'varanasi';
-        let selectedBranchName = 'Lanka, Varanasi (Flagship)';
-
-        function renderBranchGrid() {
-            const grid = document.getElementById('branchGrid');
-            const bookingGrid = document.getElementById('bookingBranchGrid');
-            grid.innerHTML = '';
-            bookingGrid.innerHTML = '';
-            branches[activeCity].forEach((b, i) => {
-                const card = document.createElement('button');
-                card.type = 'button';
-                card.className = 'text-left rounded-2xl bg-zinc-900 border border-white/10 p-4 hover:border-gold/40 hover:-translate-y-0.5 transition-all focus-ring';
-                card.innerHTML = `
-                    <div class="flex items-start justify-between gap-3">
-                        <div>
-                            <div class="font-medium text-zinc-100 text-sm">${b.name}</div>
-                            <div class="text-xs text-zinc-400 mt-0.5">${b.sub}</div>
-                        </div>
-                        <span class="text-[10px] px-2 py-1 rounded-md bg-gold/10 border border-gold/20 text-gold">SELECT</span>
-                    </div>
-                    <div class="mt-3 flex flex-wrap gap-1.5">
-                        ${b.chips.map(c => `<span class="text-[10px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-zinc-400">${c}</span>`).join('')}
-                    </div>
-                `;
-                card.addEventListener('click', () => {
-                    selectedBranchName = `${b.name} • ${activeCity.charAt(0).toUpperCase() + activeCity.slice(1)}`;
-                    document.getElementById('selectedBranch').textContent = selectedBranchName;
-                    // Visual feedback
-                    [...grid.children].forEach(ch => ch.classList.remove('ring-1','ring-gold/50','border-gold/50'));
-                    card.classList.add('ring-1','ring-gold/50','border-gold/50');
-                    [...bookingGrid.children].forEach(ch => ch.classList.remove('ring-1','ring-gold/50','border-gold/50'));
-                    const mirror = bookingGrid.children[i];
-                    if (mirror) mirror.classList.add('ring-1','ring-gold/50','border-gold/50');
-                });
-                grid.appendChild(card);
-
-                // Booking duplicate (compact)
-                const bCard = card.cloneNode(true);
-                bCard.classList.add('h-full');
-                bCard.querySelector('span:last-child')?.remove();
-                bookingGrid.appendChild(bCard);
-            });
-            // preselect first
-            setTimeout(() => grid.children[0]?.click(), 0);
-        }
-
-        document.querySelectorAll('.city-tab').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.city-tab').forEach(b => b.classList.remove('tab-active','bg-gold','text-ink'));
-                btn.classList.add('tab-active','bg-gold','text-ink');
-                activeCity = btn.dataset.city;
-                renderBranchGrid();
-            });
-        });
-        renderBranchGrid();
-
-        // Artists
-        const artists = [
-            { name: 'Aarav', role: 'Cut • Color', img: 'https://i.pravatar.cc/100?img=11' },
-            { name: 'Ira', role: 'Bridal', img: 'https://i.pravatar.cc/100?img=32' },
-            { name: 'Kabir', role: 'Beard • Groom', img: 'https://i.pravatar.cc/100?img=15' },
-            { name: 'Meher', role: 'Skin • Hydra', img: 'https://i.pravatar.cc/100?img=29' },
-            { name: 'Reyansh', role: 'Keratin', img: 'https://i.pravatar.cc/100?img=22' },
-        ];
-        const artistGrid = document.getElementById('artistGrid');
-        artists.forEach(a => {
-            const el = document.createElement('button');
-            el.type = 'button';
-            el.className = 'group text-left rounded-xl bg-zinc-900 border border-white/10 p-2 hover:border-gold/40 focus-ring';
-            el.innerHTML = `
-                <img src="${a.img}" alt="${a.name}" class="w-full aspect-square rounded-lg object-cover mb-2"/>
-                <div class="text-[11px] font-medium text-zinc-200 leading-none">${a.name}</div>
-                <div class="text-[10px] text-zinc-500">${a.role}</div>
-            `;
-            el.addEventListener('click', () => {
-                [...artistGrid.children].forEach(c => c.classList.remove('ring-1','ring-gold/40','border-gold/40'));
-                el.classList.add('ring-1','ring-gold/40','border-gold/40');
-            });
-            artistGrid.appendChild(el);
-        });
-
-        // Booking stepper
-        const step1 = document.getElementById('step1');
-        const step2 = document.getElementById('step2');
-        const step3 = document.getElementById('step3');
-        const stepLabel2 = document.getElementById('stepLabel2');
-        const stepLabel3 = document.getElementById('stepLabel3');
-
-        document.getElementById('toStep2').addEventListener('click', () => {
-            step1.classList.add('hidden');
-            step2.classList.remove('hidden');
-            stepLabel2.classList.remove('opacity-60');
-            stepLabel2.querySelector('span').classList.add('bg-gold','text-ink');
-            stepLabel2.querySelector('span').classList.remove('bg-white/10');
-            window.scrollTo({ top: document.getElementById('booking').offsetTop - 80, behavior: 'smooth' });
-        });
-        document.getElementById('backTo1').addEventListener('click', () => {
-            step2.classList.add('hidden'); step1.classList.remove('hidden');
-        });
-        document.getElementById('toStep3').addEventListener('click', () => {
-            step2.classList.add('hidden'); step3.classList.remove('hidden');
-            stepLabel3.classList.remove('opacity-60');
-            stepLabel3.querySelector('span').classList.add('bg-gold','text-ink');
-            stepLabel3.querySelector('span').classList.remove('bg-white/10');
-        });
-        document.getElementById('backTo2').addEventListener('click', () => {
-            step3.classList.add('hidden'); step2.classList.remove('hidden');
-        });
-
-        // Slots
-        const slotsEl = document.getElementById('slots');
-        const todaySlots = ['10:45','11:30','12:15','1:00','2:30','3:15','4:00','5:30','6:15','7:00','8:00'];
-        todaySlots.forEach((t, i) => {
-            const b = document.createElement('button');
-            b.type = 'button';
-            b.className = 'slot h-10 rounded-xl bg-zinc-900 border border-white/10 text-xs hover:border-gold/40';
-            b.textContent = t;
-            if (i === 1 || i === 6) b.disabled = true; // demo busy
-            b.addEventListener('click', () => {
-                [...slotsEl.children].forEach(c => c.classList.remove('bg-gold','text-ink','border-gold'));
-                b.classList.add('bg-gold','text-ink','border-gold');
-            });
-            slotsEl.appendChild(b);
-        });
-        // preselect
-        setTimeout(() => slotsEl.children[2]?.click(), 0);
-
-        // Date default to today
-        const dateInput = document.getElementById('dateInput');
-        const today = new Date();
-        const iso = today.toISOString().split('T')[0];
-        dateInput.value = iso;
-        dateInput.min = iso;
-
-        // Confirm
-        document.getElementById('confirmBooking').addEventListener('click', () => {
-            const svc = document.getElementById('serviceSelect').value;
-            const time = [...slotsEl.children].find(c => c.classList.contains('bg-gold'))?.textContent || '11:30';
-            alert(`Booked ✅\n${selectedBranchName}\n${svc}\n${dateInput.value} • ${time}\nWe’ve sent your ticket on WhatsApp.`);
-        });
-
-        // Quiz
-        const quizAnswers = {};
-        document.querySelectorAll('#quiz .quiz-opt').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const step = btn.closest('.quiz-step');
-                const s = step.dataset.step;
-                quizAnswers[s] = btn.dataset.value;
-                // move next
-                step.classList.add('hidden');
-                const next = document.querySelector(`.quiz-step[data-step="${Number(s)+1}"]`);
-                if (next) { next.classList.remove('hidden'); }
-                else { showQuizResult(); }
-                // visual select
-                [...step.querySelectorAll('.quiz-opt')].forEach(o => o.classList.remove('bg-gold','text-ink','border-gold'));
-                btn.classList.add('bg-gold','text-ink','border-gold');
-            });
-        });
-
-        function showQuizResult() {
-            const r = document.getElementById('quizResult');
-            const t = document.getElementById('quizText');
-            let rec = '';
-            if (quizAnswers['1'] === 'frizz' && quizAnswers['2'] === 'sensitive') {
-                rec = 'Keratin Smooth (formaldehyde-free) + Desi Head Massage. Artist note: low-heat, bond-builder, 12-week plan. Book 150 mins.';
-            } else if (quizAnswers['1'] === 'flat') {
-                rec = 'Advanced Haircut with point cutting + Volume Blow. Add Camelina Serum for hold without weight. 60 mins.';
-            } else if (quizAnswers['3'] === 'natural') {
-                rec = 'Balayage with root shadow for low upkeep. Hydra Facial same-day for glow match. Consultation mandatory.';
-            } else {
-                rec = 'Signature Cut + Beard/Brow Architecture. We’ll map face shape, test products, and coach home care. 75 mins.';
-            }
-            t.textContent = rec;
-            r.classList.remove('hidden');
-        }
-        document.getElementById('quizReset')?.addEventListener('click', () => {
-            quizAnswers[1]=quizAnswers[2]=quizAnswers[3]=null;
-            document.querySelectorAll('.quiz-step').forEach((s,i)=> s.classList.toggle('hidden', i!==0));
-            document.getElementById('quizResult').classList.add('hidden');
-        });
-
-        // Simple counters animation
-        const animateValue = (el, start, end, duration = 900) => {
-            const range = end - start; let startTime = null;
-            function tick(now) {
-                if (!startTime) startTime = now;
-                const progress = Math.min((now - startTime) / duration, 1);
-                el.textContent = (start + range * progress).toFixed(1);
-                if (progress < 1) requestAnimationFrame(tick);
-            }
-            requestAnimationFrame(tick);
-        };
-        const io = new IntersectionObserver((entries) => {
-            entries.forEach(e => {
-                if (e.isIntersecting) {
-                    animateValue(document.getElementById('ratingGoogle'), 4.6, 4.9);
-                    animateValue(document.getElementById('ratingJD'), 4.5, 4.8);
-                    io.disconnect();
-                }
-            });
-        }, { threshold: 0.4 });
-        io.observe(document.getElementById('ratingGoogle'));
-    </script>
 </body>
 </html>
+```
