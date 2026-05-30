@@ -906,104 +906,17 @@
     </footer>
 
     <!-- FLOATING WHATSAPP / CALL -->
-    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3" style="font-family: sans-serif; max-width: calc(100% - 40px);">
-    
-    <button onclick="openObarbaModal('call')" class="group h-12 px-4 rounded-full bg-zinc-900 border border-zinc-800 flex items-center gap-2 cursor-pointer shadow-lg hover:border-amber-500 transition-all">
-        <span class="w-8 h-8 rounded-full bg-white/10 grid place-items-center text-zinc-200">📞</span>
-        <span class="text-xs text-zinc-300 font-medium">Call Salon</span>
-    </button>
-    
-    <button onclick="openObarbaModal('whatsapp')" class="h-14 pl-3 pr-4 rounded-full text-ink shadow-gold flex items-center gap-2 cursor-pointer hover:opacity-90 transition-all" style="background-color: #d4af37; color: #000; border: none;">
-        <span class="w-10 h-10 rounded-full bg-black/10 grid place-items-center font-bold">WA</span>
-        <span class="text-sm font-semibold tracking-wide">WhatsApp • 30s reply</span>
-    </button>
-
-</div>
-
-<div id="obarbaPopupModal" style="display: none; position: fixed; z-index: 99999; left: 0; top: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); align-items: center; justify-content: center; box-sizing: border-box; padding: 20px;">
-  <div style="background: linear-gradient(145deg, #111, #1a1a1a); border: 1px solid #d4af37; padding: 30px 20px; border-radius: 15px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.7); position: relative; box-sizing: border-box;">
-    
-    <span onclick="closeObarbaModal()" style="position: absolute; right: 15px; top: 10px; color: #aaa; font-size: 24px; cursor: pointer; font-weight: bold;">&times;</span>
-    
-    <h3 id="modalTitle" style="color: #d4af37; margin: 0 0 5px 0; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700;">Select Branch</h3>
-    <p id="modalSubTitle" style="color: #aaa; font-size: 13px; margin: 0 0 20px 0; padding: 0;">Choose a branch to proceed</p>
-    
-    <div id="branchesList" style="display: flex; flex-direction: column; gap: 10px; max-height: 60vh; overflow-y: auto; padding-right: 5px;"></div>
-  </div>
-</div>
-
-<script>
-const obarbaBranches = [
-  { name: "Chitaipur Branch", phone: "8808081208" },
-  { name: "Shivpur Branch", phone: "8808081108" },
-  { name: "Maldahiya Branch", phone: "8935000555" },
-  { name: "Lanka Branch", phone: "7224080808" },
-  { name: "ink By O'Barba Sigra Branch", phone: "7225080808" },
-  { name: "Mau Branch", phone: "8052777999" },
-  { name: "Jaunpur Branch", phone: "7705962222" },
-  { name: "Noida Branch", phone: "9643392715" }
-];
-
-function openObarbaModal(actionType) {
-  const modal = document.getElementById("obarbaPopupModal");
-  const title = document.getElementById("modalTitle");
-  const subtitle = document.getElementById("modalSubTitle");
-  const listContainer = document.getElementById("branchesList");
-  
-  if(actionType === 'call') {
-    title.innerText = "📞 Select Branch to Call";
-    subtitle.innerText = "Click on any branch to make a direct call";
-  } else {
-    title.innerText = "💬 Select Branch for WhatsApp";
-    subtitle.innerText = "Choose a branch to book appointment via WhatsApp";
-  }
-  
-  listContainer.innerHTML = "";
-  
-  obarbaBranches.forEach(branch => {
-    const btn = document.createElement("a");
-    btn.innerText = branch.name;
-    btn.style.width = "100%";
-    btn.style.padding = "12px";
-    btn.style.backgroundColor = "#222";
-    btn.style.color = "#fff";
-    btn.style.textDecoration = "none";
-    btn.style.borderRadius = "8px";
-    btn.style.fontSize = "14px";
-    btn.style.fontWeight = "600";
-    btn.style.border = "1px solid #333";
-    btn.style.transition = "all 0.2s";
-    btn.style.display = "block";
-    btn.style.boxSizing = "border-box";
-    
-    btn.onmouseenter = function() { this.style.borderColor = "#d4af37"; this.style.backgroundColor = "#151515"; };
-    btn.onmouseleave = function() { this.style.borderColor = "#333"; this.style.backgroundColor = "#222"; };
-    
-    if(actionType === 'call') {
-      btn.href = "tel:+91" + branch.phone;
-    } else {
-      let msg = encodeURIComponent("Hello O'BARBA! Main " + branch.name + " ke liye appointment book karna chahta hoon.");
-      btn.href = "https://wa.me/91" + branch.phone + "?text=" + msg;
-      btn.target = "_blank";
-    }
-    
-    btn.onclick = function() { setTimeout(closeObarbaModal, 500); };
-    listContainer.appendChild(btn);
-  });
-  
-  modal.style.display = "flex";
-}
-
-function closeObarbaModal() {
-  document.getElementById("obarbaPopupModal").style.display = "none";
-}
-
-window.onclick = function(event) {
-  const modal = document.getElementById("obarbaPopupModal");
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
+        <a href="tel:+919026388888" class="group h-12 px-4 rounded-full bg-zinc-900 border border-white/10 shadow-2xl flex items-center gap-2 hover:border-gold/40 transition-all">
+            <span class="w-8 h-8 rounded-full bg-white/10 grid place-items-center text-zinc-200 group-hover:text-gold">☎︎</span>
+            <span class="pr-2 text-xs text-zinc-300 hidden sm:block">Call Salon</span>
+        </a>
+        <a href="https://wa.me/919026388888?text=Hi%20O’Barba%2C%20I’d%20like%20to%20book%20a%20premium%20appointment." 
+           class="h-14 pl-3 pr-4 rounded-full bg-gold text-ink shadow-gold flex items-center gap-3 hover:-translate-y-0.5 transition-all">
+            <span class="w-10 h-10 rounded-full bg-ink/10 grid place-items-center font-bold">WA</span>
+            <span class="text-sm font-semibold tracking-wide">WhatsApp • 30s reply</span>
+        </a>
+    </div>
 
     <script>
         // Mobile menu
