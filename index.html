@@ -904,7 +904,9 @@
             <span class="text-zinc-600">GSTIN 09ABCDE1234F1Z5 • All prices INR, inclusive of taxes where applicable.</span>
         </div>
     </footer>
-        <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3" style="font-family: sans-serif; max-width: calc(100% - 40px);">
+
+    <!-- FLOATING WHATSAPP / CALL -->
+    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3" style="font-family: sans-serif; max-width: calc(100% - 40px);">
     
     <button onclick="openObarbaModal('call')" class="group h-12 px-4 rounded-full bg-zinc-900 border border-zinc-800 flex items-center gap-2 cursor-pointer shadow-lg hover:border-amber-500 transition-all">
         <span class="w-8 h-8 rounded-full bg-white/10 grid place-items-center text-zinc-200">📞</span>
@@ -934,9 +936,9 @@
 const obarbaBranches = [
   { name: "Chitaipur Branch", phone: "8808081208" },
   { name: "Shivpur Branch", phone: "8808081108" },
-  { name: "Maldahiya Branch", phone: "8935000999" },
+  { name: "Maldahiya Branch", phone: "8935000555" },
   { name: "Lanka Branch", phone: "7224080808" },
-  { name: "O'Barba Tattoo Studio", phone: "7225080808" },
+  { name: "ink By O'Barba Sigra Branch", phone: "7225080808" },
   { name: "Mau Branch", phone: "8052777999" },
   { name: "Jaunpur Branch", phone: "7705962222" },
   { name: "Noida Branch", phone: "9643392715" }
@@ -1002,7 +1004,8 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
-</script>
+
+    <script>
         // Mobile menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
