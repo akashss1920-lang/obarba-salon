@@ -904,21 +904,104 @@
             <span class="text-zinc-600">GSTIN 09ABCDE1234F1Z5 • All prices INR, inclusive of taxes where applicable.</span>
         </div>
     </footer>
+     <div style="position: fixed; bottom: 20px; right: 20px; z-index: 999999; display: flex; flex-direction: column; gap: 12px; font-family: sans-serif; align-items: flex-end;">
+    
+    <button onclick="openObarbaModal('call')" style="height: 48px; padding: 0 20px; border-radius: 24px; background-color: #18181b; border: 1px solid #27272a; color: #d4d4d8; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 12px rgba(0,0,0,0.5); transition: all 0.2s;">
+        <span style="font-size: 16px;">📞</span> Call Salon
+    </button>
+    
+    <button onclick="openObarbaModal('whatsapp')" style="height: 54px; padding: 0 24px; border-radius: 27px; background-color: #d4af37; border: none; color: #000; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 4px 15px rgba(212,175,55,0.4); tracking-wide: 0.5px; transition: all 0.2s;">
+        <span style="background-color: rgba(0,0,0,0.1); width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; font-size: 12px;">WA</span> WhatsApp • 30s reply
+    </button>
 
-    <!-- FLOATING WHATSAPP / CALL -->
-    <div class="fixed bottom-5 right-5 z-50 flex flex-col items-end gap-3">
-        <a href="tel:+919026388888" class="group h-12 px-4 rounded-full bg-zinc-900 border border-white/10 shadow-2xl flex items-center gap-2 hover:border-gold/40 transition-all">
-            <span class="w-8 h-8 rounded-full bg-white/10 grid place-items-center text-zinc-200 group-hover:text-gold">☎︎</span>
-            <span class="pr-2 text-xs text-zinc-300 hidden sm:block">Call Salon</span>
-        </a>
-        <a href="https://wa.me/919026388888?text=Hi%20O’Barba%2C%20I’d%20like%20to%20book%20a%20premium%20appointment." 
-           class="h-14 pl-3 pr-4 rounded-full bg-gold text-ink shadow-gold flex items-center gap-3 hover:-translate-y-0.5 transition-all">
-            <span class="w-10 h-10 rounded-full bg-ink/10 grid place-items-center font-bold">WA</span>
-            <span class="text-sm font-semibold tracking-wide">WhatsApp • 30s reply</span>
-        </a>
-    </div>
+</div>
 
-    <script>
+<div id="obarbaPopupModal" style="display: none; position: fixed; z-index: 9999999; left: 0; top: 0; width: 100vw; height: 100vh; background-color: rgba(0,0,0,0.85); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); align-items: center; justify-content: center; box-sizing: border-box; padding: 20px;">
+  <div style="background: linear-gradient(145deg, #111, #1a1a1a); border: 1px solid #d4af37; padding: 30px 20px; border-radius: 15px; width: 100%; max-width: 360px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.7); position: relative; box-sizing: border-box;">
+    
+    <span onclick="closeObarbaModal()" style="position: absolute; right: 15px; top: 10px; color: #aaa; font-size: 24px; cursor: pointer; font-weight: bold; line-height: 1;">&times;</span>
+    
+    <h3 id="modalTitle" style="color: #d4af37; margin: 0 0 5px 0; font-size: 18px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; font-family: sans-serif;">Select Branch</h3>
+    <p id="modalSubTitle" style="color: #aaa; font-size: 13px; margin: 0 0 20px 0; padding: 0; font-family: sans-serif;">Choose a branch to proceed</p>
+    
+    <div id="branchesList" style="display: flex; flex-direction: column; gap: 10px; max-height: 50vh; overflow-y: auto; padding-right: 5px; box-sizing: border-box;"></div>
+  </div>
+</div>
+
+<script>
+const obarbaBranches = [
+  { name: "Chitaipur Branch", phone: "8808081208" },
+  { name: "Shivpur Branch", phone: "8808081108" },
+  { name: "Maldahiya Branch", phone: "8935000555" },
+  { name: "Lanka Branch", phone: "7224080808" },
+  { name: "Ink by O'Barba Sigra Branch", phone: "7225080808" },
+  { name: "Mau Branch", phone: "8052777999" },
+  { name: "Jaunpur Branch", phone: "7705962222" },
+  { name: "Noida Branch", phone: "9643392715" }
+];
+
+function openObarbaModal(actionType) {
+  const modal = document.getElementById("obarbaPopupModal");
+  const title = document.getElementById("modalTitle");
+  const subtitle = document.getElementById("modalSubTitle");
+  const listContainer = document.getElementById("branchesList");
+  
+  if(actionType === 'call') {
+    title.innerText = "📞 Select Branch to Call";
+    subtitle.innerText = "Click on any branch to make a direct call";
+  } else {
+    title.innerText = "💬 Select Branch for WhatsApp";
+    subtitle.innerText = "Choose a branch to book appointment via WhatsApp";
+  }
+  
+  listContainer.innerHTML = "";
+  
+  obarbaBranches.forEach(branch => {
+    const btn = document.createElement("a");
+    btn.innerText = branch.name;
+    btn.style.width = "100%";
+    btn.style.padding = "12px";
+    btn.style.backgroundColor = "#222";
+    btn.style.color = "#fff";
+    btn.style.textDecoration = "none";
+    btn.style.borderRadius = "8px";
+    btn.style.fontSize = "14px";
+    btn.style.fontWeight = "600";
+    btn.style.border = "1px solid #333";
+    btn.style.transition = "all 0.2s";
+    btn.style.display = "block";
+    btn.style.boxSizing = "border-box";
+    btn.style.fontFamily = "sans-serif";
+    
+    btn.onmouseenter = function() { this.style.borderColor = "#d4af37"; this.style.backgroundColor = "#151515"; };
+    btn.onmouseleave = function() { this.style.borderColor = "#333"; this.style.backgroundColor = "#222"; };
+    
+    if(actionType === 'call') {
+      btn.href = "tel:+91" + branch.phone;
+    } else {
+      let msg = encodeURIComponent("Hello O'BARBA! Main " + branch.name + " ke liye appointment book karna chahta hoon.");
+      btn.href = "https://wa.me/91" + branch.phone + "?text=" + msg;
+      btn.target = "_blank";
+    }
+    
+    btn.onclick = function() { setTimeout(closeObarbaModal, 500); };
+    listContainer.appendChild(btn);
+  });
+  
+  modal.style.display = "flex";
+}
+
+function closeObarbaModal() {
+  document.getElementById("obarbaPopupModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+  const modal = document.getElementById("obarbaPopupModal");
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
         // Mobile menu
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
