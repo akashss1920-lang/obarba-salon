@@ -1,1352 +1,1187 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O'BARBA Family Salon — Luxury Meets Affordability</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>O'BARBA Family Salon | Luxury Meets Affordability</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script>
 tailwind.config = {
   theme: {
     extend: {
       colors: {
-        ob: {
-          black: '#0B0B0B',
-          dark: '#121212',
-          card: '#1A1A1A',
-          border: '#2A2A2A',
-          gold: '#D4AF37',
-          goldLight: '#E8C84A',
-          goldDark: '#AA7C11',
-          goldMuted: 'rgba(212,175,55,0.15)',
-          zinc: '#18181B',
-        }
+        gold: '#D4AF37',
+        goldLight: '#E8C94A',
+        goldDark: '#B8962E',
+        dark: '#0B0B0B',
+        darkLight: '#121212',
+        darkMid: '#1A1A1A',
+        darkCard: '#161616',
+        charcoal: '#2A2A2A',
+        zincCustom: '#18181b',
       },
       fontFamily: {
-        serif: ['Playfair Display', 'Georgia', 'serif'],
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        serif: ['Playfair Display', 'Cormorant Garamond', 'serif'],
+        sans: ['Inter', 'sans-serif'],
       }
     }
   }
 }
 </script>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #0B0B0B;
-    color: #E4E4E7;
-    overflow-x: hidden;
-  }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #0B0B0B; color: #E5E5E5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-  ::selection {
-    background: rgba(212,175,55,0.3);
-    color: #fff;
-  }
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0B0B0B; }
+::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
 
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: #0B0B0B; }
-  ::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
+/* Gold shimmer animation */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, #D4AF37, #F5E6A3, #D4AF37, #B8962E, #D4AF37);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 4s linear infinite;
+}
 
-  .font-serif { font-family: 'Playfair Display', Georgia, serif; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
 
-  /* Gold gradient text */
-  .gold-text {
-    background: linear-gradient(135deg, #D4AF37 0%, #E8C84A 40%, #AA7C11 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(212,175,55,0.15); }
+}
+.pulse-gold { animation: pulse-gold 2s infinite; }
 
-  .gold-text-shimmer {
-    background: linear-gradient(90deg, #AA7C11, #D4AF37, #E8C84A, #D4AF37, #AA7C11);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    animation: shimmer 4s ease-in-out infinite;
-  }
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-anim { animation: float 3s ease-in-out infinite; }
 
-  @keyframes shimmer {
-    0%, 100% { background-position: 0% center; }
-    50% { background-position: 200% center; }
-  }
+/* Dotted circle for logo */
+.dotted-circle {
+  border: 2px dashed #D4AF37;
+  border-radius: 50%;
+  padding: 6px;
+}
 
-  /* Hero ambient glow */
-  .hero-glow {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(120px);
-    opacity: 0.12;
-    pointer-events: none;
-  }
+/* Hero overlay */
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(11,11,11,0.3) 0%, rgba(11,11,11,0.6) 50%, rgba(11,11,11,0.95) 100%);
+}
 
-  .hero-glow-1 {
-    width: 600px; height: 600px;
-    background: #D4AF37;
-    top: -100px; left: -200px;
-    animation: float1 8s ease-in-out infinite;
-  }
+/* Gold glow */
+.gold-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
 
-  .hero-glow-2 {
-    width: 400px; height: 400px;
-    background: #AA7C11;
-    bottom: -50px; right: -100px;
-    animation: float2 10s ease-in-out infinite;
-  }
+/* Tab active */
+.tab-btn { transition: all 0.3s ease; }
+.tab-btn.active {
+  color: #D4AF37;
+  border-color: #D4AF37;
+  background: rgba(212,175,55,0.08);
+}
 
-  .hero-glow-3 {
-    width: 300px; height: 300px;
-    background: #D4AF37;
-    top: 40%; left: 60%;
-    animation: float3 12s ease-in-out infinite;
-  }
+/* Service row hover */
+.service-row:hover {
+  background: rgba(212,175,55,0.04);
+}
 
-  @keyframes float1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(50px, 30px) scale(1.1); }
-  }
-  @keyframes float2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-30px, -40px) scale(1.15); }
-  }
-  @keyframes float3 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(20px, -20px) scale(0.9); }
-  }
+/* FAQ accordion */
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+.faq-answer.open { max-height: 300px; padding-top: 12px; padding-bottom: 4px; }
+.faq-icon { transition: transform 0.3s ease; }
+.faq-icon.rotated { transform: rotate(45deg); }
 
-  /* Grain overlay */
-  .grain-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 9999;
-    opacity: 0.03;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  }
+/* Modal backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.7);
+}
 
-  /* Glass card */
-  .glass-card {
-    background: rgba(26, 26, 26, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(212,175,55,0.1);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+/* Ribbon */
+.ribbon {
+  position: relative;
+  display: inline-block;
+  padding: 4px 24px;
+  background: #D4AF37;
+  color: #0B0B0B;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ribbon::before, .ribbon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  border: 14px solid #D4AF37;
+}
+.ribbon::before {
+  left: -14px;
+  border-left-color: transparent;
+}
+.ribbon::after {
+  right: -14px;
+  border-right-color: transparent;
+}
 
-  .glass-card:hover {
-    border-color: rgba(212,175,55,0.25);
-    box-shadow: 0 0 40px rgba(212,175,55,0.06);
-    transform: translateY(-2px);
-  }
+/* Floating pill */
+.floating-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  gap: 8px;
+  animation: float 3s ease-in-out infinite;
+}
 
-  /* Service accordion */
-  .service-tab {
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
+/* Offer card shimmer border */
+.offer-card {
+  position: relative;
+  overflow: hidden;
+}
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  animation: shimmerLine 3s linear infinite;
+}
+@keyframes shimmerLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
 
-  .service-tab.active {
-    background: rgba(212,175,55,0.1);
-    border-color: rgba(212,175,55,0.3);
-  }
+/* Branch card */
+.branch-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.branch-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212,175,55,0.08);
+}
 
-  .service-content {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  }
+/* Sunburst rays */
+.sunburst {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: conic-gradient(from 0deg at 50% 20%, transparent 0deg, rgba(212,175,55,0.03) 2deg, transparent 4deg);
+  opacity: 0.5;
+  pointer-events: none;
+}
 
-  .service-content.open {
-    max-height: 2000px;
-  }
+/* Mobile nav */
+.mobile-nav {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-nav.open { transform: translateX(0); }
 
-  /* Button styles */
-  .btn-gold {
-    background: linear-gradient(135deg, #D4AF37, #AA7C11);
-    color: #0B0B0B;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    position: relative;
-    overflow: hidden;
-  }
+/* Custom select */
+select { appearance: none; -webkit-appearance: none; }
 
-  .btn-gold::before {
-    content: '';
-    position: absolute;
-    top: 0; left: -100%;
-    width: 100%; height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s ease;
-  }
+/* Toast */
+.toast {
+  position: fixed; top: 24px; right: 24px; z-index: 9999;
+  padding: 16px 24px; border-radius: 8px;
+  background: #1A1A1A; border: 1px solid #D4AF37;
+  color: #D4AF37; font-size: 14px; font-weight: 500;
+  transform: translateX(120%); transition: transform 0.4s ease;
+}
+.toast.show { transform: translateX(0); }
 
-  .btn-gold:hover::before { left: 100%; }
-  .btn-gold:hover { box-shadow: 0 0 30px rgba(212,175,55,0.3); transform: translateY(-1px); }
-
-  .btn-ghost {
-    border: 1px solid rgba(212,175,55,0.4);
-    color: #D4AF37;
-    font-weight: 500;
-    transition: all 0.3s ease;
-  }
-
-  .btn-ghost:hover {
-    background: rgba(212,175,55,0.1);
-    border-color: #D4AF37;
-    transform: translateY(-1px);
-  }
-
-  /* Modal */
-  .modal-overlay {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(0,0,0,0.7);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    z-index: 1000;
-    display: none;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-  }
-
-  .modal-overlay.active { display: flex; }
-
-  .modal-box {
-    background: #1A1A1A;
-    border: 1px solid rgba(212,175,55,0.15);
-    border-radius: 1rem;
-    max-width: 560px;
-    width: 100%;
-    max-height: 85vh;
-    overflow-y: auto;
-    animation: modalIn 0.3s ease;
-  }
-
-  @keyframes modalIn {
-    from { opacity: 0; transform: scale(0.95) translateY(10px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-
-  .modal-box::-webkit-scrollbar { width: 4px; }
-  .modal-box::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 2px; }
-
-  .branch-item {
-    transition: all 0.2s ease;
-    cursor: pointer;
-  }
-
-  .branch-item:hover {
-    background: rgba(212,175,55,0.08);
-    border-color: rgba(212,175,55,0.3);
-  }
-
-  /* Floating pill */
-  .floating-pill {
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    z-index: 900;
-    display: flex;
-    gap: 8px;
-    animation: pillIn 0.6s ease 1s both;
-  }
-
-  @keyframes pillIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .pill-btn {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 20px;
-    border-radius: 50px;
-    font-size: 13px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    white-space: nowrap;
-    border: none;
-    font-family: 'Inter', sans-serif;
-  }
-
-  .pill-call {
-    background: #18181B;
-    color: #E4E4E7;
-    border: 1px solid #2A2A2A;
-  }
-
-  .pill-call:hover {
-    background: #27272A;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-  }
-
-  .pill-wa {
-    background: linear-gradient(135deg, #D4AF37, #AA7C11);
-    color: #0B0B0B;
-  }
-
-  .pill-wa:hover {
-    box-shadow: 0 4px 25px rgba(212,175,55,0.35);
-    transform: translateY(-2px);
-  }
-
-  /* Divider */
-  .gold-divider {
-    width: 60px;
-    height: 2px;
-    background: linear-gradient(90deg, #D4AF37, #AA7C11);
-    margin: 0 auto;
-  }
-
-  /* Price row */
-  .price-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.04);
-    transition: all 0.2s ease;
-  }
-
-  .price-row:last-child { border-bottom: none; }
-
-  .price-row:hover {
-    padding-left: 8px;
-  }
-
-  .price-amount {
-    font-family: 'Playfair Display', serif;
-    color: #D4AF37;
-    font-weight: 600;
-  }
-
-  /* Scroll animations */
-  .fade-up {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  .fade-up.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  /* Mobile menu */
-  .mobile-menu {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: rgba(11,11,11,0.97);
-    backdrop-filter: blur(20px);
-    z-index: 950;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-  }
-
-  .mobile-menu.active { display: flex; }
-
-  /* Stats counter animation */
-  .stat-item {
-    position: relative;
-  }
-
-  .stat-item::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 25%;
-    height: 50%;
-    width: 1px;
-    background: rgba(212,175,55,0.2);
-  }
-
-  .stat-item:last-child::after { display: none; }
-
-  /* Nav link hover */
-  .nav-link {
-    position: relative;
-    color: #A1A1AA;
-    transition: color 0.3s ease;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: #D4AF37;
-    transition: width 0.3s ease;
-  }
-
-  .nav-link:hover { color: #D4AF37; }
-  .nav-link:hover::after { width: 100%; }
-
-  /* Pulse for WA */
-  @keyframes goldPulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
-    50% { box-shadow: 0 0 0 8px rgba(212,175,55,0); }
-  }
-
-  .pill-wa { animation: goldPulse 2.5s ease-in-out infinite; }
-
-  .pill-wa:hover { animation: none; }
-
-  @media (max-width: 640px) {
-    .floating-pill {
-      bottom: 16px;
-      right: 16px;
-      flex-direction: column;
-      gap: 6px;
-    }
-    .pill-btn {
-      padding: 10px 16px;
-      font-size: 12px;
-    }
-  }
+@media (max-width: 768px) {
+  .floating-pill { bottom: 16px; right: 16px; flex-direction: column; }
+}
 </style>
 </head>
 <body>
 
-<!-- Grain overlay -->
-<div class="grain-overlay"></div>
-
-<!-- NAVIGATION -->
-<nav id="navbar" class="fixed top-0 left-0 w-full z-50 transition-all duration-500" style="background: transparent;">
-  <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-    <!-- Logo -->
-    <a href="#" class="flex items-center gap-3 group">
-      <div class="w-11 h-11 rounded-full border-2 border-ob-gold flex items-center justify-center bg-ob-black group-hover:shadow-[0_0_20px_rgba(212,175,55,0.2)] transition-all duration-300">
-        <svg viewBox="0 0 48 48" class="w-7 h-7" fill="none">
-          <!-- Bearded man silhouette (left) -->
-          <ellipse cx="17" cy="18" rx="6.5" ry="7.5" fill="#D4AF37" opacity="0.9"/>
-          <path d="M10.5 26c0 0 1 7 6.5 7s6.5-7 6.5-7" fill="#AA7C11" opacity="0.7"/>
-          <path d="M11 22c-1 2-1.5 4-1 6l1.5-1" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
-          <path d="M23 22c1 2 1.5 4 1 6l-1.5-1" stroke="#D4AF37" stroke-width="0.8" opacity="0.5"/>
-          <!-- Beard -->
-          <path d="M12 25c0 0 1.5 6 5 6s5-6 5-6" fill="#AA7C11" opacity="0.6"/>
-          <!-- Woman silhouette (right, facing opposite) -->
-          <ellipse cx="33" cy="17" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
-          <path d="M27 15c-2-3-1-8 2-10c0 0 3 2 7 0c2 3 2 7 0 10" fill="#AA7C11" opacity="0.5"/>
-          <!-- Hair flow -->
-          <path d="M27 17c-1 4-0.5 8 1 11l2-2" stroke="#D4AF37" stroke-width="0.8" opacity="0.4"/>
-          <!-- Divider line -->
-          <line x1="24" y1="8" x2="24" y2="38" stroke="#D4AF37" stroke-width="0.4" opacity="0.3"/>
-        </svg>
-      </div>
-      <div class="flex flex-col">
-        <span class="font-serif text-lg font-bold tracking-wide gold-text">O'BARBA</span>
-        <span class="text-[9px] uppercase tracking-[0.25em] text-zinc-500 font-medium">Family Salon</span>
-      </div>
-    </a>
-
-    <!-- Desktop Nav -->
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#hero" class="nav-link text-sm font-medium">Home</a>
-      <a href="#services" class="nav-link text-sm font-medium">Services</a>
-      <a href="#pricing" class="nav-link text-sm font-medium">Pricing</a>
-      <a href="#branches" class="nav-link text-sm font-medium">Branches</a>
-      <a href="#contact" class="nav-link text-sm font-medium">Contact</a>
-      <button onclick="openModal('call')" class="btn-gold px-5 py-2.5 rounded-full text-sm">Book Now</button>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <button id="menuToggle" class="md:hidden w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-ob-gold transition-colors" onclick="toggleMobileMenu()">
-      <iconify-icon icon="lucide:menu" width="24"></iconify-icon>
-    </button>
-  </div>
-</nav>
-
-<!-- Mobile Menu -->
-<div id="mobileMenu" class="mobile-menu">
-  <button onclick="toggleMobileMenu()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-ob-gold transition-colors">
-    <iconify-icon icon="lucide:x" width="24"></iconify-icon>
-  </button>
-  <a href="#hero" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Home</a>
-  <a href="#services" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Services</a>
-  <a href="#pricing" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Pricing</a>
-  <a href="#branches" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Branches</a>
-  <a href="#contact" onclick="toggleMobileMenu()" class="font-serif text-2xl text-zinc-300 hover:text-ob-gold transition-colors">Contact</a>
-  <button onclick="toggleMobileMenu(); openModal('call')" class="btn-gold px-8 py-3 rounded-full text-sm mt-4">Book Premium Appointment</button>
-  <div class="flex gap-4 mt-6">
-    <a href="https://instagram.com/obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-ob-gold hover:border-ob-gold transition-all">
-      <iconify-icon icon="mdi:instagram" width="20"></iconify-icon>
-    </a>
-    <a href="https://youtube.com/@obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-ob-gold hover:border-ob-gold transition-all">
-      <iconify-icon icon="mdi:youtube" width="20"></iconify-icon>
-    </a>
-  </div>
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+  <i class="fas fa-check-circle mr-2"></i><span id="toastMsg">Success!</span>
 </div>
 
-<!-- HERO SECTION -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
-  <!-- Background image -->
-  <div class="absolute inset-0">
-    <img src="https://picsum.photos/seed/obarba-salon-luxury-dark/1920/1080.jpg" alt="Salon Background" class="w-full h-full object-cover opacity-20" />
-    <div class="absolute inset-0 bg-gradient-to-b from-ob-black/60 via-ob-black/40 to-ob-black"></div>
-  </div>
+<!-- ==================== HEADER / NAV ==================== -->
+<header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:transparent;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Logo small -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-gold/50 flex items-center justify-center bg-dark/80 backdrop-blur-sm group-hover:border-gold transition-colors">
+          <svg viewBox="0 0 60 60" class="w-7 h-7 sm:w-8 sm:h-8">
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#D4AF37" stroke-width="0.5" stroke-dasharray="2,2"/>
+            <!-- Bearded man silhouette left -->
+            <ellipse cx="21" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+            <path d="M15 31 Q15 40 21 42 Q27 40 27 31" fill="#D4AF37" opacity="0.7"/>
+            <!-- Woman silhouette right -->
+            <ellipse cx="39" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+            <path d="M33 31 Q33 42 39 44 Q45 42 45 31" fill="#D4AF37" opacity="0.7"/>
+            <path d="M33 24 Q32 16 35 12 Q39 8 43 12 Q46 16 45 24" fill="#D4AF37" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="hidden sm:block">
+          <div class="font-serif text-gold text-sm font-bold tracking-wider">O'BARBA</div>
+          <div class="text-[9px] text-gold/60 tracking-[3px] uppercase">Family Salon</div>
+        </div>
+      </a>
 
-  <!-- Ambient glows -->
-  <div class="hero-glow hero-glow-1"></div>
-  <div class="hero-glow hero-glow-2"></div>
-  <div class="hero-glow hero-glow-3"></div>
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#about" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">About</a>
+        <a href="#services" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">Services</a>
+        <a href="#pricing" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">Pricing</a>
+        <a href="#branches" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">Branches</a>
+        <a href="#faq" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">FAQ</a>
+        <a href="#book" class="ml-4 px-6 py-2.5 bg-gold text-dark text-xs font-bold tracking-wider uppercase hover:bg-goldLight transition-colors rounded-sm">Book Now</a>
+      </nav>
+
+      <!-- Social + Mobile toggle -->
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com" target="_blank" class="text-gold/70 hover:text-gold transition-colors text-sm"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank" class="text-gold/70 hover:text-gold transition-colors text-sm"><i class="fab fa-youtube"></i></a>
+        <button id="mobileToggle" class="lg:hidden text-gold text-xl ml-2" aria-label="Menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Nav -->
+<div id="mobileNav" class="mobile-nav fixed inset-0 z-[60] bg-dark/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6">
+  <button id="mobileClose" class="absolute top-5 right-6 text-gold text-2xl"><i class="fas fa-times"></i></button>
+  <a href="#about" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">About</a>
+  <a href="#services" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">Services</a>
+  <a href="#pricing" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">Pricing</a>
+  <a href="#branches" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">Branches</a>
+  <a href="#faq" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">FAQ</a>
+  <a href="#book" class="mobile-link mt-4 px-8 py-3 bg-gold text-dark text-sm font-bold tracking-wider uppercase rounded-sm">Book Now</a>
+</div>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="https://picsum.photos/seed/obarba-salon-hero/1920/1080.jpg" alt="Premium Salon" class="w-full h-full object-cover" style="filter: brightness(0.35) contrast(1.2) saturate(0.7);">
+  </div>
+  <div class="hero-overlay absolute inset-0"></div>
+  
+  <!-- Gold glows -->
+  <div class="gold-glow" style="top: 10%; left: 10%;"></div>
+  <div class="gold-glow" style="bottom: 20%; right: 5%; width: 400px; height: 400px;"></div>
 
   <!-- Content -->
-  <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-    <!-- Decorative top element -->
-    <div class="flex items-center justify-center gap-3 mb-8 fade-up">
-      <div class="w-12 h-px bg-gradient-to-r from-transparent to-ob-gold/50"></div>
-      <div class="w-2 h-2 rounded-full bg-ob-gold/60"></div>
-      <div class="w-12 h-px bg-gradient-to-l from-transparent to-ob-gold/50"></div>
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
+    <!-- Circular Emblem Logo -->
+    <div class="flex justify-center mb-8 animate-fadeInUp">
+      <div class="dotted-circle">
+        <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-darkLight/80 backdrop-blur-sm border border-gold/30 flex items-center justify-center">
+          <svg viewBox="0 0 100 100" class="w-20 h-20 sm:w-24 sm:h-24">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#D4AF37" stroke-width="0.4" stroke-dasharray="3,3"/>
+            <!-- Bearded man left -->
+            <ellipse cx="35" cy="38" rx="10" ry="12" fill="#D4AF37" opacity="0.9"/>
+            <path d="M25 50 Q25 66 35 70 Q45 66 45 50" fill="#D4AF37" opacity="0.7"/>
+            <line x1="32" y1="55" x2="38" y2="55" stroke="#0B0B0B" stroke-width="0.8"/>
+            <!-- Woman right -->
+            <ellipse cx="65" cy="38" rx="10" ry="12" fill="#D4AF37" opacity="0.9"/>
+            <path d="M55 50 Q55 70 65 74 Q75 70 75 50" fill="#D4AF37" opacity="0.7"/>
+            <path d="M55 38 Q53 26 58 18 Q65 10 72 18 Q77 26 75 38" fill="#D4AF37" opacity="0.5"/>
+            <!-- Center divider -->
+            <line x1="50" y1="25" x2="50" y2="75" stroke="#D4AF37" stroke-width="0.3" stroke-dasharray="2,2"/>
+          </svg>
+        </div>
+      </div>
     </div>
 
-    <!-- Regions badge -->
-    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-ob-gold/20 bg-ob-gold/5 mb-8 fade-up" style="transition-delay: 0.1s">
-      <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-      <span class="text-xs font-medium tracking-widest uppercase text-ob-gold/80">Varanasi • Jaunpur • Noida</span>
-    </div>
-
-    <!-- Main Heading -->
-    <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.95] mb-6 fade-up" style="transition-delay: 0.2s">
-      <span class="gold-text-shimmer">O'BARBA</span><br>
-      <span class="text-white">FAMILY SALON</span>
+    <!-- Brand Name -->
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl font-black tracking-wide mb-3 animate-fadeInUp" style="animation-delay:0.2s;">
+      <span class="gold-shimmer">O'BARBA</span>
     </h1>
+    <h2 class="font-serif text-xl sm:text-2xl md:text-3xl text-white/90 tracking-[4px] sm:tracking-[6px] uppercase mb-4 animate-fadeInUp" style="animation-delay:0.35s;">
+      Family Salon
+    </h2>
+
+    <!-- Ribbon -->
+    <div class="flex justify-center mb-6 animate-fadeInUp" style="animation-delay:0.45s;">
+      <div class="ribbon">our image is to make your image</div>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="flex justify-center gap-5 mb-8 animate-fadeInUp" style="animation-delay:0.5s;">
+      <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-dark transition-all"><i class="fab fa-instagram text-sm"></i></a>
+      <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-dark transition-all"><i class="fab fa-youtube text-sm"></i></a>
+    </div>
 
     <!-- Sub-heading -->
-    <p class="text-base sm:text-lg md:text-xl text-zinc-400 font-light tracking-wide mb-10 fade-up" style="transition-delay: 0.3s">
-      Luxury Meets Affordability <span class="text-ob-gold mx-2">•</span> Since 2018
+    <p class="text-white/80 text-base sm:text-lg md:text-xl font-light tracking-wide mb-5 animate-fadeInUp" style="animation-delay:0.6s;">
+      Luxury Meets Affordability &bull; Since 2018
+    </p>
+
+    <!-- Pill Badge -->
+    <div class="flex justify-center mb-6 animate-fadeInUp" style="animation-delay:0.7s;">
+      <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gold/30 bg-dark/50 backdrop-blur-sm text-gold/80 text-xs tracking-[2px] uppercase">
+        <span>&bull;</span> Since 2018 <span>&bull;</span> Varanasi <span>&bull;</span> Jaunpur <span>&bull;</span> Noida <span>&bull;</span>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="text-white/60 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-10 animate-fadeInUp" style="animation-delay:0.8s;">
+      A vintage, unisex sanctuary where dark wood, matte black, and royal gold converge. 70+ certified artists. Cruelty-free rituals.
     </p>
 
     <!-- CTA Buttons -->
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up" style="transition-delay: 0.4s">
-      <button onclick="openModal('whatsapp')" class="btn-gold px-8 py-4 rounded-full text-sm tracking-wide flex items-center gap-2">
-        <iconify-icon icon="lucide:crown" width="16"></iconify-icon>
-        Book Premium Appointment
-      </button>
-      <a href="#services" class="btn-ghost px-8 py-4 rounded-full text-sm tracking-wide flex items-center gap-2">
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeInUp" style="animation-delay:0.9s;">
+      <a href="#book" class="px-8 py-3.5 bg-gold text-dark font-bold text-sm tracking-wider uppercase hover:bg-goldLight transition-all rounded-sm pulse-gold flex items-center gap-2">
+        Book Premium Appointment <i class="fas fa-arrow-right text-xs"></i>
+      </a>
+      <a href="#services" class="px-8 py-3.5 border border-gold/50 text-gold font-medium text-sm tracking-wider uppercase hover:bg-gold/10 transition-all rounded-sm">
         Explore Services
-        <iconify-icon icon="lucide:arrow-down" width="16"></iconify-icon>
       </a>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="mt-16 fade-up" style="transition-delay: 0.6s">
-      <div class="flex flex-col items-center gap-2 text-zinc-600">
-        <span class="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
-        <div class="w-px h-8 bg-gradient-to-b from-ob-gold/40 to-transparent animate-pulse"></div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div class="w-5 h-8 rounded-full border border-gold/30 flex items-start justify-center p-1">
+        <div class="w-1 h-2 bg-gold/60 rounded-full"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- STATS BANNER -->
-<section class="relative z-10 -mt-1">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="glass-card rounded-2xl p-6 sm:p-8 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-0">
-      <div class="stat-item text-center px-4 fade-up">
-        <div class="font-serif text-3xl sm:text-4xl font-bold gold-text mb-1" data-count="5">0</div>
-        <div class="text-xs uppercase tracking-widest text-zinc-500">Years Excellence</div>
+<!-- ==================== STUDIO SHOWCASE ==================== -->
+<section id="about" class="relative py-0">
+  <!-- Full-width showcase image -->
+  <div class="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
+    <img src="https://picsum.photos/seed/obarba-studio-flagship/1920/900.jpg" alt="O'Barba Flagship Studio" class="w-full h-full object-cover" style="filter: brightness(0.5) contrast(1.15) saturate(0.8);">
+    <div class="sunburst"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+    <!-- Label -->
+    <div class="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-dark/70 backdrop-blur-sm border border-gold/30 rounded-sm">
+        <span class="text-gold font-serif font-bold text-sm tracking-wider">OB</span>
+        <span class="text-gold/50">|</span>
+        <span class="text-white/70 text-xs tracking-[2px] uppercase">Lanka &bull; Flagship Studio</span>
       </div>
-      <div class="stat-item text-center px-4 fade-up" style="transition-delay: 0.1s">
-        <div class="font-serif text-3xl sm:text-4xl font-bold gold-text mb-1" data-count="70">0</div>
-        <div class="text-xs uppercase tracking-widest text-zinc-500">Certified Artists</div>
+    </div>
+  </div>
+
+  <!-- About Content -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="text-center mb-16">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-4">— About O'Barba</p>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-8">
+        Vintage souls. Modern craft.<br>
+        <span class="text-gold">Everyday luxury, unisex.</span>
+      </h2>
+      <p class="text-white/60 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+        Founded in Varanasi in 2018, O'Barba is a family salon built for real life — where chai is always on, consultations are honest, and every chair feels like home. We blend the warmth of a neighbourhood parlour with the precision of a luxury studio: warm wood, matte black steel, and brass.
+      </p>
+    </div>
+
+    <!-- 3-Column Info Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Ethos -->
+      <div class="group p-8 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-all duration-500">
+        <div class="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+          <i class="fas fa-leaf text-gold text-lg"></i>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3 tracking-wide">Ethos</h3>
+        <p class="text-white/50 text-sm leading-relaxed">Cruelty-free, vegan, low-waste. Every product we use is chosen with care for you and the planet.</p>
       </div>
-      <div class="stat-item text-center px-4 fade-up" style="transition-delay: 0.2s">
-        <div class="font-serif text-3xl sm:text-4xl font-bold gold-text mb-1" data-count="25">0</div>
-        <div class="text-xs uppercase tracking-widest text-zinc-500">K+ Happy Guests</div>
+      <!-- People -->
+      <div class="group p-8 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-all duration-500">
+        <div class="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+          <i class="fas fa-users text-gold text-lg"></i>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3 tracking-wide">People</h3>
+        <p class="text-white/50 text-sm leading-relaxed">70+ certified professionals trained at L'Oréal, Wella, and other global academies. Expertise you can trust.</p>
       </div>
-      <div class="stat-item text-center px-4 fade-up" style="transition-delay: 0.3s">
-        <div class="text-2xl sm:text-3xl mb-1">🐰</div>
-        <div class="text-xs uppercase tracking-widest text-zinc-500">100% Cruelty-Free</div>
+      <!-- Promise -->
+      <div class="group p-8 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-all duration-500">
+        <div class="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+          <i class="fas fa-shield-halved text-gold text-lg"></i>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3 tracking-wide">Promise</h3>
+        <p class="text-white/50 text-sm leading-relaxed">Transparent pricing, zero hidden add-ons. What you see is what you pay — always.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES OVERVIEW -->
-<section id="services" class="py-24 sm:py-32 relative">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 fade-up">
-      <span class="text-[11px] uppercase tracking-[0.3em] text-ob-gold/70 font-medium">What We Offer</span>
-      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-4">Our Services</h2>
-      <div class="gold-divider"></div>
-      <p class="text-zinc-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">Experience world-class grooming & beauty services crafted by certified artisans using premium cruelty-free products.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-      <!-- Hair Services Card -->
-      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" onclick="scrollToPricing('hair')">
-        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
-          <iconify-icon icon="lucide:scissors" width="28" class="text-ob-gold"></iconify-icon>
-        </div>
-        <h3 class="font-serif text-lg font-semibold text-white mb-2">Hair Services</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Cuts, Color, Keratin, Balayage & Premium Treatments</p>
-        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
-          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
-        </span>
-      </div>
-
-      <!-- Hands & Feet Card -->
-      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" style="transition-delay: 0.1s" onclick="scrollToPricing('hands')">
-        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
-          <iconify-icon icon="lucide:hand" width="28" class="text-ob-gold"></iconify-icon>
-        </div>
-        <h3 class="font-serif text-lg font-semibold text-white mb-2">Hands & Feet</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Luxury Manicure & Pedicure Experiences</p>
-        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
-          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
-        </span>
-      </div>
-
-      <!-- Skin & Grooming Card -->
-      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" style="transition-delay: 0.2s" onclick="scrollToPricing('skin')">
-        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
-          <iconify-icon icon="lucide:sparkles" width="28" class="text-ob-gold"></iconify-icon>
-        </div>
-        <h3 class="font-serif text-lg font-semibold text-white mb-2">Skin & Grooming</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Facials, Waxing, Cleanup & Body Polishing</p>
-        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
-          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
-        </span>
-      </div>
-
-      <!-- Makeup Card -->
-      <div class="glass-card rounded-2xl p-6 text-center group fade-up cursor-pointer" style="transition-delay: 0.3s" onclick="scrollToPricing('makeup')">
-        <div class="w-16 h-16 rounded-full bg-ob-gold/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-ob-gold/20 transition-all duration-300">
-          <iconify-icon icon="lucide:palette" width="28" class="text-ob-gold"></iconify-icon>
-        </div>
-        <h3 class="font-serif text-lg font-semibold text-white mb-2">Make-up Artistry</h3>
-        <p class="text-zinc-500 text-xs leading-relaxed mb-4">Bridal, Engagement, Party & Groom Makeover</p>
-        <span class="text-ob-gold text-xs font-medium flex items-center justify-center gap-1 group-hover:gap-2 transition-all">
-          View Prices <iconify-icon icon="lucide:arrow-right" width="12"></iconify-icon>
-        </span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PRICING SECTION -->
-<section id="pricing" class="py-24 sm:py-32 relative bg-ob-dark/50">
-  <div class="max-w-5xl mx-auto px-6">
-    <div class="text-center mb-16 fade-up">
-      <span class="text-[11px] uppercase tracking-[0.3em] text-ob-gold/70 font-medium">Transparent Pricing</span>
-      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-4">Official Price List</h2>
-      <div class="gold-divider"></div>
-    </div>
-
-    <!-- Accordion Tabs -->
-    <div class="space-y-4">
-
-      <!-- HAIR SERVICES -->
-      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-hair">
-        <div class="service-tab active flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
-              <iconify-icon icon="lucide:scissors" width="20" class="text-ob-gold"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Hair Services</h3>
-              <p class="text-zinc-500 text-xs mt-0.5">8 premium services</p>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
-        </div>
-        <div class="service-content open">
-          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Hair Cut</span>
-              <span class="price-amount text-sm">₹799</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Hair Spa</span>
-              <span class="price-amount text-sm">₹1,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Global Color</span>
-              <span class="price-amount text-sm">₹3,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Balayage</span>
-              <span class="price-amount text-sm">₹5,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Keratin Treatment</span>
-              <span class="price-amount text-sm">₹5,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Botox</span>
-              <span class="price-amount text-sm">₹8,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Nano Plastia</span>
-              <span class="price-amount text-sm">₹9,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Kara-Smooth</span>
-              <span class="price-amount text-sm">₹12,999</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- HANDS & FEET CARE -->
-      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-hands" style="transition-delay: 0.1s">
-        <div class="service-tab flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
-              <iconify-icon icon="lucide:hand" width="20" class="text-ob-gold"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Hands & Feet Care</h3>
-              <p class="text-zinc-500 text-xs mt-0.5">2 service categories</p>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
-        </div>
-        <div class="service-content">
-          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Manicure</span>
-              <span class="price-amount text-sm">₹599 — ₹2,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Pedicure</span>
-              <span class="price-amount text-sm">₹699 — ₹3,499</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SKIN & GROOMING -->
-      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-skin" style="transition-delay: 0.2s">
-        <div class="service-tab flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
-              <iconify-icon icon="lucide:sparkles" width="20" class="text-ob-gold"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Skin & Grooming</h3>
-              <p class="text-zinc-500 text-xs mt-0.5">4 service categories</p>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
-        </div>
-        <div class="service-content">
-          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Waxing</span>
-              <span class="price-amount text-sm">₹499 — ₹3,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Cleanup</span>
-              <span class="price-amount text-sm">₹1,499 — ₹2,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Facial</span>
-              <span class="price-amount text-sm">₹2,499 — ₹9,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Body Polishing</span>
-              <span class="price-amount text-sm">₹3,999 — ₹5,999</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- PROFESSIONAL MAKE-UP ARTISTRY -->
-      <div class="glass-card rounded-2xl overflow-hidden fade-up" id="pricing-makeup" style="transition-delay: 0.3s">
-        <div class="service-tab flex items-center justify-between p-6 sm:p-8" onclick="toggleAccordion(this)">
-          <div class="flex items-center gap-4">
-            <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center">
-              <iconify-icon icon="lucide:palette" width="20" class="text-ob-gold"></iconify-icon>
-            </div>
-            <div>
-              <h3 class="font-serif text-lg sm:text-xl font-semibold text-white">Professional Make-up Artistry</h3>
-              <p class="text-zinc-500 text-xs mt-0.5">5 premium categories</p>
-            </div>
-          </div>
-          <iconify-icon icon="lucide:chevron-down" width="20" class="text-ob-gold transition-transform duration-300 accordion-arrow"></iconify-icon>
-        </div>
-        <div class="service-content">
-          <div class="px-6 sm:px-8 pb-6 sm:pb-8">
-            <div class="h-px bg-gradient-to-r from-ob-gold/20 via-ob-gold/5 to-transparent mb-2"></div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Child Make-up</span>
-              <span class="price-amount text-sm">₹1,499 — ₹2,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Party Make-up</span>
-              <span class="price-amount text-sm">₹2,499 — ₹6,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Engagement Make-up</span>
-              <span class="price-amount text-sm">₹7,999 — ₹24,999</span>
-            </div>
-            <div class="price-row">
-              <div class="flex items-center gap-2">
-                <span class="text-zinc-300 text-sm">Bridal Makeup</span>
-                <span class="text-[9px] px-2 py-0.5 rounded-full bg-ob-gold/10 text-ob-gold font-medium uppercase tracking-wider">Premium</span>
-              </div>
-              <span class="price-amount text-sm">₹9,999 — ₹44,999</span>
-            </div>
-            <div class="price-row">
-              <span class="text-zinc-300 text-sm">Groom Make-up</span>
-              <span class="price-amount text-sm">₹3,499 — ₹6,999</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- CTA under pricing -->
-    <div class="text-center mt-12 fade-up">
-      <p class="text-zinc-500 text-sm mb-4">All prices are inclusive of premium products & expert service.</p>
-      <button onclick="openModal('whatsapp')" class="btn-gold px-8 py-3.5 rounded-full text-sm tracking-wide inline-flex items-center gap-2">
-        <iconify-icon icon="lucide:message-circle" width="16"></iconify-icon>
-        Book via WhatsApp
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- BRANCHES SECTION -->
-<section id="branches" class="py-24 sm:py-32 relative">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="text-center mb-16 fade-up">
-      <span class="text-[11px] uppercase tracking-[0.3em] text-ob-gold/70 font-medium">Find Us</span>
-      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white mt-3 mb-4">Our Branches</h2>
-      <div class="gold-divider"></div>
-      <p class="text-zinc-500 mt-4 max-w-xl mx-auto text-sm leading-relaxed">8 premium locations across Varanasi, Jaunpur & Noida — each delivering the signature O'BARBA experience.</p>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-      <div class="glass-card rounded-xl p-5 fade-up group">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Chitaipur Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.05s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Shivpur Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.1s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Maldahiya Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.15s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Lanka Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.2s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Ink by O'Barba Sigra</h4>
-            <p class="text-zinc-500 text-xs mt-1">Varanasi</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.25s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Mau Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Mau</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.3s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Jaunpur Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Jaunpur</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-xl p-5 fade-up group" style="transition-delay: 0.35s">
-        <div class="flex items-start gap-3">
-          <div class="w-8 h-8 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-ob-gold/20 transition-all">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold"></iconify-icon>
-          </div>
-          <div>
-            <h4 class="text-white font-medium text-sm">Noida Branch</h4>
-            <p class="text-zinc-500 text-xs mt-1">Noida</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA BANNER -->
-<section class="py-20 relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-r from-ob-gold/5 via-ob-gold/10 to-ob-gold/5"></div>
-  <div class="absolute inset-0" style="background: radial-gradient(ellipse at center, rgba(212,175,55,0.08) 0%, transparent 70%);"></div>
-  <div class="relative z-10 max-w-3xl mx-auto px-6 text-center fade-up">
-    <h2 class="font-serif text-3xl sm:text-4xl font-bold text-white mb-4">Ready for Your Transformation?</h2>
-    <p class="text-zinc-400 text-sm mb-8 max-w-lg mx-auto">Join 25,000+ happy guests who trust O'BARBA for their premium grooming & beauty experience. Walk in royal, walk out legendary.</p>
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-      <button onclick="openModal('call')" class="btn-ghost px-8 py-3.5 rounded-full text-sm tracking-wide flex items-center gap-2">
-        <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
-        Call Your Nearest Branch
-      </button>
-      <button onclick="openModal('whatsapp')" class="btn-gold px-8 py-3.5 rounded-full text-sm tracking-wide flex items-center gap-2">
-        <iconify-icon icon="lucide:message-circle" width="16"></iconify-icon>
-        WhatsApp • 30s Reply
-      </button>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer id="contact" class="border-t border-white/5 bg-ob-black">
-  <div class="max-w-6xl mx-auto px-6 py-16">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
-      <!-- Brand Column -->
+<!-- ==================== STATS BANNER ==================== -->
+<section class="relative py-10 sm:py-14 bg-darkLight border-y border-charcoal">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="grid grid-cols-3 gap-4 text-center">
       <div>
-        <div class="flex items-center gap-3 mb-5">
-          <div class="w-10 h-10 rounded-full border-2 border-ob-gold flex items-center justify-center bg-ob-black">
-            <svg viewBox="0 0 48 48" class="w-6 h-6" fill="none">
-              <ellipse cx="17" cy="18" rx="6.5" ry="7.5" fill="#D4AF37" opacity="0.9"/>
-              <path d="M10.5 26c0 0 1 7 6.5 7s6.5-7 6.5-7" fill="#AA7C11" opacity="0.7"/>
-              <path d="M12 25c0 0 1.5 6 5 6s5-6 5-6" fill="#AA7C11" opacity="0.6"/>
-              <ellipse cx="33" cy="17" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
-              <path d="M27 15c-2-3-1-8 2-10c0 0 3 2 7 0c2 3 2 7 0 10" fill="#AA7C11" opacity="0.5"/>
+        <div class="font-serif text-3xl sm:text-4xl md:text-5xl text-gold font-bold">5+</div>
+        <div class="text-white/50 text-xs sm:text-sm tracking-[2px] uppercase mt-1">Years Excellence</div>
+      </div>
+      <div>
+        <div class="font-serif text-3xl sm:text-4xl md:text-5xl text-gold font-bold">70+</div>
+        <div class="text-white/50 text-xs sm:text-sm tracking-[2px] uppercase mt-1">Artists</div>
+      </div>
+      <div>
+        <div class="font-serif text-3xl sm:text-4xl md:text-5xl text-gold font-bold">25K+</div>
+        <div class="text-white/50 text-xs sm:text-sm tracking-[2px] uppercase mt-1">Guests</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRENDING OFFERS ==================== -->
+<section id="services" class="py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Limited Time</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Trending Offers</h2>
+    </div>
+
+    <!-- Offers Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      <!-- Offer Card 1 -->
+      <div class="offer-card p-8 bg-darkCard border border-gold/20 rounded-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 px-4 py-1 bg-gold text-dark text-xs font-bold tracking-wider uppercase">10% Flat Off</div>
+        <div class="flex items-start gap-5">
+          <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-crown text-gold text-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-white mb-2">The Royal Groom Package</h3>
+            <p class="text-white/50 text-sm leading-relaxed mb-4">Premium haircut + Royal shave + Hair spa + Facial — all in one luxurious session. Walk out feeling like royalty.</p>
+            <div class="flex items-center gap-3">
+              <span class="text-gold font-bold text-lg">₹2,999</span>
+              <span class="text-white/30 line-through text-sm">₹3,330</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Offer Card 2 -->
+      <div class="offer-card p-8 bg-darkCard border border-gold/20 rounded-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 px-4 py-1 bg-gold text-dark text-xs font-bold tracking-wider uppercase">Best Value</div>
+        <div class="flex items-start gap-5">
+          <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-sparkles text-gold text-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-white mb-2">Signature Hair Revival</h3>
+            <p class="text-white/50 text-sm leading-relaxed mb-4">Advance Haircut + Keratin Spa — the ultimate hair transformation. Silky smooth, magazine-ready results.</p>
+            <div class="flex items-center gap-3">
+              <span class="text-gold font-bold text-lg">₹2,499</span>
+              <span class="text-white/30 line-through text-sm">₹3,500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SERVICE MENU TABS ==================== -->
+    <div id="pricing">
+      <div class="text-center mb-10">
+        <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Complete Menu</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-white">Price List</h2>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button class="tab-btn active px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="hair">
+          <i class="fas fa-scissors mr-2"></i>Hair
+        </button>
+        <button class="tab-btn px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="hands">
+          <i class="fas fa-hand-sparkles mr-2"></i>Hands/Feet
+        </button>
+        <button class="tab-btn px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="skin">
+          <i class="fas fa-spa mr-2"></i>Skin
+        </button>
+        <button class="tab-btn px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="makeup">
+          <i class="fas fa-paint-brush mr-2"></i>Makeup
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="max-w-3xl mx-auto">
+        <!-- HAIR -->
+        <div id="tab-hair" class="tab-content">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Hair Cut</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹799</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Hair Spa</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹1,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Global Color</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹3,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Balayage</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹5,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Keratin</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹5,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Botox</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹8,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Nano Plastia</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹9,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Kara-Smooth</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹12,999</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HANDS/FEET -->
+        <div id="tab-hands" class="tab-content hidden">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Manicure</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹599 – ₹2,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Pedicure</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹699 – ₹3,499</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKIN -->
+        <div id="tab-skin" class="tab-content hidden">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Waxing</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹499 – ₹3,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Cleanup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹1,499 – ₹2,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Facial</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹2,499 – ₹9,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Body Polishing</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹3,999 – ₹5,999</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAKEUP -->
+        <div id="tab-makeup" class="tab-content hidden">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Child Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹1,499 – ₹2,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Party Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹2,499 – ₹6,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Engagement Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹7,999 – ₹24,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Bridal Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹9,999 – ₹44,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Groom Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹3,499 – ₹6,999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BOOK ONLINE FORM ==================== -->
+<section id="book" class="py-16 sm:py-24 bg-darkLight relative overflow-hidden">
+  <div class="gold-glow" style="top:-100px;right:-100px;width:400px;height:400px;"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Priority Booking</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Book Online</h2>
+    </div>
+
+    <form id="bookingForm" class="p-6 sm:p-10 bg-darkCard border border-charcoal rounded-sm">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <!-- Full Name -->
+        <div>
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Full Name</label>
+          <input type="text" id="fname" placeholder="Enter your name" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors placeholder:text-white/20">
+        </div>
+        <!-- Phone -->
+        <div>
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Phone Number</label>
+          <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors placeholder:text-white/20">
+        </div>
+        <!-- Date -->
+        <div>
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Preferred Date</label>
+          <input type="date" id="fdate" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors" style="color-scheme:dark;">
+        </div>
+        <!-- Service -->
+        <div class="relative">
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Service</label>
+          <select id="fservice" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="" disabled selected>Select a service</option>
+            <option>Hair Cut</option>
+            <option>Hair Spa</option>
+            <option>Global Color</option>
+            <option>Balayage</option>
+            <option>Keratin</option>
+            <option>Botox</option>
+            <option>Nano Plastia</option>
+            <option>Kara-Smooth</option>
+            <option>Manicure</option>
+            <option>Pedicure</option>
+            <option>Waxing</option>
+            <option>Cleanup</option>
+            <option>Facial</option>
+            <option>Body Polishing</option>
+            <option>Party Makeup</option>
+            <option>Bridal Makeup</option>
+            <option>Engagement Makeup</option>
+            <option>Groom Makeup</option>
+            <option>Royal Groom Package</option>
+            <option>Signature Hair Revival</option>
+          </select>
+          <i class="fas fa-chevron-down absolute right-4 top-[42px] text-gold/50 text-xs pointer-events-none"></i>
+        </div>
+        <!-- Branch -->
+        <div class="relative sm:col-span-2">
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Branch</label>
+          <select id="fbranch" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="" disabled selected>Select a branch</option>
+            <option>Chitaipur</option>
+            <option>Shivpur</option>
+            <option>Maldahiya</option>
+            <option>Lanka</option>
+            <option>Sigra (Ink by O'Barba)</option>
+            <option>Mau</option>
+            <option>Jaunpur</option>
+            <option>Noida</option>
+          </select>
+          <i class="fas fa-chevron-down absolute right-4 top-[42px] text-gold/50 text-xs pointer-events-none"></i>
+        </div>
+      </div>
+      <!-- Error message -->
+      <div id="formError" class="hidden mt-4 text-red-400 text-xs tracking-wider text-center"></div>
+      <!-- Submit -->
+      <div class="mt-8 text-center">
+        <button type="submit" class="px-10 py-3.5 bg-gold text-dark font-bold text-sm tracking-wider uppercase hover:bg-goldLight transition-all rounded-sm pulse-gold">
+          Confirm Priority Slot
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ==================== BRANCHES ==================== -->
+<section id="branches" class="py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Find Us</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Our Branches</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Branch Cards -->
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Chitaipur</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Chitaipur+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Shivpur</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Shivpur+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Maldahiya</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Maldahiya+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Lanka</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Lanka+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-base text-white">Sigra <span class="text-gold/60 text-xs">(Ink by O'Barba)</span></h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Sigra+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Mau</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Mau" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Jaunpur</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Jaunpur" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Noida</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Noida" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" class="py-16 sm:py-24 bg-darkLight">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Got Questions?</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Frequently Asked</h2>
+    </div>
+
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Kya mujhe appointment pehle book karni padegi?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Walk-ins are always welcome at O'Barba! However, booking your appointment in advance ensures zero waiting time and your preferred artist. We recommend booking, especially on weekends and festive seasons.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Tattoo ke liye safe aur hygienic equipment use hote hain?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Yes, 100%! At Ink by O'Barba (Sigra branch), we use only sterilized, single-use disposable needles for every tattoo session. All equipment is medically graded and our artists follow strict hygiene protocols. Your safety is our top priority.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Kya aapke products cruelty-free hain?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Absolutely! All products used at O'Barba are cruelty-free and mostly vegan. We partner with brands like L'Oréal and Wella that share our commitment to ethical beauty.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Bridal package mein kya kya included hota hai?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Our Bridal package includes consultation, skincare prep, hairstyle, draping assistance, and the signature O'Barba bridal makeup look. Prices range from ₹9,999 to ₹44,999 depending on the look and products chosen. Custom packages are also available!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="py-12 sm:py-16 border-t border-charcoal">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full border border-gold/50 flex items-center justify-center">
+            <svg viewBox="0 0 60 60" class="w-6 h-6">
+              <circle cx="30" cy="30" r="28" fill="none" stroke="#D4AF37" stroke-width="0.5" stroke-dasharray="2,2"/>
+              <ellipse cx="21" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+              <ellipse cx="39" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
             </svg>
           </div>
-          <span class="font-serif text-lg font-bold gold-text">O'BARBA</span>
+          <div>
+            <div class="font-serif text-gold text-base font-bold tracking-wider">O'BARBA</div>
+            <div class="text-[9px] text-gold/50 tracking-[2px] uppercase">Family Salon</div>
+          </div>
         </div>
-        <p class="font-serif italic text-ob-gold/80 text-sm mb-4">"our image is to make your image"</p>
-        <p class="text-zinc-500 text-xs leading-relaxed">Premium unisex family salon delivering world-class grooming & beauty services since 2018. Luxury meets affordability at every O'BARBA studio.</p>
+        <p class="text-white/40 text-sm leading-relaxed">Our image is to make your image. A vintage, unisex sanctuary since 2018.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold/60 hover:bg-gold hover:text-dark transition-all text-xs"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold/60 hover:bg-gold hover:text-dark transition-all text-xs"><i class="fab fa-youtube"></i></a>
+          <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold/60 hover:bg-gold hover:text-dark transition-all text-xs"><i class="fab fa-facebook-f"></i></a>
+        </div>
       </div>
 
       <!-- Quick Links -->
       <div>
-        <h4 class="font-serif text-sm font-semibold text-white mb-5 uppercase tracking-wider">Quick Links</h4>
-        <div class="space-y-3">
-          <a href="#hero" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Home</a>
-          <a href="#services" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Services</a>
-          <a href="#pricing" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Pricing</a>
-          <a href="#branches" class="block text-zinc-500 text-sm hover:text-ob-gold transition-colors">Branches</a>
-        </div>
+        <h4 class="font-serif text-gold text-sm tracking-[2px] uppercase mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#about" class="text-white/40 text-sm hover:text-gold transition-colors">About Us</a></li>
+          <li><a href="#services" class="text-white/40 text-sm hover:text-gold transition-colors">Services & Pricing</a></li>
+          <li><a href="#book" class="text-white/40 text-sm hover:text-gold transition-colors">Book Appointment</a></li>
+          <li><a href="#branches" class="text-white/40 text-sm hover:text-gold transition-colors">Branch Locations</a></li>
+          <li><a href="#faq" class="text-white/40 text-sm hover:text-gold transition-colors">FAQ</a></li>
+        </ul>
       </div>
 
-      <!-- Contact & Social -->
+      <!-- Contact -->
       <div>
-        <h4 class="font-serif text-sm font-semibold text-white mb-5 uppercase tracking-wider">Connect</h4>
-        <div class="space-y-3 mb-6">
-          <div class="flex items-center gap-2 text-zinc-500 text-sm">
-            <iconify-icon icon="lucide:clock" width="14" class="text-ob-gold/60"></iconify-icon>
-            Open 7 Days a Week
-          </div>
-          <div class="flex items-center gap-2 text-zinc-500 text-sm">
-            <iconify-icon icon="lucide:map-pin" width="14" class="text-ob-gold/60"></iconify-icon>
-            Varanasi • Jaunpur • Noida
-          </div>
-        </div>
-        <div class="flex gap-3">
-          <a href="https://instagram.com/obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-ob-gold hover:border-ob-gold/50 hover:bg-ob-gold/5 transition-all duration-300">
-            <iconify-icon icon="mdi:instagram" width="18"></iconify-icon>
-          </a>
-          <a href="https://youtube.com/@obarbasalon" target="_blank" class="w-10 h-10 rounded-full border border-zinc-800 flex items-center justify-center text-zinc-500 hover:text-ob-gold hover:border-ob-gold/50 hover:bg-ob-gold/5 transition-all duration-300">
-            <iconify-icon icon="mdi:youtube" width="18"></iconify-icon>
-          </a>
-        </div>
+        <h4 class="font-serif text-gold text-sm tracking-[2px] uppercase mb-4">Contact</h4>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 text-white/40 text-sm"><i class="fas fa-clock text-gold/50 text-xs"></i> Open Daily: 10 AM – 10 PM</li>
+          <li class="flex items-center gap-2 text-white/40 text-sm"><i class="fas fa-envelope text-gold/50 text-xs"></i> hello@obarbasalon.com</li>
+          <li class="flex items-center gap-2 text-white/40 text-sm"><i class="fas fa-map-pin text-gold/50 text-xs"></i> Varanasi | Jaunpur | Noida</li>
+        </ul>
       </div>
     </div>
 
-    <!-- Bottom Bar -->
-    <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <p class="text-zinc-600 text-xs">© 2024 O'BARBA Family Salon. All rights reserved.</p>
-      <p class="text-zinc-700 text-[10px] uppercase tracking-widest">Crafted with Excellence</p>
+    <div class="border-t border-charcoal pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-white/30 text-xs tracking-wider">&copy; 2024 O'Barba Family Salon. All rights reserved.</p>
+      <p class="text-white/20 text-xs tracking-wider">Crafted with <span class="text-gold/50">&hearts;</span> in Varanasi</p>
     </div>
   </div>
 </footer>
 
-<!-- FLOATING PILL -->
+<!-- ==================== FLOATING PILL ==================== -->
 <div class="floating-pill">
-  <button class="pill-btn pill-call" onclick="openModal('call')">
-    <iconify-icon icon="lucide:phone" width="16"></iconify-icon>
+  <button id="callBtn" class="flex items-center gap-2 px-5 py-3 bg-zincCustom border border-charcoal text-white text-xs font-semibold tracking-wider rounded-full shadow-lg hover:border-gold/50 transition-all">
+    <i class="fas fa-phone text-gold text-sm"></i>
     <span class="hidden sm:inline">Call Salon</span>
-    <span class="sm:hidden">Call</span>
   </button>
-  <button class="pill-btn pill-wa" onclick="openModal('whatsapp')">
-    <iconify-icon icon="mdi:whatsapp" width="16"></iconify-icon>
-    <span class="hidden sm:inline">WhatsApp • 30s reply</span>
-    <span class="sm:hidden">WhatsApp</span>
+  <button id="waBtn" class="flex items-center gap-2 px-5 py-3 bg-gold text-dark text-xs font-bold tracking-wider rounded-full shadow-lg hover:bg-goldLight transition-all">
+    <i class="fab fa-whatsapp text-sm"></i>
+    <span class="hidden sm:inline">WhatsApp &bull; 30s reply</span>
   </button>
 </div>
 
-<!-- BRANCH SELECTION MODAL -->
-<div id="branchModal" class="modal-overlay" onclick="closeModalOutside(event)">
-  <div class="modal-box" onclick="event.stopPropagation()">
-    <!-- Modal Header -->
-    <div class="sticky top-0 bg-ob-card/95 backdrop-blur-sm z-10 px-6 py-5 border-b border-white/5">
-      <div class="flex items-center justify-between">
-        <div>
-          <h3 id="modalTitle" class="font-serif text-lg font-semibold text-white">Select Branch to Call</h3>
-          <p id="modalSubtitle" class="text-zinc-500 text-xs mt-1">Choose your preferred O'BARBA location</p>
-        </div>
-        <button onclick="closeModal()" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-zinc-400 hover:text-white hover:bg-white/10 transition-all">
-          <iconify-icon icon="lucide:x" width="16"></iconify-icon>
-        </button>
-      </div>
+<!-- ==================== MODAL ==================== -->
+<div id="branchModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0" id="modalBackdrop"></div>
+  <div class="relative z-10 w-full max-w-lg bg-darkLight border border-charcoal rounded-sm max-h-[80vh] overflow-y-auto">
+    <div class="sticky top-0 bg-darkLight border-b border-charcoal p-5 flex items-center justify-between z-10">
+      <h3 id="modalTitle" class="font-serif text-lg text-gold">Select Branch to Call</h3>
+      <button id="modalClose" class="text-white/50 hover:text-gold transition-colors text-lg"><i class="fas fa-times"></i></button>
     </div>
-
-    <!-- Branch List -->
-    <div class="p-4 space-y-2">
-      <a id="branch-0" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Chitaipur Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
-        </div>
-        <div id="branch-icon-0" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-1" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Shivpur Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
-        </div>
-        <div id="branch-icon-1" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-2" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Maldahiya Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
-        </div>
-        <div id="branch-icon-2" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-3" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Lanka Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
-        </div>
-        <div id="branch-icon-3" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-4" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Ink by O'Barba Sigra</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Varanasi</p>
-        </div>
-        <div id="branch-icon-4" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-5" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Mau Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Mau</p>
-        </div>
-        <div id="branch-icon-5" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-6" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Jaunpur Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Jaunpur</p>
-        </div>
-        <div id="branch-icon-6" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
-
-      <a id="branch-7" href="#" class="branch-item flex items-center gap-4 p-4 rounded-xl border border-white/5">
-        <div class="w-10 h-10 rounded-full bg-ob-gold/10 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:map-pin" width="16" class="text-ob-gold"></iconify-icon>
-        </div>
-        <div class="flex-1 min-w-0">
-          <h4 class="text-white text-sm font-medium">Noida Branch</h4>
-          <p class="text-zinc-500 text-xs mt-0.5">Noida</p>
-        </div>
-        <div id="branch-icon-7" class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0">
-          <iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>
-        </div>
-      </a>
+    <div class="p-4 space-y-2" id="modalBranchList">
+      <!-- Populated by JS -->
     </div>
   </div>
 </div>
 
+<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-  // Branch data
-  const branches = [
-    { name: "Chitaipur Branch", phone: "8808081208", city: "Varanasi" },
-    { name: "Shivpur Branch", phone: "8808081108", city: "Varanasi" },
-    { name: "Maldahiya Branch", phone: "8935000555", city: "Varanasi" },
-    { name: "Lanka Branch", phone: "7224080808", city: "Varanasi" },
-    { name: "Ink by O'Barba Sigra Branch", phone: "7225080808", city: "Varanasi" },
-    { name: "Mau Branch", phone: "8052777999", city: "Mau" },
-    { name: "Jaunpur Branch", phone: "7705962222", city: "Jaunpur" },
-    { name: "Noida Branch", phone: "9643392715", city: "Noida" }
-  ];
+// ===== Branch Data =====
+const branches = [
+  { name: 'Chitaipur', phone: '8808081208' },
+  { name: 'Shivpur', phone: '8808081108' },
+  { name: 'Maldahiya', phone: '8935000555' },
+  { name: 'Lanka', phone: '7224080808' },
+  { name: 'Sigra (Ink by O\'Barba)', phone: '7225080808' },
+  { name: 'Mau', phone: '8052777999' },
+  { name: 'Jaunpur', phone: '7705962222' },
+  { name: 'Noida', phone: '9643392715' },
+];
 
-  let currentMode = 'call';
+// ===== Header Scroll Effect =====
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    header.style.background = 'rgba(11,11,11,0.95)';
+    header.style.backdropFilter = 'blur(12px)';
+    header.style.borderBottom = '1px solid rgba(42,42,42,0.5)';
+  } else {
+    header.style.background = 'transparent';
+    header.style.backdropFilter = 'none';
+    header.style.borderBottom = 'none';
+  }
+});
 
-  // Open modal
-  function openModal(mode) {
-    currentMode = mode;
-    const modal = document.getElementById('branchModal');
-    const title = document.getElementById('modalTitle');
-    const subtitle = document.getElementById('modalSubtitle');
+// ===== Mobile Nav =====
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileNav = document.getElementById('mobileNav');
+const mobileClose = document.getElementById('mobileClose');
+const mobileLinks = document.querySelectorAll('.mobile-link');
 
-    if (mode === 'call') {
-      title.textContent = "Select Branch to Call";
-      subtitle.textContent = "Tap a branch to connect instantly";
-    } else {
-      title.textContent = "Select Branch for WhatsApp";
-      subtitle.textContent = "Average reply time: 30 seconds";
-    }
+mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => mobileNav.classList.remove('open'));
+});
 
-    // Update branch links and icons
-    branches.forEach((branch, i) => {
-      const el = document.getElementById(`branch-${i}`);
-      const iconEl = document.getElementById(`branch-icon-${i}`);
+// ===== Service Tabs =====
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
 
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tabContents.forEach(c => c.classList.add('hidden'));
+    document.getElementById('tab-' + tab).classList.remove('hidden');
+  });
+});
+
+// ===== FAQ Accordion =====
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = answer.classList.contains('open');
+
+  // Close all
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotated'));
+
+  if (!isOpen) {
+    answer.classList.add('open');
+    icon.classList.add('rotated');
+  }
+}
+
+// ===== Booking Form =====
+const bookingForm = document.getElementById('bookingForm');
+const formError = document.getElementById('formError');
+
+bookingForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  formError.classList.add('hidden');
+
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const date = document.getElementById('fdate').value;
+  const service = document.getElementById('fservice').value;
+  const branch = document.getElementById('fbranch').value;
+
+  if (!name || !phone || !date || !service || !branch) {
+    formError.textContent = 'Please fill in all fields to confirm your slot.';
+    formError.classList.remove('hidden');
+    return;
+  }
+
+  if (!/^\+?\d{10,13}$/.test(phone.replace(/\s/g, ''))) {
+    formError.textContent = 'Please enter a valid phone number.';
+    formError.classList.remove('hidden');
+    return;
+  }
+
+  showToast('Priority slot confirmed! We\'ll contact you shortly.');
+  bookingForm.reset();
+});
+
+// ===== Toast =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+// ===== Modal =====
+const branchModal = document.getElementById('branchModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBranchList = document.getElementById('modalBranchList');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalCloseBtn = document.getElementById('modalClose');
+
+let modalMode = 'call'; // 'call' or 'whatsapp'
+
+function openModal(mode) {
+  modalMode = mode;
+  modalTitle.textContent = mode === 'call' ? 'Select Branch to Call' : 'Select Branch for WhatsApp';
+  
+  modalBranchList.innerHTML = '';
+  branches.forEach(b => {
+    const div = document.createElement('div');
+    div.className = 'flex items-center justify-between p-4 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-colors cursor-pointer';
+    
+    const left = document.createElement('div');
+    left.className = 'flex items-center gap-3';
+    left.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+        <i class="fas ${mode === 'call' ? 'fa-phone' : 'fab fa-whatsapp'} text-gold text-xs"></i>
+      </div>
+      <span class="text-white text-sm">${b.name}</span>
+    `;
+
+    const right = document.createElement('div');
+    right.className = 'text-gold/50 text-xs';
+    right.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+    div.appendChild(left);
+    div.appendChild(right);
+
+    div.addEventListener('click', () => {
       if (mode === 'call') {
-        el.href = `tel:+91${branch.phone}`;
-        el.target = "";
-        iconEl.innerHTML = '<iconify-icon icon="lucide:phone" width="14" class="text-ob-gold"></iconify-icon>';
+        window.open('tel:+91' + b.phone, '_self');
       } else {
-        const waText = encodeURIComponent(`Hello O'BARBA! Main ${branch.name} ke liye appointment book karna chahta hoon.`);
-        el.href = `https://wa.me/91${branch.phone}?text=${waText}`;
-        el.target = "_blank";
-        iconEl.innerHTML = '<iconify-icon icon="mdi:whatsapp" width="16" class="text-ob-gold"></iconify-icon>';
+        const msg = encodeURIComponent('Hi O\'Barba! I\'d like to book an appointment. Please help me with available slots.');
+        window.open('https://wa.me/91' + b.phone + '?text=' + msg, '_blank');
       }
-    });
-
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
-
-  // Close modal
-  function closeModal() {
-    const modal = document.getElementById('branchModal');
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-
-  // Close modal on outside click
-  function closeModalOutside(event) {
-    if (event.target === event.currentTarget) {
       closeModal();
-    }
-  }
+    });
 
-  // Close modal on Escape key
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeModal();
+    modalBranchList.appendChild(div);
   });
 
-  // Mobile menu toggle
-  function toggleMobileMenu() {
-    const menu = document.getElementById('mobileMenu');
-    menu.classList.toggle('active');
-    document.body.style.overflow = menu.classList.contains('active') ? 'hidden' : '';
-  }
+  branchModal.classList.remove('hidden');
+  branchModal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
+}
 
-  // Accordion toggle
-  function toggleAccordion(tab) {
-    const content = tab.nextElementSibling;
-    const arrow = tab.querySelector('.accordion-arrow');
-    const isOpen = content.classList.contains('open');
+function closeModal() {
+  branchModal.classList.add('hidden');
+  branchModal.classList.remove('flex');
+  document.body.style.overflow = '';
+}
 
-    // Close all
-    document.querySelectorAll('.service-content').forEach(c => c.classList.remove('open'));
-    document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
+document.getElementById('callBtn').addEventListener('click', () => openModal('call'));
+document.getElementById('waBtn').addEventListener('click', () => openModal('whatsapp'));
+modalBackdrop.addEventListener('click', closeModal);
+modalCloseBtn.addEventListener('click', closeModal);
 
-    if (!isOpen) {
-      content.classList.add('open');
-      tab.classList.add('active');
-      arrow.style.transform = 'rotate(180deg)';
+// ===== Set min date for booking =====
+const dateInput = document.getElementById('fdate');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+
+// ===== Smooth scroll for all anchors =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
-  }
-
-  // Scroll to pricing category
-  function scrollToPricing(category) {
-    const el = document.getElementById(`pricing-${category}`);
-    if (el) {
-      const tab = el.querySelector('.service-tab');
-      const content = el.querySelector('.service-content');
-      
-      // Close all
-      document.querySelectorAll('.service-content').forEach(c => c.classList.remove('open'));
-      document.querySelectorAll('.service-tab').forEach(t => t.classList.remove('active'));
-      document.querySelectorAll('.accordion-arrow').forEach(a => a.style.transform = 'rotate(0deg)');
-      
-      // Open target
-      content.classList.add('open');
-      tab.classList.add('active');
-      tab.querySelector('.accordion-arrow').style.transform = 'rotate(180deg)';
-
-      // Scroll
-      setTimeout(() => {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }, 100);
-    }
-  }
-
-  // Navbar scroll effect
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const navbar = document.getElementById('navbar');
-    const scrollY = window.scrollY;
-
-    if (scrollY > 50) {
-      navbar.style.background = 'rgba(11, 11, 11, 0.9)';
-      navbar.style.backdropFilter = 'blur(16px)';
-      navbar.style.borderBottom = '1px solid rgba(255,255,255,0.05)';
-    } else {
-      navbar.style.background = 'transparent';
-      navbar.style.backdropFilter = 'none';
-      navbar.style.borderBottom = 'none';
-    }
-
-    lastScroll = scrollY;
   });
+});
 
-  // Intersection Observer for fade-up animations
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+// ===== Intersection Observer for animations =====
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
 
-  document.querySelectorAll('.fade-up').forEach(el => fadeObserver.observe(el));
+document.querySelectorAll('.branch-card, .faq-item, .offer-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
 
-  // Counter animation
-  function animateCounters() {
-    const counters = document.querySelectorAll('[data-count]');
-    counters.forEach(counter => {
-      const target = parseInt(counter.getAttribute('data-count'));
-      const duration = 2000;
-      const start = performance.now();
-
-      function update(now) {
-        const elapsed = now - start;
-        const progress = Math.min(elapsed / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.round(eased * target);
-        counter.textContent = current + (target >= 25 ? '' : '+');
-        if (progress < 1) requestAnimationFrame(update);
-        else counter.textContent = target + '+';
-      }
-
-      requestAnimationFrame(update);
-    });
-  }
-
-  // Trigger counter animation when stats section is visible
-  const statsObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateCounters();
-        statsObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.3 });
-
-  const statsSection = document.querySelector('.stat-item');
-  if (statsSection) statsObserver.observe(statsSection.closest('.glass-card'));
+// Escape key closes modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
+});
 </script>
 
 </body>
 </html>
-```
