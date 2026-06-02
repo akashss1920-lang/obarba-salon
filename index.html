@@ -351,9 +351,23 @@ select { appearance: none; -webkit-appearance: none; }
 <!-- ==================== STUDIO SHOWCASE ==================== -->
 <section id="about" class="relative py-0">
   <!-- Full-width showcase image -->
-  <div class="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
-    <img <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=1920&q=80" alt="O'Barba Flagship Studio" class="w-full h-full object-cover absolute inset-0" />
-    <div class="sunburst"></div>
+ <!-- Naya Swipeable Carousel -->
+<div class="flex overflow-x-auto snap-x snap-mandatory w-full h-[50vh] sm:h-[60vh] md:h-[70vh]">
+  
+  <!-- Item 1 (Image) -->
+  <div class="flex-none w-full h-full snap-center">
+    <img src="YOUR_IMAGE_LINK_1" class="w-full h-full object-cover">
+  </div>
+
+  <!-- Item 2 (Video example) -->
+  <div class="flex-none w-full h-full snap-center">
+    <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+      <source src="YOUR_VIDEO_LINK" type="video/mp4">
+    </video>
+  </div>
+  
+  <!-- Isi tarah baki 6 images aur 1 video add karein -->
+</div>
     <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
     <!-- Label -->
    <div class="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
