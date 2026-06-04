@@ -650,7 +650,7 @@ select { appearance: none; -webkit-appearance: none; }
       <h2 class="font-serif text-3xl sm:text-4xl text-white">Book Online</h2>
     </div>
 
-    <form id="bookingForm" class="p-6 sm:p-10 bg-darkCard border border-charcoal rounded-sm">
+    <form id="bookingForm" onsubmit="handleBooking(event)" class="p-6 sm:p-10 bg-darkCard border border-charcoal rounded-sm">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <!-- Full Name -->
         <div>
