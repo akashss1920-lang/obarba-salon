@@ -60,8 +60,8 @@ body { background: #0B0B0B; color: #E5E5E5; font-family: 'Inter', sans-serif; ov
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  width: 80%;
-  height: 60vh;
+  width: 100%;
+  height: 80vh;
   scroll-behavior: smooth;
   scrollbar-width: none;
 }
@@ -72,7 +72,19 @@ body { background: #0B0B0B; color: #E5E5E5; font-family: 'Inter', sans-serif; ov
   flex: 0 0 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   scroll-snap-align: start;
+}
+  @media (max-width: 640px) {
+  .snap-item {
+    object-fit: contain; /* Image zoom nahi hogi, puri fit ho jayegi */
+    background-color: #0B0B0B;
+  }
+}
+  @media (max-width: 640px) {
+  .snap-container {
+    height: 40vh; /* Mobile screen par height thodi kam ho jayegi */
+  }
 }
 
 @keyframes fadeInUp {
