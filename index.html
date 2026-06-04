@@ -83,10 +83,10 @@ body { background: #0B0B0B; color: #E5E5E5; font-family: 'Inter', sans-serif; ov
 }
   @media (max-width: 640px) {
   .snap-container {
-    height: 40vh; /* Mobile screen par height thodi kam ho jayegi */
-  }
-}
-
+    height: 30vh; /* Mobile screen par height thodi kam ho jayegi */
+  }      
+} 
+  
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
@@ -381,7 +381,7 @@ select { appearance: none; -webkit-appearance: none; }
 
 <!-- ==================== STUDIO SHOWCASE ==================== -->
 <section id="showcase" class="relative py-8">
-  <div id="scrollContainer" class="flex overflow-x-auto scroll-snap-x scroll-mandatory w-full h-[80vh] scroll-smooth no-scrollbar">
+  <div id="scrollContainer" class="snap-container">
     <!-- Aapki 8 Images -->
     <img src="meriphoto4.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
     <img src="meriphoto1.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
