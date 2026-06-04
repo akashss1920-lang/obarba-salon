@@ -350,46 +350,23 @@ select { appearance: none; -webkit-appearance: none; }
 </section>
 
 <!-- ==================== STUDIO SHOWCASE ==================== -->
-<section id="about" class="relative py-8">
-  
-  <!-- Full-width showcase image -->
-<div class="relative w-full h-[50vh] overflow-hidden">
-  <div class="flex w-full h-full overflow-x-auto snap-x snap-mandatory scroll-smooth flex-nowrap">
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto4.jpg" class="w-full h-full object-cover flex-nowrap">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto1.jpg" class="w-full h-full object-cover flex-nowrap">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto3.jpg" class="w-full h-full object-cover flex-nowrap">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto6.jpg" class="w-full h-full object-cover">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto7.jpg" class="w-full h-full object-cover">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto2.jpg" class="w-full h-full object-cover">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto9.jpg" class="w-full h-full object-cover">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <img src="meriphoto11.jpg" class="w-full h-full object-cover">
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-            <source src="O barba Video 1.mp4" type="video/mp4">
-        </video>
-    </div>
-    <div class="flex-none w-full h-full snap-center">
-        <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-            <source src="O barba Video 2.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
+<section id="showcase" class="relative">
+  <div id="scrollContainer" class="flex overflow-x-auto scroll-snap-x scroll-mandatory w-full h-[80vh] scroll-smooth no-scrollbar">
+    <!-- Aapki 8 Images -->
+    <img src="meriphoto4.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto1.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto3.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto6.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto7.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto2.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto9.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    <img src="meriphoto11.jpg" class="flex-none w-full h-full object-cover scroll-snap-align-start" />
+    
+    <!-- Aapki 2 Videos -->
+    <video src="video1.mp4" autoplay muted playsinline loop class="flex-none w-full h-full object-cover scroll-snap-align-start"></video>
+    <video src="video2.mp4" autoplay muted playsinline loop class="flex-none w-full h-full object-cover scroll-snap-align-start"></video>
+  </div>
+</section>
  
     <div class="sunburst"></div>
     <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
