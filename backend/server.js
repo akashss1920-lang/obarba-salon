@@ -140,8 +140,9 @@ app.get('/', (req, res) => {
 });
 
 // --- NEW BOOKING Submit karo ---
-app.post('/api/bookings', bookingLimiter, async (req, res) => {
+app.post('/api/booking', bookingsLimiter, async (req, res) => {
   try {
+    console.log("Browser se aaya data:", req.body);
     const { name, phone, date, service, branch } = req.body;
 
     // Validation
