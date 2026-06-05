@@ -43,8 +43,8 @@ const bookingLimiter = rateLimit({
 // MONGODB CONNECTION
 // ============================================================
 mongoose.connect('mongodb+srv://obarba:Obarba@0501@obarba-cluster.ee6o9ev.mongodb.net/?retryWrites=true&w=majority')
-.then(() => console.log('✅ MongoDB Atlas se connect ho gaya!'))
-  .catch(err => console.error('❌ MongoDB connection error:', err));
+.then(() => console.log('✅ Database connected!'))
+  .catch(err => console.error('❌ connection error:', err));
 
 // ============================================================
 // BOOKING SCHEMA & MODEL
