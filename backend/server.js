@@ -140,7 +140,7 @@ app.get('/', (req, res) => {
 });
 
 // --- NEW BOOKING Submit karo ---
-app.post('/api/booking', bookingsLimiter, async (req, res) => {
+app.post('/api/bookings', bookingLimiter, async (req, res) => {
   try {
     const { name, phone, date, service, branch } = req.body;
 
