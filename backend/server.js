@@ -42,8 +42,8 @@ const bookingLimiter = rateLimit({
 // ============================================================
 // MONGODB CONNECTION
 // ============================================================
-mongoose.connect('mongodb+srv://obarba:Obarba%400501@obarba-cluster.ee6o9ev.mongodb.net/?retryWrites=true&w=majority')
-.then(() => console.log('✅ Database connected!'))
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('✅ Database connected!'))
   .catch(err => console.error('❌ connection error:', err));
 
 // ============================================================
