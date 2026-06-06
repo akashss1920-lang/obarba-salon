@@ -42,10 +42,15 @@ const bookingLimiter = rateLimit({
 // ============================================================
 // MONGODB CONNECTION
 // ============================================================
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => console.log('✅ Database connected!'))
-  .catch(err => console.error('❌ connection error:', err));
-
+const connectDB = async () => {
+  if (mongoose.connection.readyState >= 1) return;
+  try {
+    await mongoose.connect(process.env.MONGODB_URI);
+    console.log("MongoDB Connected Successfully");
+  } catch (error) {
+    console.error("Database connection error:", error);
+  }
+};
 // ============================================================
 // BOOKING SCHEMA & MODEL
 // ============================================================
@@ -141,6 +146,8 @@ app.get('/', (req, res) => {
 
 // --- NEW BOOKING Submit karo ---
 app.post('/api/booking', bookingsLimiter, async (req, res) => {
+  await connectDB();
+  
   try {
     console.log("Browser se aaya data:", req.body);
     const { name, phone, date, service, branch } = req.body;
@@ -196,6 +203,8 @@ app.post('/api/booking', bookingsLimiter, async (req, res) => {
 
 // --- ADMIN: Saari bookings dekho ---
 app.get('/api/admin/bookings', adminAuth, async (req, res) => {
+  await connectDB();
+  
   try {
     const { status, branch, date, page = 1, limit = 50 } = req.query;
 
@@ -237,6 +246,8 @@ app.get('/api/admin/bookings', adminAuth, async (req, res) => {
 
 // --- ADMIN: Booking status update karo ---
 app.put('/api/admin/bookings/:id', adminAuth, async (req, res) => {
+  await connectDB();
+  
   try {
     const { status, notes } = req.body;
     const booking = await Booking.findByIdAndUpdate(
@@ -257,6 +268,8 @@ app.put('/api/admin/bookings/:id', adminAuth, async (req, res) => {
 
 // --- ADMIN: Booking delete karo ---
 app.delete('/api/admin/bookings/:id', adminAuth, async (req, res) => {
+  await connectDB();
+  
   try {
     await Booking.findByIdAndDelete(req.params.id);
     res.json({ success: true, message: 'Booking delete ho gayi!' });
@@ -267,6 +280,8 @@ app.delete('/api/admin/bookings/:id', adminAuth, async (req, res) => {
 
 // --- ADMIN: Login verify karo ---
 app.post('/api/admin/login', (req, res) => {
+  await connectDB();
+  
   const { password } = req.body;
   if (password === process.env.ADMIN_PASSWORD) {
     res.json({ success: true, token: Buffer.from(password).toString('base64') });
@@ -298,7 +313,7 @@ function adminAuth(req, res, next) {
 // ============================================================
 // START SERVER
 // ============================================================
-app.listen(PORT, () => {
+module.exports = app, () => {
   console.log(`\n🚀 O'BARBA Backend Server chal raha hai!`);
   console.log(`📡 Port: ${PORT}`);
   console.log(`🌐 URL: http://localhost:${PORT}`);
