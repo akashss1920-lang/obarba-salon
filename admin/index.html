@@ -1188,22 +1188,26 @@ const BACKEND_URL = 'https://obarba-salon-api.onrender.com'; // Apna sahi Render
 // Login button ka function check karein
 async function loadLogin() {
   const password = document.getElementById('loginPass').value;
+  const token = btoa(password); // Password ko base64 mein convert kiya
+
   try {
     const response = await fetch(`${BACKEND_URL}/api/admin/bookings`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ password })
+      method: 'GET', // GET request
+      headers: { 
+        'Content-Type': 'application/json',
+        'Authorization': token // Token yahan bhejna zaroori hai!
+      }
     });
     
     const data = await response.json();
-    if (data.success) {
-      alert("Login Success!");
+    if (response.ok) {
+      console.log("Success:", data);
+      // Data display karne ka code yahan...
     } else {
       alert("Login Failed: " + data.message);
     }
   } catch (err) {
     console.error("Connection Error:", err);
-    alert("Server connect nahi ho raha. Check console!");
   }
 }
 </script>
