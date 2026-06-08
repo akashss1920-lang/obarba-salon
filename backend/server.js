@@ -268,7 +268,7 @@ app.delete('/api/admin/bookings/:id', adminAuth, async (req, res) => {
 // --- ADMIN: Login verify karo ---
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body;
-  if (password === process.env.Obarba%400501) {
+  if (password === process.env,ADMIN_PASSWORD) {
     res.json({ success: true, token: Buffer.from(password).toString('base64') });
   } else {
     res.status(401).json({ success: false, message: 'Galat password!' });
