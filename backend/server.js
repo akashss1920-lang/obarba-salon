@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 // CORS - Frontend ko allow karo
 app.use(cors({
   origin: [
-    'https://obarbafamilysalon.com',
+    'https://obarba-salon.onrender.com'',
     'http://obarbafamilysalon.com',
     'http://localhost:5500',
     'http://127.0.0.1:5500',
@@ -268,7 +268,7 @@ app.delete('/api/admin/bookings/:id', adminAuth, async (req, res) => {
 // --- ADMIN: Login verify karo ---
 app.post('/api/admin/login', (req, res) => {
   const { password } = req.body;
-  if (password === process.env.ADMIN_PASSWORD) {
+  if (password === process.env.Obarba%400501) {
     res.json({ success: true, token: Buffer.from(password).toString('base64') });
   } else {
     res.status(401).json({ success: false, message: 'Galat password!' });
