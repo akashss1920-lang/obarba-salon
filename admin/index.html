@@ -1,796 +1,1187 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>O'BARBA Admin Dashboard</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<title>O'BARBA Family Salon | Luxury Meets Affordability</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: '#D4AF37',
+        goldLight: '#E8C94A',
+        goldDark: '#B8962E',
+        dark: '#0B0B0B',
+        darkLight: '#121212',
+        darkMid: '#1A1A1A',
+        darkCard: '#161616',
+        charcoal: '#2A2A2A',
+        zincCustom: '#18181b',
+      },
+      fontFamily: {
+        serif: ['Playfair Display', 'Cormorant Garamond', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+      }
+    }
+  }
+}
+</script>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;}
-  :root{
-    --gold:#D4AF37;--gold-light:#E8C94A;--gold-dark:#B8962E;
-    --dark:#0B0B0B;--dark-light:#121212;--dark-mid:#1A1A1A;
-    --dark-card:#161616;--charcoal:#2A2A2A;
-    --green:#22c55e;--red:#ef4444;--blue:#3b82f6;--yellow:#f59e0b;
-  }
-  html{scroll-behavior:smooth;}
-  body{background:var(--dark);color:#E5E5E5;font-family:'Inter',sans-serif;min-height:100vh;}
-  ::-webkit-scrollbar{width:5px;}
-  ::-webkit-scrollbar-track{background:var(--dark);}
-  ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { background: #0B0B0B; color: #E5E5E5; font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-  /* ---- LOGIN SCREEN ---- */
-  #loginScreen{
-    position:fixed;inset:0;background:var(--dark);
-    display:flex;align-items:center;justify-content:center;z-index:1000;
-  }
-  .login-box{
-    width:100%;max-width:400px;padding:48px 40px;
-    background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:4px;text-align:center;
-  }
-  .login-logo{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);margin-bottom:6px;}
-  .login-sub{font-size:11px;letter-spacing:3px;color:rgba(212,175,55,0.5);text-transform:uppercase;margin-bottom:36px;}
-  .login-input{
-    width:100%;padding:14px 16px;margin-bottom:16px;
-    background:var(--dark);border:1px solid var(--charcoal);
-    color:#fff;font-size:14px;border-radius:2px;outline:none;
-    transition:border .3s;
-  }
-  .login-input:focus{border-color:var(--gold);}
-  .login-btn{
-    width:100%;padding:14px;background:var(--gold);color:var(--dark);
-    font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;
-    border:none;cursor:pointer;border-radius:2px;transition:background .3s;
-  }
-  .login-btn:hover{background:var(--gold-light);}
-  .login-error{color:#ef4444;font-size:13px;margin-top:12px;display:none;}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #0B0B0B; }
+::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 3px; }
 
-  /* ---- MAIN LAYOUT ---- */
-  #mainApp{display:none;}
-  .sidebar{
-    position:fixed;left:0;top:0;bottom:0;width:240px;
-    background:var(--dark-light);border-right:1px solid var(--charcoal);
-    display:flex;flex-direction:column;z-index:100;
-  }
-  .sidebar-logo{padding:24px 20px 20px;border-bottom:1px solid var(--charcoal);}
-  .sidebar-logo .brand{font-family:'Playfair Display',serif;color:var(--gold);font-size:18px;}
-  .sidebar-logo .sub{font-size:9px;letter-spacing:3px;color:rgba(212,175,55,0.4);text-transform:uppercase;}
-  .sidebar-nav{flex:1;padding:16px 0;}
-  .nav-item{
-    display:flex;align-items:center;gap:12px;
-    padding:12px 20px;color:rgba(255,255,255,0.5);
-    text-decoration:none;font-size:13px;font-weight:500;
-    cursor:pointer;transition:all .2s;border-left:3px solid transparent;
-  }
-  .nav-item:hover,.nav-item.active{color:var(--gold);background:rgba(212,175,55,0.06);border-left-color:var(--gold);}
-  .nav-item i{width:16px;text-align:center;}
-  .sidebar-logout{
-    padding:20px;border-top:1px solid var(--charcoal);
-    display:flex;align-items:center;gap:10px;
-    color:rgba(255,255,255,0.4);font-size:13px;cursor:pointer;
-    transition:color .2s;
-  }
-  .sidebar-logout:hover{color:var(--red);}
+/* Gold shimmer animation */
+@keyframes goldShimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.gold-shimmer {
+  background: linear-gradient(90deg, #D4AF37, #F5E6A3, #D4AF37, #B8962E, #D4AF37);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldShimmer 4s linear infinite;
+}
 
-  .main-content{margin-left:240px;min-height:100vh;padding:32px;}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeInUp { animation: fadeInUp 0.8s ease forwards; }
 
-  /* ---- TOP BAR ---- */
-  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;}
-  .topbar h1{font-family:'Playfair Display',serif;font-size:26px;color:#fff;}
-  .topbar .date-badge{
-    padding:8px 16px;background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:20px;font-size:12px;color:rgba(255,255,255,0.5);
-  }
+@keyframes pulse-gold {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(212,175,55,0.4); }
+  50% { box-shadow: 0 0 20px 5px rgba(212,175,55,0.15); }
+}
+.pulse-gold { animation: pulse-gold 2s infinite; }
 
-  /* ---- STATS CARDS ---- */
-  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px;}
-  .stat-card{
-    padding:20px;background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:4px;transition:border-color .3s;
-  }
-  .stat-card:hover{border-color:rgba(212,175,55,0.3);}
-  .stat-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:14px;}
-  .stat-value{font-family:'Playfair Display',serif;font-size:28px;color:#fff;font-weight:700;}
-  .stat-label{font-size:11px;color:rgba(255,255,255,0.4);letter-spacing:1px;text-transform:uppercase;margin-top:4px;}
-  .gold-icon{background:rgba(212,175,55,0.1);color:var(--gold);}
-  .green-icon{background:rgba(34,197,94,0.1);color:var(--green);}
-  .yellow-icon{background:rgba(245,158,11,0.1);color:var(--yellow);}
-  .red-icon{background:rgba(239,68,68,0.1);color:var(--red);}
-  .blue-icon{background:rgba(59,130,246,0.1);color:var(--blue);}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.float-anim { animation: float 3s ease-in-out infinite; }
 
-  /* ---- FILTERS ---- */
-  .filters-bar{
-    display:flex;flex-wrap:wrap;gap:12px;align-items:center;
-    padding:16px 20px;background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:4px;margin-bottom:20px;
-  }
-  .filter-select,.filter-input{
-    padding:9px 14px;background:var(--dark);border:1px solid var(--charcoal);
-    color:#fff;font-size:13px;border-radius:2px;outline:none;transition:border .3s;
-  }
-  .filter-select:focus,.filter-input:focus{border-color:var(--gold);}
-  .filter-btn{
-    padding:9px 20px;background:var(--gold);color:var(--dark);
-    font-weight:700;font-size:12px;letter-spacing:1px;text-transform:uppercase;
-    border:none;cursor:pointer;border-radius:2px;transition:background .3s;
-  }
-  .filter-btn:hover{background:var(--gold-light);}
-  .reset-btn{
-    padding:9px 16px;background:transparent;color:rgba(255,255,255,0.4);
-    font-size:12px;border:1px solid var(--charcoal);cursor:pointer;border-radius:2px;
-    transition:all .3s;
-  }
-  .reset-btn:hover{color:#fff;border-color:rgba(255,255,255,0.3);}
-  .total-badge{
-    margin-left:auto;font-size:12px;color:rgba(255,255,255,0.5);
-    background:var(--dark);padding:6px 14px;border-radius:20px;border:1px solid var(--charcoal);
-  }
+/* Dotted circle for logo */
+.dotted-circle {
+  border: 2px dashed #D4AF37;
+  border-radius: 50%;
+  padding: 6px;
+}
 
-  /* ---- BOOKINGS TABLE ---- */
-  .table-container{
-    background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:4px;overflow:hidden;
-  }
-  .table-header{
-    padding:16px 20px;border-bottom:1px solid var(--charcoal);
-    display:flex;align-items:center;justify-content:space-between;
-  }
-  .table-title{font-size:14px;font-weight:600;color:#fff;}
-  .refresh-btn{
-    padding:7px 14px;background:transparent;color:var(--gold);
-    border:1px solid rgba(212,175,55,0.3);font-size:12px;
-    cursor:pointer;border-radius:2px;transition:all .3s;
-  }
-  .refresh-btn:hover{background:rgba(212,175,55,0.1);}
+/* Hero overlay */
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(11,11,11,0.3) 0%, rgba(11,11,11,0.6) 50%, rgba(11,11,11,0.95) 100%);
+}
 
-  .bookings-table{width:100%;border-collapse:collapse;}
-  .bookings-table th{
-    padding:12px 16px;text-align:left;font-size:10px;
-    letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);
-    border-bottom:1px solid var(--charcoal);background:var(--dark-mid);
-  }
-  .bookings-table td{
-    padding:14px 16px;font-size:13px;border-bottom:1px solid rgba(42,42,42,0.5);
-    vertical-align:middle;
-  }
-  .bookings-table tr:hover td{background:rgba(212,175,55,0.03);}
-  .bookings-table tr:last-child td{border-bottom:none;}
+/* Gold glow */
+.gold-glow {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+}
 
-  .customer-name{font-weight:600;color:#fff;}
-  .customer-phone{font-size:12px;color:var(--gold);margin-top:2px;}
+/* Tab active */
+.tab-btn { transition: all 0.3s ease; }
+.tab-btn.active {
+  color: #D4AF37;
+  border-color: #D4AF37;
+  background: rgba(212,175,55,0.08);
+}
 
-  /* Status Badges */
-  .badge{
-    display:inline-flex;align-items:center;gap:5px;
-    padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600;
-    letter-spacing:0.5px;text-transform:uppercase;
-  }
-  .badge-dot{width:6px;height:6px;border-radius:50%;}
-  .badge.pending{background:rgba(245,158,11,0.12);color:var(--yellow);}
-  .badge.pending .badge-dot{background:var(--yellow);}
-  .badge.confirmed{background:rgba(59,130,246,0.12);color:var(--blue);}
-  .badge.confirmed .badge-dot{background:var(--blue);}
-  .badge.completed{background:rgba(34,197,94,0.12);color:var(--green);}
-  .badge.completed .badge-dot{background:var(--green);}
-  .badge.cancelled{background:rgba(239,68,68,0.12);color:var(--red);}
-  .badge.cancelled .badge-dot{background:var(--red);}
+/* Service row hover */
+.service-row:hover {
+  background: rgba(212,175,55,0.04);
+}
 
-  /* Action Buttons */
-  .action-btns{display:flex;gap:6px;}
-  .act-btn{
-    width:30px;height:30px;border-radius:4px;border:1px solid;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer;font-size:12px;transition:all .2s;background:transparent;
-  }
-  .act-confirm{border-color:rgba(59,130,246,0.3);color:var(--blue);}
-  .act-confirm:hover{background:rgba(59,130,246,0.1);}
-  .act-complete{border-color:rgba(34,197,94,0.3);color:var(--green);}
-  .act-complete:hover{background:rgba(34,197,94,0.1);}
-  .act-cancel{border-color:rgba(239,68,68,0.3);color:var(--red);}
-  .act-cancel:hover{background:rgba(239,68,68,0.1);}
-  .act-delete{border-color:rgba(255,255,255,0.1);color:rgba(255,255,255,0.3);}
-  .act-delete:hover{background:rgba(239,68,68,0.1);border-color:rgba(239,68,68,0.3);color:var(--red);}
+/* FAQ accordion */
+.faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s ease; }
+.faq-answer.open { max-height: 300px; padding-top: 12px; padding-bottom: 4px; }
+.faq-icon { transition: transform 0.3s ease; }
+.faq-icon.rotated { transform: rotate(45deg); }
 
-  /* Empty state */
-  .empty-state{padding:60px 20px;text-align:center;}
-  .empty-state i{font-size:40px;color:rgba(212,175,55,0.2);margin-bottom:16px;}
-  .empty-state p{color:rgba(255,255,255,0.3);font-size:14px;}
+/* Modal backdrop */
+.modal-backdrop {
+  backdrop-filter: blur(12px);
+  background: rgba(0,0,0,0.7);
+}
 
-  /* Loading */
-  .loading{padding:40px;text-align:center;color:rgba(255,255,255,0.3);}
-  .spinner{
-    display:inline-block;width:24px;height:24px;
-    border:2px solid rgba(212,175,55,0.2);border-top-color:var(--gold);
-    border-radius:50%;animation:spin .8s linear infinite;margin-bottom:12px;
-  }
-  @keyframes spin{to{transform:rotate(360deg);}}
+/* Ribbon */
+.ribbon {
+  position: relative;
+  display: inline-block;
+  padding: 4px 24px;
+  background: #D4AF37;
+  color: #0B0B0B;
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+.ribbon::before, .ribbon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  border: 14px solid #D4AF37;
+}
+.ribbon::before {
+  left: -14px;
+  border-left-color: transparent;
+}
+.ribbon::after {
+  right: -14px;
+  border-right-color: transparent;
+}
 
-  /* Toast */
-  .toast{
-    position:fixed;top:24px;right:24px;z-index:9999;
-    padding:14px 20px;border-radius:4px;font-size:13px;font-weight:500;
-    background:var(--dark-mid);border:1px solid var(--gold);color:var(--gold);
-    transform:translateX(120%);transition:transform .4s;min-width:260px;
-    display:flex;align-items:center;gap:10px;
-  }
-  .toast.show{transform:translateX(0);}
-  .toast.success{border-color:var(--green);color:var(--green);}
-  .toast.error{border-color:var(--red);color:var(--red);}
+/* Floating pill */
+.floating-pill {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  display: flex;
+  gap: 8px;
+  animation: float 3s ease-in-out infinite;
+}
 
-  /* Modal */
-  .modal-backdrop{
-    position:fixed;inset:0;background:rgba(0,0,0,0.8);
-    backdrop-filter:blur(8px);z-index:500;display:none;
-    align-items:center;justify-content:center;
-  }
-  .modal-backdrop.open{display:flex;}
-  .modal{
-    background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:4px;padding:32px;width:100%;max-width:480px;
-    position:relative;
-  }
-  .modal h3{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:20px;}
-  .modal-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:8px;display:block;}
-  .modal-select,.modal-textarea{
-    width:100%;padding:10px 14px;background:var(--dark);border:1px solid var(--charcoal);
-    color:#fff;font-size:13px;border-radius:2px;outline:none;
-    transition:border .3s;margin-bottom:16px;
-  }
-  .modal-select:focus,.modal-textarea:focus{border-color:var(--gold);}
-  .modal-textarea{min-height:80px;resize:vertical;font-family:inherit;}
-  .modal-btns{display:flex;gap:10px;justify-content:flex-end;}
-  .modal-cancel{padding:10px 20px;background:transparent;color:rgba(255,255,255,0.5);border:1px solid var(--charcoal);cursor:pointer;border-radius:2px;font-size:13px;}
-  .modal-save{padding:10px 24px;background:var(--gold);color:var(--dark);border:none;font-weight:700;font-size:13px;cursor:pointer;border-radius:2px;}
-  .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(255,255,255,0.4);font-size:18px;cursor:pointer;}
+/* Offer card shimmer border */
+.offer-card {
+  position: relative;
+  overflow: hidden;
+}
+.offer-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, #D4AF37, transparent);
+  animation: shimmerLine 3s linear infinite;
+}
+@keyframes shimmerLine {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
 
-  /* Page sections */
-  .page-section{display:none;}
-  .page-section.active{display:block;}
+/* Branch card */
+.branch-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.branch-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(212,175,55,0.08);
+}
 
-  /* Responsive */
-  @media(max-width:900px){
-    .sidebar{transform:translateX(-100%);transition:transform .3s;}
-    .sidebar.open{transform:translateX(0);}
-    .main-content{margin-left:0;}
-    .stats-grid{grid-template-columns:repeat(2,1fr);}
-    .bookings-table{font-size:12px;}
-    .bookings-table th:nth-child(5),.bookings-table td:nth-child(5){display:none;}
-  }
-  @media(max-width:600px){
-    .main-content{padding:20px;}
-    .stats-grid{grid-template-columns:1fr 1fr;}
-    .bookings-table th:nth-child(4),.bookings-table td:nth-child(4){display:none;}
-  }
+/* Sunburst rays */
+.sunburst {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: conic-gradient(from 0deg at 50% 20%, transparent 0deg, rgba(212,175,55,0.03) 2deg, transparent 4deg);
+  opacity: 0.5;
+  pointer-events: none;
+}
 
-  /* WhatsApp section */
-  .info-card{
-    padding:20px;background:var(--dark-card);border:1px solid var(--charcoal);
-    border-radius:4px;margin-bottom:16px;
-  }
-  .info-card h4{color:var(--gold);font-size:14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-  .info-card p,.info-card li{color:rgba(255,255,255,0.6);font-size:13px;line-height:1.8;}
-  .info-card ol,.info-card ul{padding-left:20px;}
-  .step-badge{
-    display:inline-block;width:22px;height:22px;background:var(--gold);
-    color:var(--dark);border-radius:50%;text-align:center;line-height:22px;
-    font-size:11px;font-weight:700;margin-right:8px;
-  }
-  .code-box{
-    background:var(--dark);border:1px solid var(--charcoal);
-    padding:12px 16px;border-radius:2px;font-family:monospace;
-    font-size:13px;color:var(--gold);margin:10px 0;
-  }
+/* Mobile nav */
+.mobile-nav {
+  transform: translateX(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.mobile-nav.open { transform: translateX(0); }
+
+/* Custom select */
+select { appearance: none; -webkit-appearance: none; }
+
+/* Toast */
+.toast {
+  position: fixed; top: 24px; right: 24px; z-index: 9999;
+  padding: 16px 24px; border-radius: 8px;
+  background: #1A1A1A; border: 1px solid #D4AF37;
+  color: #D4AF37; font-size: 14px; font-weight: 500;
+  transform: translateX(120%); transition: transform 0.4s ease;
+}
+.toast.show { transform: translateX(0); }
+
+@media (max-width: 768px) {
+  .floating-pill { bottom: 16px; right: 16px; flex-direction: column; }
+}
 </style>
 </head>
 <body>
 
-<!-- Toast -->
-<div id="toast" class="toast"><i id="toastIcon"></i><span id="toastMsg"></span></div>
-
-<!-- Status Update Modal -->
-<div class="modal-backdrop" id="statusModal">
-  <div class="modal">
-    <button class="modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
-    <h3>Update Booking</h3>
-    <input type="hidden" id="editBookingId">
-    <label class="modal-label">Status</label>
-    <select id="editStatus" class="modal-select">
-      <option value="pending">⏳ Pending</option>
-      <option value="confirmed">✅ Confirmed</option>
-      <option value="completed">🌟 Completed</option>
-      <option value="cancelled">❌ Cancelled</option>
-    </select>
-    <label class="modal-label">Notes (optional)</label>
-    <textarea id="editNotes" class="modal-textarea" placeholder="Koi note likhna ho toh..."></textarea>
-    <div class="modal-btns">
-      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
-      <button class="modal-save" onclick="saveStatus()">Save Changes</button>
-    </div>
-  </div>
+<!-- Toast Notification -->
+<div id="toast" class="toast">
+  <i class="fas fa-check-circle mr-2"></i><span id="toastMsg">Success!</span>
 </div>
 
-<!-- ===== LOGIN SCREEN ===== -->
-<div id="loginScreen">
-  <div class="login-box">
-    <div class="login-logo">O'BARBA</div>
-    <div class="login-sub">Admin Panel</div>
-    <input type="password" id="loginPass" class="login-input" placeholder="Password enter karo" onkeydown="if(event.key==='Enter')doLogin()">
-    <button class="login-btn" onclick="doLogin()">
-      <i class="fas fa-unlock-alt"></i> Login
-    </button>
-    <div class="login-error" id="loginError">❌ Galat password!</div>
-  </div>
-</div>
+<!-- ==================== HEADER / NAV ==================== -->
+<header id="mainHeader" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background:transparent;">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16 sm:h-20">
+      <!-- Logo small -->
+      <a href="#hero" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-2 border-gold/50 flex items-center justify-center bg-dark/80 backdrop-blur-sm group-hover:border-gold transition-colors">
+          <svg viewBox="0 0 60 60" class="w-7 h-7 sm:w-8 sm:h-8">
+            <circle cx="30" cy="30" r="28" fill="none" stroke="#D4AF37" stroke-width="0.5" stroke-dasharray="2,2"/>
+            <!-- Bearded man silhouette left -->
+            <ellipse cx="21" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+            <path d="M15 31 Q15 40 21 42 Q27 40 27 31" fill="#D4AF37" opacity="0.7"/>
+            <!-- Woman silhouette right -->
+            <ellipse cx="39" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+            <path d="M33 31 Q33 42 39 44 Q45 42 45 31" fill="#D4AF37" opacity="0.7"/>
+            <path d="M33 24 Q32 16 35 12 Q39 8 43 12 Q46 16 45 24" fill="#D4AF37" opacity="0.5"/>
+          </svg>
+        </div>
+        <div class="hidden sm:block">
+          <div class="font-serif text-gold text-sm font-bold tracking-wider">O'BARBA</div>
+          <div class="text-[9px] text-gold/60 tracking-[3px] uppercase">Family Salon</div>
+        </div>
+      </a>
 
-<!-- ===== MAIN APP ===== -->
-<div id="mainApp">
-  <!-- Sidebar -->
-  <div class="sidebar" id="sidebar">
-    <div class="sidebar-logo">
-      <div class="brand">O'BARBA</div>
-      <div class="sub">Admin Panel</div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-item active" onclick="showPage('dashboard')" id="nav-dashboard">
-        <i class="fas fa-chart-line"></i> Dashboard
-      </div>
-      <div class="nav-item" onclick="showPage('bookings')" id="nav-bookings">
-        <i class="fas fa-calendar-check"></i> Bookings
-      </div>
-      <div class="nav-item" onclick="showPage('whatsapp')" id="nav-whatsapp">
-        <i class="fab fa-whatsapp"></i> WhatsApp Setup
-      </div>
-    </nav>
-    <div class="sidebar-logout" onclick="logout()">
-      <i class="fas fa-sign-out-alt"></i> Logout
-    </div>
-  </div>
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8">
+        <a href="#about" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">About</a>
+        <a href="#services" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">Services</a>
+        <a href="#pricing" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">Pricing</a>
+        <a href="#branches" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">Branches</a>
+        <a href="#faq" class="text-xs tracking-[2px] uppercase text-white/70 hover:text-gold transition-colors">FAQ</a>
+        <a href="#book" class="ml-4 px-6 py-2.5 bg-gold text-dark text-xs font-bold tracking-wider uppercase hover:bg-goldLight transition-colors rounded-sm">Book Now</a>
+      </nav>
 
-  <!-- Main Content -->
-  <div class="main-content">
-    <div class="topbar">
-      <h1 id="pageTitle">Dashboard</h1>
-      <div class="date-badge" id="currentDate"></div>
-    </div>
-
-    <!-- ===== DASHBOARD PAGE ===== -->
-    <div class="page-section active" id="page-dashboard">
-      <div class="stats-grid" id="statsGrid">
-        <div class="stat-card">
-          <div class="stat-icon gold-icon"><i class="fas fa-calendar-alt"></i></div>
-          <div class="stat-value" id="stat-total">—</div>
-          <div class="stat-label">Total Bookings</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon yellow-icon"><i class="fas fa-clock"></i></div>
-          <div class="stat-value" id="stat-pending">—</div>
-          <div class="stat-label">Pending</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon blue-icon"><i class="fas fa-check-circle"></i></div>
-          <div class="stat-value" id="stat-confirmed">—</div>
-          <div class="stat-label">Confirmed</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon green-icon"><i class="fas fa-star"></i></div>
-          <div class="stat-value" id="stat-completed">—</div>
-          <div class="stat-label">Completed</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon red-icon"><i class="fas fa-times-circle"></i></div>
-          <div class="stat-value" id="stat-cancelled">—</div>
-          <div class="stat-label">Cancelled</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-icon gold-icon"><i class="fas fa-sun"></i></div>
-          <div class="stat-value" id="stat-today">—</div>
-          <div class="stat-label">Aaj Ki Bookings</div>
-        </div>
-      </div>
-
-      <!-- Recent Bookings preview -->
-      <div class="table-container">
-        <div class="table-header">
-          <div class="table-title">Recent Bookings (Latest 10)</div>
-          <button class="refresh-btn" onclick="loadDashboard()"><i class="fas fa-sync-alt"></i> Refresh</button>
-        </div>
-        <div id="recentBookingsBody">
-          <div class="loading"><div class="spinner"></div><br>Loading...</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== BOOKINGS PAGE ===== -->
-    <div class="page-section" id="page-bookings">
-      <div class="filters-bar">
-        <select class="filter-select" id="filterStatus" onchange="applyFilters()">
-          <option value="all">Sab Status</option>
-          <option value="pending">⏳ Pending</option>
-          <option value="confirmed">✅ Confirmed</option>
-          <option value="completed">🌟 Completed</option>
-          <option value="cancelled">❌ Cancelled</option>
-        </select>
-        <select class="filter-select" id="filterBranch" onchange="applyFilters()">
-          <option value="all">Sab Branches</option>
-          <option>Chitaipur</option>
-          <option>Shivpur</option>
-          <option>Maldahiya</option>
-          <option>Lanka</option>
-          <option>Sigra (Ink by O'Barba)</option>
-          <option>Mau</option>
-          <option>Jaunpur</option>
-          <option>Noida</option>
-        </select>
-        <input type="date" class="filter-input" id="filterDate" onchange="applyFilters()">
-        <button class="reset-btn" onclick="resetFilters()"><i class="fas fa-times"></i> Reset</button>
-        <div class="total-badge"><span id="bookingCount">0</span> bookings</div>
-      </div>
-
-      <div class="table-container">
-        <div class="table-header">
-          <div class="table-title">All Bookings</div>
-          <button class="refresh-btn" onclick="loadAllBookings()"><i class="fas fa-sync-alt"></i> Refresh</button>
-        </div>
-        <div id="allBookingsBody">
-          <div class="loading"><div class="spinner"></div><br>Loading...</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== WHATSAPP SETUP PAGE ===== -->
-    <div class="page-section" id="page-whatsapp">
-      <div class="info-card">
-        <h4><i class="fab fa-whatsapp"></i> WhatsApp Notification Setup (FREE)</h4>
-        <p style="margin-bottom:16px;">CallMeBot service se free WhatsApp alerts milenge har nayi booking pe!</p>
-        <ol style="list-style:none;padding:0;">
-          <li style="margin-bottom:12px;">
-            <span class="step-badge">1</span>
-            Apne WhatsApp se is number pe message karo:
-            <div class="code-box">+34 644 59 95 85</div>
-          </li>
-          <li style="margin-bottom:12px;">
-            <span class="step-badge">2</span>
-            Ye exact message bhejo:
-            <div class="code-box">I allow callmebot to send me messages</div>
-          </li>
-          <li style="margin-bottom:12px;">
-            <span class="step-badge">3</span>
-            Reply mein API key milegi — wo copy karo
-          </li>
-          <li style="margin-bottom:12px;">
-            <span class="step-badge">4</span>
-            Server ke <strong>.env</strong> file mein update karo:
-            <div class="code-box">WHATSAPP_PHONE=91XXXXXXXXXX<br>WHATSAPP_API_KEY=XXXXXXXX</div>
-          </li>
-          <li>
-            <span class="step-badge">5</span>
-            Server restart karo — ab notifications aane lagenge! 🎉
-          </li>
-        </ol>
-      </div>
-
-      <div class="info-card">
-        <h4><i class="fas fa-server"></i> Backend Server Status</h4>
-        <p>Backend URL: <strong style="color:var(--gold)" id="backendUrl"></strong></p>
-        <br>
-        <button class="filter-btn" onclick="checkServerStatus()">
-          <i class="fas fa-heartbeat"></i> Check Server Status
+      <!-- Social + Mobile toggle -->
+      <div class="flex items-center gap-4">
+        <a href="https://instagram.com" target="_blank" class="text-gold/70 hover:text-gold transition-colors text-sm"><i class="fab fa-instagram"></i></a>
+        <a href="https://youtube.com" target="_blank" class="text-gold/70 hover:text-gold transition-colors text-sm"><i class="fab fa-youtube"></i></a>
+        <button id="mobileToggle" class="lg:hidden text-gold text-xl ml-2" aria-label="Menu">
+          <i class="fas fa-bars"></i>
         </button>
-        <div id="serverStatus" style="margin-top:12px;font-size:13px;"></div>
       </div>
+    </div>
+  </div>
+</header>
 
-      <div class="info-card">
-        <h4><i class="fas fa-cloud-upload-alt"></i> Render.com pe Deploy Karne ke Steps</h4>
-        <ol>
-          <li>Render.com pe free account banao</li>
-          <li>"New Web Service" click karo</li>
-          <li>GitHub repo connect karo: <strong style="color:var(--gold)">akashss1920-lang/obarba-salon</strong></li>
-          <li>Root directory: <strong style="color:var(--gold)">backend</strong></li>
-          <li>Build Command: <strong style="color:var(--gold)">npm install</strong></li>
-          <li>Start Command: <strong style="color:var(--gold)">npm start</strong></li>
-          <li>Environment variables add karo (MONGODB_URI, ADMIN_PASSWORD, etc.)</li>
-          <li>Deploy! ✅</li>
-        </ol>
+<!-- Mobile Nav -->
+<div id="mobileNav" class="mobile-nav fixed inset-0 z-[60] bg-dark/98 backdrop-blur-xl flex flex-col items-center justify-center gap-6">
+  <button id="mobileClose" class="absolute top-5 right-6 text-gold text-2xl"><i class="fas fa-times"></i></button>
+  <a href="#about" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">About</a>
+  <a href="#services" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">Services</a>
+  <a href="#pricing" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">Pricing</a>
+  <a href="#branches" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">Branches</a>
+  <a href="#faq" class="mobile-link text-lg tracking-[3px] uppercase text-white/80 hover:text-gold transition-colors font-serif">FAQ</a>
+  <a href="#book" class="mobile-link mt-4 px-8 py-3 bg-gold text-dark text-sm font-bold tracking-wider uppercase rounded-sm">Book Now</a>
+</div>
+
+<!-- ==================== HERO SECTION ==================== -->
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="https://picsum.photos/seed/obarba-salon-hero/1920/1080.jpg" alt="Premium Salon" class="w-full h-full object-cover" style="filter: brightness(0.35) contrast(1.2) saturate(0.7);">
+  </div>
+  <div class="hero-overlay absolute inset-0"></div>
+  
+  <!-- Gold glows -->
+  <div class="gold-glow" style="top: 10%; left: 10%;"></div>
+  <div class="gold-glow" style="bottom: 20%; right: 5%; width: 400px; height: 400px;"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 text-center px-4 max-w-4xl mx-auto pt-20">
+    <!-- Circular Emblem Logo -->
+    <div class="flex justify-center mb-8 animate-fadeInUp">
+      <div class="dotted-circle">
+        <div class="w-28 h-28 sm:w-36 sm:h-36 rounded-full bg-darkLight/80 backdrop-blur-sm border border-gold/30 flex items-center justify-center">
+          <svg viewBox="0 0 100 100" class="w-20 h-20 sm:w-24 sm:h-24">
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#D4AF37" stroke-width="0.4" stroke-dasharray="3,3"/>
+            <!-- Bearded man left -->
+            <ellipse cx="35" cy="38" rx="10" ry="12" fill="#D4AF37" opacity="0.9"/>
+            <path d="M25 50 Q25 66 35 70 Q45 66 45 50" fill="#D4AF37" opacity="0.7"/>
+            <line x1="32" y1="55" x2="38" y2="55" stroke="#0B0B0B" stroke-width="0.8"/>
+            <!-- Woman right -->
+            <ellipse cx="65" cy="38" rx="10" ry="12" fill="#D4AF37" opacity="0.9"/>
+            <path d="M55 50 Q55 70 65 74 Q75 70 75 50" fill="#D4AF37" opacity="0.7"/>
+            <path d="M55 38 Q53 26 58 18 Q65 10 72 18 Q77 26 75 38" fill="#D4AF37" opacity="0.5"/>
+            <!-- Center divider -->
+            <line x1="50" y1="25" x2="50" y2="75" stroke="#D4AF37" stroke-width="0.3" stroke-dasharray="2,2"/>
+          </svg>
+        </div>
       </div>
     </div>
 
-  </div><!-- end main-content -->
-</div><!-- end mainApp -->
+    <!-- Brand Name -->
+    <h1 class="font-serif text-4xl sm:text-5xl md:text-7xl font-black tracking-wide mb-3 animate-fadeInUp" style="animation-delay:0.2s;">
+      <span class="gold-shimmer">O'BARBA</span>
+    </h1>
+    <h2 class="font-serif text-xl sm:text-2xl md:text-3xl text-white/90 tracking-[4px] sm:tracking-[6px] uppercase mb-4 animate-fadeInUp" style="animation-delay:0.35s;">
+      Family Salon
+    </h2>
 
+    <!-- Ribbon -->
+    <div class="flex justify-center mb-6 animate-fadeInUp" style="animation-delay:0.45s;">
+      <div class="ribbon">our image is to make your image</div>
+    </div>
+
+    <!-- Social Icons -->
+    <div class="flex justify-center gap-5 mb-8 animate-fadeInUp" style="animation-delay:0.5s;">
+      <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-dark transition-all"><i class="fab fa-instagram text-sm"></i></a>
+      <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-full border border-gold/40 flex items-center justify-center text-gold hover:bg-gold hover:text-dark transition-all"><i class="fab fa-youtube text-sm"></i></a>
+    </div>
+
+    <!-- Sub-heading -->
+    <p class="text-white/80 text-base sm:text-lg md:text-xl font-light tracking-wide mb-5 animate-fadeInUp" style="animation-delay:0.6s;">
+      Luxury Meets Affordability &bull; Since 2018
+    </p>
+
+    <!-- Pill Badge -->
+    <div class="flex justify-center mb-6 animate-fadeInUp" style="animation-delay:0.7s;">
+      <div class="inline-flex items-center gap-3 px-5 py-2 rounded-full border border-gold/30 bg-dark/50 backdrop-blur-sm text-gold/80 text-xs tracking-[2px] uppercase">
+        <span>&bull;</span> Since 2018 <span>&bull;</span> Varanasi <span>&bull;</span> Jaunpur <span>&bull;</span> Noida <span>&bull;</span>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <p class="text-white/60 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-10 animate-fadeInUp" style="animation-delay:0.8s;">
+      A vintage, unisex sanctuary where dark wood, matte black, and royal gold converge. 70+ certified artists. Cruelty-free rituals.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fadeInUp" style="animation-delay:0.9s;">
+      <a href="#book" class="px-8 py-3.5 bg-gold text-dark font-bold text-sm tracking-wider uppercase hover:bg-goldLight transition-all rounded-sm pulse-gold flex items-center gap-2">
+        Book Premium Appointment <i class="fas fa-arrow-right text-xs"></i>
+      </a>
+      <a href="#services" class="px-8 py-3.5 border border-gold/50 text-gold font-medium text-sm tracking-wider uppercase hover:bg-gold/10 transition-all rounded-sm">
+        Explore Services
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+      <div class="w-5 h-8 rounded-full border border-gold/30 flex items-start justify-center p-1">
+        <div class="w-1 h-2 bg-gold/60 rounded-full"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STUDIO SHOWCASE ==================== -->
+<section id="about" class="relative py-0">
+  <!-- Full-width showcase image -->
+  <div class="relative w-full h-[50vh] sm:h-[60vh] md:h-[70vh] overflow-hidden">
+    <img src="https://picsum.photos/seed/obarba-studio-flagship/1920/900.jpg" alt="O'Barba Flagship Studio" class="w-full h-full object-cover" style="filter: brightness(0.5) contrast(1.15) saturate(0.8);">
+    <div class="sunburst"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-dark via-transparent to-transparent"></div>
+    <!-- Label -->
+    <div class="absolute bottom-6 left-6 sm:bottom-8 sm:left-8">
+      <div class="inline-flex items-center gap-2 px-4 py-2 bg-dark/70 backdrop-blur-sm border border-gold/30 rounded-sm">
+        <span class="text-gold font-serif font-bold text-sm tracking-wider">OB</span>
+        <span class="text-gold/50">|</span>
+        <span class="text-white/70 text-xs tracking-[2px] uppercase">Lanka &bull; Flagship Studio</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- About Content -->
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+    <div class="text-center mb-16">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-4">— About O'Barba</p>
+      <h2 class="font-serif text-3xl sm:text-4xl md:text-5xl text-white leading-tight mb-8">
+        Vintage souls. Modern craft.<br>
+        <span class="text-gold">Everyday luxury, unisex.</span>
+      </h2>
+      <p class="text-white/60 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+        Founded in Varanasi in 2018, O'Barba is a family salon built for real life — where chai is always on, consultations are honest, and every chair feels like home. We blend the warmth of a neighbourhood parlour with the precision of a luxury studio: warm wood, matte black steel, and brass.
+      </p>
+    </div>
+
+    <!-- 3-Column Info Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Ethos -->
+      <div class="group p-8 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-all duration-500">
+        <div class="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+          <i class="fas fa-leaf text-gold text-lg"></i>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3 tracking-wide">Ethos</h3>
+        <p class="text-white/50 text-sm leading-relaxed">Cruelty-free, vegan, low-waste. Every product we use is chosen with care for you and the planet.</p>
+      </div>
+      <!-- People -->
+      <div class="group p-8 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-all duration-500">
+        <div class="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+          <i class="fas fa-users text-gold text-lg"></i>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3 tracking-wide">People</h3>
+        <p class="text-white/50 text-sm leading-relaxed">70+ certified professionals trained at L'Oréal, Wella, and other global academies. Expertise you can trust.</p>
+      </div>
+      <!-- Promise -->
+      <div class="group p-8 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-all duration-500">
+        <div class="w-12 h-12 rounded-full border border-gold/40 flex items-center justify-center mb-6 group-hover:bg-gold/10 transition-colors">
+          <i class="fas fa-shield-halved text-gold text-lg"></i>
+        </div>
+        <h3 class="font-serif text-xl text-gold mb-3 tracking-wide">Promise</h3>
+        <p class="text-white/50 text-sm leading-relaxed">Transparent pricing, zero hidden add-ons. What you see is what you pay — always.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== STATS BANNER ==================== -->
+<section class="relative py-10 sm:py-14 bg-darkLight border-y border-charcoal">
+  <div class="max-w-5xl mx-auto px-4">
+    <div class="grid grid-cols-3 gap-4 text-center">
+      <div>
+        <div class="font-serif text-3xl sm:text-4xl md:text-5xl text-gold font-bold">5+</div>
+        <div class="text-white/50 text-xs sm:text-sm tracking-[2px] uppercase mt-1">Years Excellence</div>
+      </div>
+      <div>
+        <div class="font-serif text-3xl sm:text-4xl md:text-5xl text-gold font-bold">70+</div>
+        <div class="text-white/50 text-xs sm:text-sm tracking-[2px] uppercase mt-1">Artists</div>
+      </div>
+      <div>
+        <div class="font-serif text-3xl sm:text-4xl md:text-5xl text-gold font-bold">25K+</div>
+        <div class="text-white/50 text-xs sm:text-sm tracking-[2px] uppercase mt-1">Guests</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== TRENDING OFFERS ==================== -->
+<section id="services" class="py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Limited Time</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Trending Offers</h2>
+    </div>
+
+    <!-- Offers Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      <!-- Offer Card 1 -->
+      <div class="offer-card p-8 bg-darkCard border border-gold/20 rounded-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 px-4 py-1 bg-gold text-dark text-xs font-bold tracking-wider uppercase">10% Flat Off</div>
+        <div class="flex items-start gap-5">
+          <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-crown text-gold text-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-white mb-2">The Royal Groom Package</h3>
+            <p class="text-white/50 text-sm leading-relaxed mb-4">Premium haircut + Royal shave + Hair spa + Facial — all in one luxurious session. Walk out feeling like royalty.</p>
+            <div class="flex items-center gap-3">
+              <span class="text-gold font-bold text-lg">₹2,999</span>
+              <span class="text-white/30 line-through text-sm">₹3,330</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Offer Card 2 -->
+      <div class="offer-card p-8 bg-darkCard border border-gold/20 rounded-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 px-4 py-1 bg-gold text-dark text-xs font-bold tracking-wider uppercase">Best Value</div>
+        <div class="flex items-start gap-5">
+          <div class="w-16 h-16 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center flex-shrink-0">
+            <i class="fas fa-sparkles text-gold text-xl"></i>
+          </div>
+          <div>
+            <h3 class="font-serif text-xl text-white mb-2">Signature Hair Revival</h3>
+            <p class="text-white/50 text-sm leading-relaxed mb-4">Advance Haircut + Keratin Spa — the ultimate hair transformation. Silky smooth, magazine-ready results.</p>
+            <div class="flex items-center gap-3">
+              <span class="text-gold font-bold text-lg">₹2,499</span>
+              <span class="text-white/30 line-through text-sm">₹3,500</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== SERVICE MENU TABS ==================== -->
+    <div id="pricing">
+      <div class="text-center mb-10">
+        <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Complete Menu</p>
+        <h2 class="font-serif text-3xl sm:text-4xl text-white">Price List</h2>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        <button class="tab-btn active px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="hair">
+          <i class="fas fa-scissors mr-2"></i>Hair
+        </button>
+        <button class="tab-btn px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="hands">
+          <i class="fas fa-hand-sparkles mr-2"></i>Hands/Feet
+        </button>
+        <button class="tab-btn px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="skin">
+          <i class="fas fa-spa mr-2"></i>Skin
+        </button>
+        <button class="tab-btn px-5 py-2.5 border border-charcoal text-white/70 text-xs tracking-[2px] uppercase rounded-sm font-medium" data-tab="makeup">
+          <i class="fas fa-paint-brush mr-2"></i>Makeup
+        </button>
+      </div>
+
+      <!-- Tab Content -->
+      <div class="max-w-3xl mx-auto">
+        <!-- HAIR -->
+        <div id="tab-hair" class="tab-content">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Hair Cut</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹799</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Hair Spa</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹1,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Global Color</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹3,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Balayage</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹5,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Keratin</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹5,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Botox</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹8,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Nano Plastia</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹9,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Kara-Smooth</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹12,999</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- HANDS/FEET -->
+        <div id="tab-hands" class="tab-content hidden">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Manicure</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹599 – ₹2,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Pedicure</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹699 – ₹3,499</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SKIN -->
+        <div id="tab-skin" class="tab-content hidden">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Waxing</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹499 – ₹3,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Cleanup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹1,499 – ₹2,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Facial</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹2,499 – ₹9,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Body Polishing</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹3,999 – ₹5,999</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAKEUP -->
+        <div id="tab-makeup" class="tab-content hidden">
+          <div class="space-y-0">
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Child Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹1,499 – ₹2,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Party Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹2,499 – ₹6,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Engagement Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹7,999 – ₹24,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 border-b border-charcoal/50 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Bridal Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹9,999 – ₹44,999</span>
+            </div>
+            <div class="service-row flex items-center justify-between py-4 px-4 transition-colors">
+              <span class="text-white/80 text-sm sm:text-base">Groom Makeup</span>
+              <span class="text-gold font-semibold text-sm sm:text-base">₹3,499 – ₹6,999</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== BOOK ONLINE FORM ==================== -->
+<section id="book" class="py-16 sm:py-24 bg-darkLight relative overflow-hidden">
+  <div class="gold-glow" style="top:-100px;right:-100px;width:400px;height:400px;"></div>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Priority Booking</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Book Online</h2>
+    </div>
+
+    <form id="bookingForm" class="p-6 sm:p-10 bg-darkCard border border-charcoal rounded-sm">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+        <!-- Full Name -->
+        <div>
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Full Name</label>
+          <input type="text" id="fname" placeholder="Enter your name" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors placeholder:text-white/20">
+        </div>
+        <!-- Phone -->
+        <div>
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Phone Number</label>
+          <input type="tel" id="fphone" placeholder="+91 XXXXX XXXXX" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors placeholder:text-white/20">
+        </div>
+        <!-- Date -->
+        <div>
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Preferred Date</label>
+          <input type="date" id="fdate" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors" style="color-scheme:dark;">
+        </div>
+        <!-- Service -->
+        <div class="relative">
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Service</label>
+          <select id="fservice" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="" disabled selected>Select a service</option>
+            <option>Hair Cut</option>
+            <option>Hair Spa</option>
+            <option>Global Color</option>
+            <option>Balayage</option>
+            <option>Keratin</option>
+            <option>Botox</option>
+            <option>Nano Plastia</option>
+            <option>Kara-Smooth</option>
+            <option>Manicure</option>
+            <option>Pedicure</option>
+            <option>Waxing</option>
+            <option>Cleanup</option>
+            <option>Facial</option>
+            <option>Body Polishing</option>
+            <option>Party Makeup</option>
+            <option>Bridal Makeup</option>
+            <option>Engagement Makeup</option>
+            <option>Groom Makeup</option>
+            <option>Royal Groom Package</option>
+            <option>Signature Hair Revival</option>
+          </select>
+          <i class="fas fa-chevron-down absolute right-4 top-[42px] text-gold/50 text-xs pointer-events-none"></i>
+        </div>
+        <!-- Branch -->
+        <div class="relative sm:col-span-2">
+          <label class="block text-white/50 text-xs tracking-[2px] uppercase mb-2">Branch</label>
+          <select id="fbranch" required class="w-full px-4 py-3 bg-dark border border-charcoal text-white text-sm rounded-sm focus:border-gold focus:outline-none transition-colors cursor-pointer">
+            <option value="" disabled selected>Select a branch</option>
+            <option>Chitaipur</option>
+            <option>Shivpur</option>
+            <option>Maldahiya</option>
+            <option>Lanka</option>
+            <option>Sigra (Ink by O'Barba)</option>
+            <option>Mau</option>
+            <option>Jaunpur</option>
+            <option>Noida</option>
+          </select>
+          <i class="fas fa-chevron-down absolute right-4 top-[42px] text-gold/50 text-xs pointer-events-none"></i>
+        </div>
+      </div>
+      <!-- Error message -->
+      <div id="formError" class="hidden mt-4 text-red-400 text-xs tracking-wider text-center"></div>
+      <!-- Submit -->
+      <div class="mt-8 text-center">
+        <button type="submit" class="px-10 py-3.5 bg-gold text-dark font-bold text-sm tracking-wider uppercase hover:bg-goldLight transition-all rounded-sm pulse-gold">
+          Confirm Priority Slot
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ==================== BRANCHES ==================== -->
+<section id="branches" class="py-16 sm:py-24">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Find Us</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Our Branches</h2>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- Branch Cards -->
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Chitaipur</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Chitaipur+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Shivpur</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Shivpur+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Maldahiya</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Maldahiya+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Lanka</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Lanka+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-base text-white">Sigra <span class="text-gold/60 text-xs">(Ink by O'Barba)</span></h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Sigra+Varanasi" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Mau</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Mau" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Jaunpur</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Jaunpur" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+
+      <div class="branch-card p-6 bg-darkCard border border-charcoal rounded-sm">
+        <div class="flex items-center gap-3 mb-3">
+          <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+            <i class="fas fa-location-dot text-gold text-xs"></i>
+          </div>
+          <h3 class="font-serif text-lg text-white">Noida</h3>
+        </div>
+        <p class="text-white/40 text-xs tracking-wider mb-4">Open Daily: 10:00 AM – 10:00 PM</p>
+        <a href="https://maps.google.com/?q=OBarba+Noida" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-gold/40 text-gold text-xs tracking-wider uppercase hover:bg-gold hover:text-dark transition-all rounded-sm">
+          <i class="fas fa-map-marker-alt"></i> View Direction on Google Maps
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FAQ ==================== -->
+<section id="faq" class="py-16 sm:py-24 bg-darkLight">
+  <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-12">
+      <p class="text-gold font-serif text-xs tracking-[4px] uppercase mb-3">Got Questions?</p>
+      <h2 class="font-serif text-3xl sm:text-4xl text-white">Frequently Asked</h2>
+    </div>
+
+    <div class="space-y-4">
+      <!-- FAQ 1 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Kya mujhe appointment pehle book karni padegi?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Walk-ins are always welcome at O'Barba! However, booking your appointment in advance ensures zero waiting time and your preferred artist. We recommend booking, especially on weekends and festive seasons.
+        </div>
+      </div>
+
+      <!-- FAQ 2 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Tattoo ke liye safe aur hygienic equipment use hote hain?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Yes, 100%! At Ink by O'Barba (Sigra branch), we use only sterilized, single-use disposable needles for every tattoo session. All equipment is medically graded and our artists follow strict hygiene protocols. Your safety is our top priority.
+        </div>
+      </div>
+
+      <!-- FAQ 3 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Kya aapke products cruelty-free hain?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Absolutely! All products used at O'Barba are cruelty-free and mostly vegan. We partner with brands like L'Oréal and Wella that share our commitment to ethical beauty.
+        </div>
+      </div>
+
+      <!-- FAQ 4 -->
+      <div class="faq-item border border-charcoal rounded-sm overflow-hidden">
+        <button class="faq-toggle w-full flex items-center justify-between p-5 text-left hover:bg-charcoal/30 transition-colors" onclick="toggleFaq(this)">
+          <span class="text-white text-sm sm:text-base pr-4">Bridal package mein kya kya included hota hai?</span>
+          <i class="faq-icon fas fa-plus text-gold text-sm flex-shrink-0"></i>
+        </button>
+        <div class="faq-answer px-5 text-white/50 text-sm leading-relaxed">
+          Our Bridal package includes consultation, skincare prep, hairstyle, draping assistance, and the signature O'Barba bridal makeup look. Prices range from ₹9,999 to ₹44,999 depending on the look and products chosen. Custom packages are also available!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="py-12 sm:py-16 border-t border-charcoal">
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mb-12">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-10 h-10 rounded-full border border-gold/50 flex items-center justify-center">
+            <svg viewBox="0 0 60 60" class="w-6 h-6">
+              <circle cx="30" cy="30" r="28" fill="none" stroke="#D4AF37" stroke-width="0.5" stroke-dasharray="2,2"/>
+              <ellipse cx="21" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+              <ellipse cx="39" cy="24" rx="6" ry="7" fill="#D4AF37" opacity="0.9"/>
+            </svg>
+          </div>
+          <div>
+            <div class="font-serif text-gold text-base font-bold tracking-wider">O'BARBA</div>
+            <div class="text-[9px] text-gold/50 tracking-[2px] uppercase">Family Salon</div>
+          </div>
+        </div>
+        <p class="text-white/40 text-sm leading-relaxed">Our image is to make your image. A vintage, unisex sanctuary since 2018.</p>
+        <div class="flex gap-3 mt-4">
+          <a href="https://instagram.com" target="_blank" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold/60 hover:bg-gold hover:text-dark transition-all text-xs"><i class="fab fa-instagram"></i></a>
+          <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold/60 hover:bg-gold hover:text-dark transition-all text-xs"><i class="fab fa-youtube"></i></a>
+          <a href="https://facebook.com" target="_blank" class="w-8 h-8 rounded-full border border-gold/30 flex items-center justify-center text-gold/60 hover:bg-gold hover:text-dark transition-all text-xs"><i class="fab fa-facebook-f"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-serif text-gold text-sm tracking-[2px] uppercase mb-4">Quick Links</h4>
+        <ul class="space-y-2">
+          <li><a href="#about" class="text-white/40 text-sm hover:text-gold transition-colors">About Us</a></li>
+          <li><a href="#services" class="text-white/40 text-sm hover:text-gold transition-colors">Services & Pricing</a></li>
+          <li><a href="#book" class="text-white/40 text-sm hover:text-gold transition-colors">Book Appointment</a></li>
+          <li><a href="#branches" class="text-white/40 text-sm hover:text-gold transition-colors">Branch Locations</a></li>
+          <li><a href="#faq" class="text-white/40 text-sm hover:text-gold transition-colors">FAQ</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h4 class="font-serif text-gold text-sm tracking-[2px] uppercase mb-4">Contact</h4>
+        <ul class="space-y-3">
+          <li class="flex items-center gap-2 text-white/40 text-sm"><i class="fas fa-clock text-gold/50 text-xs"></i> Open Daily: 10 AM – 10 PM</li>
+          <li class="flex items-center gap-2 text-white/40 text-sm"><i class="fas fa-envelope text-gold/50 text-xs"></i> hello@obarbasalon.com</li>
+          <li class="flex items-center gap-2 text-white/40 text-sm"><i class="fas fa-map-pin text-gold/50 text-xs"></i> Varanasi | Jaunpur | Noida</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-charcoal pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-white/30 text-xs tracking-wider">&copy; 2024 O'Barba Family Salon. All rights reserved.</p>
+      <p class="text-white/20 text-xs tracking-wider">Crafted with <span class="text-gold/50">&hearts;</span> in Varanasi</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ==================== FLOATING PILL ==================== -->
+<div class="floating-pill">
+  <button id="callBtn" class="flex items-center gap-2 px-5 py-3 bg-zincCustom border border-charcoal text-white text-xs font-semibold tracking-wider rounded-full shadow-lg hover:border-gold/50 transition-all">
+    <i class="fas fa-phone text-gold text-sm"></i>
+    <span class="hidden sm:inline">Call Salon</span>
+  </button>
+  <button id="waBtn" class="flex items-center gap-2 px-5 py-3 bg-gold text-dark text-xs font-bold tracking-wider rounded-full shadow-lg hover:bg-goldLight transition-all">
+    <i class="fab fa-whatsapp text-sm"></i>
+    <span class="hidden sm:inline">WhatsApp &bull; 30s reply</span>
+  </button>
+</div>
+
+<!-- ==================== MODAL ==================== -->
+<div id="branchModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4">
+  <div class="modal-backdrop absolute inset-0" id="modalBackdrop"></div>
+  <div class="relative z-10 w-full max-w-lg bg-darkLight border border-charcoal rounded-sm max-h-[80vh] overflow-y-auto">
+    <div class="sticky top-0 bg-darkLight border-b border-charcoal p-5 flex items-center justify-between z-10">
+      <h3 id="modalTitle" class="font-serif text-lg text-gold">Select Branch to Call</h3>
+      <button id="modalClose" class="text-white/50 hover:text-gold transition-colors text-lg"><i class="fas fa-times"></i></button>
+    </div>
+    <div class="p-4 space-y-2" id="modalBranchList">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ==================== JAVASCRIPT ==================== -->
 <script>
-// ============================================================
-// CONFIG
-// ============================================================
-// Yahan apna backend URL daalo (deploy hone ke baad update karna)
-const BACKEND_URL = 'https://obarba-backend.onrender.com';
- 
-let authToken = null;
-let allBookingsData = [];
+// ===== Branch Data =====
+const branches = [
+  { name: 'Chitaipur', phone: '8808081208' },
+  { name: 'Shivpur', phone: '8808081108' },
+  { name: 'Maldahiya', phone: '8935000555' },
+  { name: 'Lanka', phone: '7224080808' },
+  { name: 'Sigra (Ink by O\'Barba)', phone: '7225080808' },
+  { name: 'Mau', phone: '8052777999' },
+  { name: 'Jaunpur', phone: '7705962222' },
+  { name: 'Noida', phone: '9643392715' },
+];
 
-// ============================================================
-// LOGIN
-// ============================================================
-function doLogin() {
-  const pass = document.getElementById('loginPass').value;
-  if (!pass) return;
+// ===== Header Scroll Effect =====
+const header = document.getElementById('mainHeader');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 80) {
+    header.style.background = 'rgba(11,11,11,0.95)';
+    header.style.backdropFilter = 'blur(12px)';
+    header.style.borderBottom = '1px solid rgba(42,42,42,0.5)';
+  } else {
+    header.style.background = 'transparent';
+    header.style.backdropFilter = 'none';
+    header.style.borderBottom = 'none';
+  }
+});
 
-  fetch(`${BACKEND_URL}/api/admin/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ password: pass })
-  })
-  .then(r => r.json())
-  .then(data => {
-    if (data.success) {
-      authToken = data.token;
-      localStorage.setItem('obarba_token', authToken);
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('mainApp').style.display = 'block';
-      setDate();
-      loadDashboard();
-    } else {
-      document.getElementById('loginError').style.display = 'block';
-    }
-  })
-  .catch(() => {
-    document.getElementById('loginError').textContent = '❌ Server se connect nahi hua! Backend chal raha hai?';
-    document.getElementById('loginError').style.display = 'block';
+// ===== Mobile Nav =====
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileNav = document.getElementById('mobileNav');
+const mobileClose = document.getElementById('mobileClose');
+const mobileLinks = document.querySelectorAll('.mobile-link');
+
+mobileToggle.addEventListener('click', () => mobileNav.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileNav.classList.remove('open'));
+mobileLinks.forEach(link => {
+  link.addEventListener('click', () => mobileNav.classList.remove('open'));
+});
+
+// ===== Service Tabs =====
+const tabBtns = document.querySelectorAll('.tab-btn');
+const tabContents = document.querySelectorAll('.tab-content');
+
+tabBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    tabBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    tabContents.forEach(c => c.classList.add('hidden'));
+    document.getElementById('tab-' + tab).classList.remove('hidden');
   });
-}
+});
 
-// Auto-login if token saved
-window.onload = () => {
-  const saved = localStorage.getItem('obarba_token');
-  if (saved) {
-    authToken = saved;
-    document.getElementById('loginScreen').style.display = 'none';
-    document.getElementById('mainApp').style.display = 'block';
-    setDate();
-    loadDashboard();
-  }
-  document.getElementById('backendUrl').textContent = BACKEND_URL;
-};
+// ===== FAQ Accordion =====
+function toggleFaq(btn) {
+  const answer = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = answer.classList.contains('open');
 
-function logout() {
-  localStorage.removeItem('obarba_token');
-  authToken = null;
-  location.reload();
-}
+  // Close all
+  document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotated'));
 
-// ============================================================
-// PAGE NAVIGATION
-// ============================================================
-function showPage(page) {
-  document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  document.getElementById(`page-${page}`).classList.add('active');
-  document.getElementById(`nav-${page}`).classList.add('active');
-
-  const titles = { dashboard: 'Dashboard', bookings: 'All Bookings', whatsapp: 'WhatsApp Setup' };
-  document.getElementById('pageTitle').textContent = titles[page];
-
-  if (page === 'bookings') loadAllBookings();
-}
-
-function setDate() {
-  const d = new Date();
-  document.getElementById('currentDate').textContent = d.toLocaleDateString('hi-IN', {
-    weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
-  });
-}
-
-// ============================================================
-// LOAD DASHBOARD
-// ============================================================
-async function loadDashboard() {
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/admin/bookings?limit=10`, {
-      headers: { 'Authorization': authToken }
-    });
-    const data = await res.json();
-    if (!data.success) { logout(); return; }
-
-    // Stats
-    const s = data.stats;
-    document.getElementById('stat-total').textContent = s.total;
-    document.getElementById('stat-pending').textContent = s.pending;
-    document.getElementById('stat-confirmed').textContent = s.confirmed;
-    document.getElementById('stat-completed').textContent = s.completed;
-    document.getElementById('stat-cancelled').textContent = s.cancelled;
-    document.getElementById('stat-today').textContent = s.todayCount;
-
-    // Recent table
-    renderBookingsTable(data.bookings, 'recentBookingsBody', true);
-  } catch (e) {
-    document.getElementById('recentBookingsBody').innerHTML =
-      '<div class="empty-state"><i class="fas fa-wifi"></i><p>Server se connect nahi hua</p></div>';
+  if (!isOpen) {
+    answer.classList.add('open');
+    icon.classList.add('rotated');
   }
 }
 
-// ============================================================
-// LOAD ALL BOOKINGS
-// ============================================================
-async function loadAllBookings() {
-  document.getElementById('allBookingsBody').innerHTML =
-    '<div class="loading"><div class="spinner"></div><br>Loading...</div>';
+// ===== Booking Form =====
+const bookingForm = document.getElementById('bookingForm');
+const formError = document.getElementById('formError');
 
-  const status = document.getElementById('filterStatus').value;
-  const branch = document.getElementById('filterBranch').value;
-  const date = document.getElementById('filterDate').value;
+bookingForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  formError.classList.add('hidden');
 
-  let query = `?limit=200`;
-  if (status !== 'all') query += `&status=${status}`;
-  if (branch !== 'all') query += `&branch=${encodeURIComponent(branch)}`;
-  if (date) query += `&date=${date}`;
+  const name = document.getElementById('fname').value.trim();
+  const phone = document.getElementById('fphone').value.trim();
+  const date = document.getElementById('fdate').value;
+  const service = document.getElementById('fservice').value;
+  const branch = document.getElementById('fbranch').value;
 
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/admin/bookings${query}`, {
-      headers: { 'Authorization': authToken }
-    });
-    const data = await res.json();
-    if (!data.success) { logout(); return; }
-
-    allBookingsData = data.bookings;
-    document.getElementById('bookingCount').textContent = data.totalCount;
-    renderBookingsTable(data.bookings, 'allBookingsBody', false);
-  } catch (e) {
-    document.getElementById('allBookingsBody').innerHTML =
-      '<div class="empty-state"><i class="fas fa-wifi"></i><p>Server se connect nahi hua</p></div>';
-  }
-}
-
-function applyFilters() { loadAllBookings(); }
-function resetFilters() {
-  document.getElementById('filterStatus').value = 'all';
-  document.getElementById('filterBranch').value = 'all';
-  document.getElementById('filterDate').value = '';
-  loadAllBookings();
-}
-
-// ============================================================
-// RENDER TABLE
-// ============================================================
-function renderBookingsTable(bookings, containerId, compact) {
-  const container = document.getElementById(containerId);
-
-  if (!bookings.length) {
-    container.innerHTML = `<div class="empty-state">
-      <i class="fas fa-calendar-times"></i>
-      <p>Koi booking nahi mili</p>
-    </div>`;
+  if (!name || !phone || !date || !service || !branch) {
+    formError.textContent = 'Please fill in all fields to confirm your slot.';
+    formError.classList.remove('hidden');
     return;
   }
 
-  let rows = bookings.map(b => {
-    const date = new Date(b.createdAt).toLocaleDateString('hi-IN', {
-      day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit'
-    });
-    const actions = compact ? '' : `
-      <div class="action-btns">
-        <button class="act-btn act-confirm" onclick="openModal('${b._id}','confirmed','${escHtml(b.notes||'')}')" title="Confirm"><i class="fas fa-check"></i></button>
-        <button class="act-btn act-complete" onclick="openModal('${b._id}','completed','${escHtml(b.notes||'')}')" title="Complete"><i class="fas fa-star"></i></button>
-        <button class="act-btn act-cancel" onclick="openModal('${b._id}','cancelled','${escHtml(b.notes||'')}')" title="Cancel"><i class="fas fa-ban"></i></button>
-        <button class="act-btn act-delete" onclick="deleteBooking('${b._id}')" title="Delete"><i class="fas fa-trash"></i></button>
-      </div>`;
+  if (!/^\+?\d{10,13}$/.test(phone.replace(/\s/g, ''))) {
+    formError.textContent = 'Please enter a valid phone number.';
+    formError.classList.remove('hidden');
+    return;
+  }
 
-    return `<tr>
-      <td>
-        <div class="customer-name">${escHtml(b.name)}</div>
-        <div class="customer-phone"><i class="fas fa-phone" style="font-size:10px;margin-right:4px;"></i>${escHtml(b.phone)}</div>
-      </td>
-      <td style="color:rgba(255,255,255,0.7)">${escHtml(b.service)}</td>
-      <td style="color:rgba(255,255,255,0.6)">${escHtml(b.branch)}</td>
-      <td style="color:rgba(255,255,255,0.5);font-size:12px">${escHtml(b.date)}</td>
-      <td><span class="badge ${b.status}"><span class="badge-dot"></span>${b.status}</span></td>
-      ${compact ? '' : `<td style="color:rgba(255,255,255,0.35);font-size:11px">${date}</td>`}
-      ${compact ? '' : `<td>${actions}</td>`}
-    </tr>`;
-  }).join('');
+  showToast('Priority slot confirmed! We\'ll contact you shortly.');
+  bookingForm.reset();
+});
 
-  const headers = compact
-    ? `<tr><th>Customer</th><th>Service</th><th>Branch</th><th>Date</th><th>Status</th></tr>`
-    : `<tr><th>Customer</th><th>Service</th><th>Branch</th><th>Appointment</th><th>Status</th><th>Booked On</th><th>Actions</th></tr>`;
-
-  container.innerHTML = `<table class="bookings-table"><thead>${headers}</thead><tbody>${rows}</tbody></table>`;
+// ===== Toast =====
+function showToast(msg) {
+  const toast = document.getElementById('toast');
+  document.getElementById('toastMsg').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
 }
 
-// ============================================================
-// STATUS MODAL
-// ============================================================
-function openModal(id, status, notes) {
-  document.getElementById('editBookingId').value = id;
-  document.getElementById('editStatus').value = status;
-  document.getElementById('editNotes').value = notes;
-  document.getElementById('statusModal').classList.add('open');
+// ===== Modal =====
+const branchModal = document.getElementById('branchModal');
+const modalTitle = document.getElementById('modalTitle');
+const modalBranchList = document.getElementById('modalBranchList');
+const modalBackdrop = document.getElementById('modalBackdrop');
+const modalCloseBtn = document.getElementById('modalClose');
+
+let modalMode = 'call'; // 'call' or 'whatsapp'
+
+function openModal(mode) {
+  modalMode = mode;
+  modalTitle.textContent = mode === 'call' ? 'Select Branch to Call' : 'Select Branch for WhatsApp';
+  
+  modalBranchList.innerHTML = '';
+  branches.forEach(b => {
+    const div = document.createElement('div');
+    div.className = 'flex items-center justify-between p-4 bg-darkCard border border-charcoal rounded-sm hover:border-gold/30 transition-colors cursor-pointer';
+    
+    const left = document.createElement('div');
+    left.className = 'flex items-center gap-3';
+    left.innerHTML = `
+      <div class="w-8 h-8 rounded-full bg-gold/10 border border-gold/30 flex items-center justify-center">
+        <i class="fas ${mode === 'call' ? 'fa-phone' : 'fab fa-whatsapp'} text-gold text-xs"></i>
+      </div>
+      <span class="text-white text-sm">${b.name}</span>
+    `;
+
+    const right = document.createElement('div');
+    right.className = 'text-gold/50 text-xs';
+    right.innerHTML = '<i class="fas fa-chevron-right"></i>';
+
+    div.appendChild(left);
+    div.appendChild(right);
+
+    div.addEventListener('click', () => {
+      if (mode === 'call') {
+        window.open('tel:+91' + b.phone, '_self');
+      } else {
+        const msg = encodeURIComponent('Hi O\'Barba! I\'d like to book an appointment. Please help me with available slots.');
+        window.open('https://wa.me/91' + b.phone + '?text=' + msg, '_blank');
+      }
+      closeModal();
+    });
+
+    modalBranchList.appendChild(div);
+  });
+
+  branchModal.classList.remove('hidden');
+  branchModal.classList.add('flex');
+  document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
-  document.getElementById('statusModal').classList.remove('open');
+  branchModal.classList.add('hidden');
+  branchModal.classList.remove('flex');
+  document.body.style.overflow = '';
 }
 
-async function saveStatus() {
-  const id = document.getElementById('editBookingId').value;
-  const status = document.getElementById('editStatus').value;
-  const notes = document.getElementById('editNotes').value;
+document.getElementById('callBtn').addEventListener('click', () => openModal('call'));
+document.getElementById('waBtn').addEventListener('click', () => openModal('whatsapp'));
+modalBackdrop.addEventListener('click', closeModal);
+modalCloseBtn.addEventListener('click', closeModal);
 
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/admin/bookings/${id}`, {
-      method: 'PUT',
-      headers: { 'Content-Type': 'application/json', 'Authorization': authToken },
-      body: JSON.stringify({ status, notes })
-    });
-    const data = await res.json();
-    if (data.success) {
-      showToast('Status update ho gaya! ✅', 'success');
-      closeModal();
-      loadAllBookings();
-      loadDashboard();
+// ===== Set min date for booking =====
+const dateInput = document.getElementById('fdate');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+
+// ===== Smooth scroll for all anchors =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      const offset = 80;
+      const top = target.getBoundingClientRect().top + window.scrollY - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
     }
-  } catch (e) {
-    showToast('Update failed!', 'error');
-  }
-}
+  });
+});
 
-async function deleteBooking(id) {
-  if (!confirm('Ye booking delete karni hai?')) return;
-  try {
-    const res = await fetch(`${BACKEND_URL}/api/admin/bookings/${id}`, {
-      method: 'DELETE',
-      headers: { 'Authorization': authToken }
-    });
-    const data = await res.json();
-    if (data.success) {
-      showToast('Booking delete ho gayi!', 'success');
-      loadAllBookings();
-      loadDashboard();
+// ===== Intersection Observer for animations =====
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
     }
-  } catch (e) {
-    showToast('Delete failed!', 'error');
-  }
-}
+  });
+}, observerOptions);
 
-// ============================================================
-// SERVER STATUS CHECK
-// ============================================================
-async function checkServerStatus() {
-  const el = document.getElementById('serverStatus');
-  el.innerHTML = '<span style="color:var(--gold)">Checking...</span>';
-  try {
-    const res = await fetch(BACKEND_URL);
-    const data = await res.json();
-    if (data.success) {
-      el.innerHTML = `<span style="color:var(--green)">✅ Server Online! MongoDB Connected.</span>`;
-    }
-  } catch {
-    el.innerHTML = `<span style="color:var(--red)">❌ Server Offline - Backend start karo!</span>`;
-  }
-}
+document.querySelectorAll('.branch-card, .faq-item, .offer-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
 
-// ============================================================
-// TOAST
-// ============================================================
-function showToast(msg, type = 'success') {
-  const t = document.getElementById('toast');
-  const icon = document.getElementById('toastIcon');
-  document.getElementById('toastMsg').textContent = msg;
-  t.className = `toast ${type} show`;
-  icon.className = type === 'success' ? 'fas fa-check-circle' : 'fas fa-exclamation-circle';
-  setTimeout(() => t.classList.remove('show'), 3500);
-}
-
-// ============================================================
-// HELPERS
-// ============================================================
-function escHtml(str) {
-  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-}
-
-// Enter key login
-document.getElementById('loginPass').addEventListener('keydown', e => {
-  if (e.key === 'Enter') doLogin();
+// Escape key closes modal
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeModal();
 });
 </script>
+
 </body>
 </html>
