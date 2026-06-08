@@ -1182,6 +1182,32 @@ document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 </script>
+  
+  // admin/index.html mein
+const BACKEND_URL = 'https://obarba-salon-api.onrender.com'; // Apna sahi Render Backend URL yahan daalein
+
+// Login button ka function check karein
+async function doLogin() {
+  const password = document.getElementById('loginPass').value;
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/admin/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password })
+    });
+    
+    const data = await response.json();
+    if (data.success) {
+      alert("Login Success!");
+    } else {
+      alert("Login Failed: " + data.message);
+    }
+  } catch (err) {
+    console.error("Connection Error:", err);
+    alert("Server connect nahi ho raha. Check console!");
+  }
+}
+</script>
 
 </body>
 </html>
