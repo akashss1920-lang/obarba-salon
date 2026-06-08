@@ -1186,7 +1186,7 @@ document.addEventListener('keydown', (e) => {
 const BACKEND_URL = 'https://obarba-salon-api.onrender.com'; // Apna sahi Render Backend URL yahan daalein
 
 // Login button ka function check karein
-async function doLogin() {
+async function loadLogin() {
   const password = document.getElementById('loginPass').value;
   try {
     const response = await fetch(`${BACKEND_URL}/api/admin/bookings`, {
